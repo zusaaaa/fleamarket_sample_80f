@@ -61,6 +61,13 @@ Column|Type|Options|
 |price|integer|null: false|
 |user_id|integer|null:false, foreign_key: true|
 
+## commentテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|user_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+
 * Database initialization
 
 * How to run the test suite
