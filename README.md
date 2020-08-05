@@ -33,6 +33,12 @@ Things you may want to cover:
 |number_sign_etc|string||
 |phone_number|integer||
 
+## favoriteテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false|
+|date_and_time|datetime|null: false|
+|user_id|integer|foreign_key: true|
 
 * Database initialization
 
