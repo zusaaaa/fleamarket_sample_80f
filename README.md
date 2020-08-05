@@ -68,6 +68,12 @@ Column|Type|Options|
 |user_id|integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
 
+## product-categoryテーブル
+|Column|Type|Options|
+|------|----|-------|
+|category_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+
 * Database initialization
 
 * How to run the test suite
