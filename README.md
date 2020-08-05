@@ -40,6 +40,12 @@ Things you may want to cover:
 |date_and_time|datetime|null: false|
 |user_id|integer|foreign_key: true|
 
+## favorite-productテーブル
+|Column|Type|Options|
+|------|----|-------|
+|favorite_id|integer|foreign_key: true|
+|date_and_time|datetime|foreign_key: true|
+
 * Database initialization
 
 * How to run the test suite
