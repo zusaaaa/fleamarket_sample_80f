@@ -33,6 +33,14 @@ Things you may want to cover:
 |number_sign_etc|string||
 |phone_number|integer||
 
+## credit_cardテーブル
+|Column|Type|Options|
+|------|----|-------|
+|card_brand|string|null: false|
+|card_last_number|integer|null: false, maximum: 4|
+|expiration_year|integer|null: false, maximum: 2|
+|expiration_month|integer|null: false, maximum: 2|
+
 ## favoriteテーブル
 |Column|Type|Options|
 |------|----|-------|
