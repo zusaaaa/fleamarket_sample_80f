@@ -13,6 +13,27 @@ Things you may want to cover:
 
 * Database creation
 
+# フリマアプリ DB設計
+
+## userテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false, unique: true|
+|mail_address|string|null: false|
+|password|string|null: false, unique: true, minimum: 7|
+|family_name(kanji)|string|null: false|
+|first_name(kanji)|string|null:false|
+|family_name(kana)|string|null: false|
+|first_name(kana)|string|null: false|
+|birthday(y_m_d)|string|null: false|
+|postal_code|string|null:false|
+|prefecture|string|null: false|
+|city|string|null:false|
+|house_number|string|null:false|
+|number_sign_etc|string||
+|phone_number|integer||
+
+
 * Database initialization
 
 * How to run the test suite
