@@ -46,6 +46,21 @@ Things you may want to cover:
 |favorite_id|integer|foreign_key: true|
 |date_and_time|datetime|foreign_key: true|
 
+## productテーブル
+Column|Type|Options|
+|------|----|-------|
+|image|string||
+|product_name|string|null: false|
+|product_explanation|string|null: false|
+|brand|string||
+|product_status|string|null:false|
+|shipping_method|string|null: false|
+|shipping_charge|string|null: false|
+|shipping_area|string|null: false|
+|days_until_shipping|string|null:false|
+|price|integer|null: false|
+|user_id|integer|null:false, foreign_key: true|
+
 * Database initialization
 
 * How to run the test suite
