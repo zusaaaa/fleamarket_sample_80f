@@ -34,7 +34,7 @@ Things you may want to cover:
 |phone_number|integer||
 ### Association
 - has many :favorite
-- belongs to :user-order
+- has many :order through  :user-order
 - has many :product
 - has many :comment
 - has many :credit_card
@@ -45,15 +45,15 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |order_id|integer|null: false, foreign_key: true|
 ### Association
-- has many :user
-- has many :order
+- belongs to :user
+- belongs to :order
 
 ## orderテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs to :user-order
+- has many :user through :user-order
 - belongs to :product
 
 ## credit_cardテーブル
@@ -94,7 +94,7 @@ Things you may want to cover:
 - belongs to :user
 - belongs to :order
 - has many :favorite
-- belongs to :product-category
+- has many :category through :product-category
 - has many :image
 - has many :comment
 
@@ -114,14 +114,14 @@ Things you may want to cover:
 |category_id|integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
 ### Association
-- has many :product
-- has many :category
+- belongs to :product
+- belongs to :category
 
 ## categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-- belongs to :product-category
+- has many :product through :product-category
 
 * Database initialization
 
