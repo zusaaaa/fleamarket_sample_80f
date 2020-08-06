@@ -39,9 +39,9 @@ Things you may want to cover:
 |birthday_y_m_d|string|null: false|
 |phone_number|integer||
 ### Association
-- belongs to :addresses
+- belongs to :address
 - has many :favorites
-- has many :order through  :user-order
+- has many :order through  :user-orders
 - has many :products
 - has many :comments
 - has many :credit_cards
@@ -52,16 +52,16 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |order_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs to :users
-- belongs to :orders
+- belongs to :user
+- belongs to :order
 
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
 ### Association
-- has many :users through :user-order
-- belongs to :products
+- has many :users through :user-orders
+- belongs to :product
 
 ## credit_cardsテーブル
 |Column|Type|Options|
@@ -71,7 +71,7 @@ Things you may want to cover:
 |expiration_year|integer|null: false, maximum: 2|
 |expiration_month|integer|null: false, maximum: 2|
 ### Association
-- belongs to :users
+- belongs to :user
 
 ## favoritesテーブル
 |Column|Type|Options|
@@ -79,8 +79,8 @@ Things you may want to cover:
 |product_id|integer|foreign_key: true|
 |user_id|integer|foreign_key: true|
 ### Association
-- belongs to :users
-- belongs to :products
+- belongs to :user
+- belongs to :product
 
 ## productsテーブル
 |Column|Type|Options|
@@ -96,10 +96,10 @@ Things you may want to cover:
 |price|integer|null: false|
 |user_id|integer|null:false, foreign_key: true|
 ### Association
-- belongs to :users
-- belongs to :orders
+- belongs to :user
+- belongs to :order
 - has many :favorites
-- belongs to :categories
+- belongs to :category
 - has many :images
 - has many :comments
 
@@ -110,8 +110,8 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs to :products
-- belongs to :users
+- belongs to :product
+- belongs to :user
 
 ## categoriesテーブル
 |Column|Type|Options|
