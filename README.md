@@ -19,13 +19,13 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false, unique: true|
-|mail_address|string|null: false|
+|mail_address|string|null: false, unique: true|
 |password|string|null: false, unique: true, minimum: 7|
 |family_name(kanji)|string|null: false|
 |first_name(kanji)|string|null:false|
 |family_name(kana)|string|null: false|
 |first_name(kana)|string|null: false|
-|birthday(y_m_d)|string|null: false|
+|birthday(y_m_d)|datetime|null: false|
 |postal_code|string|null:false|
 |prefecture|string|null: false|
 |city|string|null:false|
@@ -52,7 +52,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |favorite_id|integer|foreign_key: true|
-|date_and_time|datetime|foreign_key: true|
+|user_id|integer|foreign_key: true|
 
 ## productテーブル
 Column|Type|Options|
