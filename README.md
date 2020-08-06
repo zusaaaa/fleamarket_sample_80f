@@ -15,29 +15,36 @@ Things you may want to cover:
 
 # フリマアプリ DB設計
 
-## userテーブル
+## addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string|null: false, unique: true|
-|email|string|null: false|
-|password|string|null: false, unique: true, minimum: 7|
-|family_name(kanji)|string|null: false|
-|first_name(kanji)|string|null:false|
-|family_name(kana)|string|null: false|
-|first_name(kana)|string|null: false|
-|birthday(y_m_d)|string|null: false|
 |postal_code|string|null:false|
 |prefecture|string|null: false|
 |city|string|null:false|
 |house_number|string|null:false|
 |number_sign_etc|string||
+### Association
+- has many :users
+
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|nickname|string|null: false, unique: true|
+|email|string|null: false|
+|password|string|null: false, unique: true, minimum: 7|
+|family_name_kanji|string|null: false|
+|first_name_kanji|string|null:false|
+|family_name_kana|string|null: false|
+|first_name_kana|string|null: false|
+|birthday_y_m_d|string|null: false|
 |phone_number|integer||
 ### Association
-- has many :favorite
+- belongs to :addresses
+- has many :favorites
 - has many :order through  :user-order
-- has many :product
-- has many :comment
-- has many :credit_card
+- has many :products
+- has many :comments
+- has many :credit_cards
 
 ## user-orderテーブル
 |Column|Type|Options|
@@ -45,18 +52,18 @@ Things you may want to cover:
 |user_id|integer|null: false, foreign_key: true|
 |order_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs to :user
-- belongs to :order
+- belongs to :users
+- belongs to :orders
 
-## orderテーブル
+## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
 ### Association
-- has many :user through :user-order
-- belongs to :product
+- has many :users through :user-order
+- belongs to :products
 
-## credit_cardテーブル
+## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |card_brand|string|null: false|
@@ -64,22 +71,20 @@ Things you may want to cover:
 |expiration_year|integer|null: false, maximum: 2|
 |expiration_month|integer|null: false, maximum: 2|
 ### Association
-- belongs to :user
+- belongs to :users
 
-## favoriteテーブル
+## favoritesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string|null: false|
-|date_and_time|datetime|null: false|
+|product_id|integer|foreign_key: true|
 |user_id|integer|foreign_key: true|
 ### Association
-- belongs to :user
-- belongs to :product
+- belongs to :users
+- belongs to :products
 
-## productテーブル
+## productsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image|string||
 |product_name|string|null: false|
 |product_explanation|string|null: false|
 |brand|string||
@@ -91,37 +96,28 @@ Things you may want to cover:
 |price|integer|null: false|
 |user_id|integer|null:false, foreign_key: true|
 ### Association
-- belongs to :user
-- belongs to :order
-- has many :favorite
-- has many :category through :product-category
-- has many :image
-- has many :comment
+- belongs to :users
+- belongs to :orders
+- has many :favorites
+- belongs to :categories
+- has many :images
+- has many :comments
 
-## commentテーブル
+## commentsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs to :product
-- belongs to :user
+- belongs to :products
+- belongs to :users
 
-## product-categoryテーブル
-|Column|Type|Options|
-|------|----|-------|
-|category_id|integer|null: false, foreign_key: true|
-|product_id|integer|null: false, foreign_key: true|
-### Association
-- belongs to :product
-- belongs to :category
-
-## categoryテーブル
+## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-- has many :product through :product-category
+- has many :products
 
 * Database initialization
 
