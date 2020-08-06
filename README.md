@@ -23,8 +23,9 @@ Things you may want to cover:
 |city|string|null:false|
 |house_number|string|null:false|
 |number_sign_etc|string||
+|user_id|integer|null: false|
 ### Association
-- has many :users
+- belongs to :user
 
 ## usersテーブル
 |Column|Type|Options|
@@ -39,28 +40,21 @@ Things you may want to cover:
 |birthday_y_m_d|string|null: false|
 |phone_number|integer||
 ### Association
-- belongs to :address
+- has many :addresses
 - has many :favorites
-- has many :order through  :user-orders
+- has many :order
 - has many :products
 - has many :comments
 - has many :credit_cards
-
-## user-orderテーブル
-|Column|Type|Options|
-|------|----|-------|
-|user_id|integer|null: false, foreign_key: true|
-|order_id|integer|null: false, foreign_key: true|
-### Association
-- belongs to :user
-- belongs to :order
 
 ## ordersテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
+|seller_id|integer|null: false, foreign_key: true|
+|buyer_id|integer|null; false, foreign_key: true|
 ### Association
-- has many :users through :user-orders
+- has many :users
 - belongs to :product
 
 ## credit_cardsテーブル
@@ -70,6 +64,7 @@ Things you may want to cover:
 |card_last_number|integer|null: false, maximum: 4|
 |expiration_year|integer|null: false, maximum: 2|
 |expiration_month|integer|null: false, maximum: 2|
+|user_id|integer|null: false|
 ### Association
 - belongs to :user
 
