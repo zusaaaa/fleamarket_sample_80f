@@ -32,17 +32,29 @@ Things you may want to cover:
 |house_number|string|null:false|
 |number_sign_etc|string||
 |phone_number|integer||
+### Association
+- has many :favorite
+- belongs to :user-order
+- has many :product
+- has many :comment
+- has many :credit_card
 
 ## user-orderテーブル
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |order_id|integer|null: false, foreign_key: true|
+### Association
+- has many :user
+- has many :order
 
 ## orderテーブル
 |Column|Type|Options|
 |------|----|-------|
 |product_id|integer|null: false, foreign_key: true|
+### Association
+- belongs to :user-order
+- belongs to :product
 
 ## credit_cardテーブル
 |Column|Type|Options|
@@ -51,6 +63,8 @@ Things you may want to cover:
 |card_last_number|integer|null: false, maximum: 4|
 |expiration_year|integer|null: false, maximum: 2|
 |expiration_month|integer|null: false, maximum: 2|
+### Association
+- belongs to :user
 
 ## favoriteテーブル
 |Column|Type|Options|
@@ -58,12 +72,9 @@ Things you may want to cover:
 |nickname|string|null: false|
 |date_and_time|datetime|null: false|
 |user_id|integer|foreign_key: true|
-
-## favorite-productテーブル
-|Column|Type|Options|
-|------|----|-------|
-|favorite_id|integer|foreign_key: true|
-|date_and_time|datetime|foreign_key: true|
+### Association
+- belongs to :user
+- belongs to :product
 
 ## productテーブル
 |Column|Type|Options|
@@ -79,6 +90,13 @@ Things you may want to cover:
 |days_until_shipping|string|null:false|
 |price|integer|null: false|
 |user_id|integer|null:false, foreign_key: true|
+### Association
+- belongs to :user
+- belongs to :order
+- has many :favorite
+- belongs to :product-category
+- has many :image
+- has many :comment
 
 ## commentテーブル
 |Column|Type|Options|
@@ -86,17 +104,24 @@ Things you may want to cover:
 |text|text|null: false|
 |user_id|integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
+### Association
+- belongs to :product
+- belongs to :user
 
 ## product-categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
 |category_id|integer|null: false, foreign_key: true|
 |product_id|integer|null: false, foreign_key: true|
+### Association
+- has many :product
+- has many :category
 
 ## categoryテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+- belongs to :product-category
 
 * Database initialization
 
