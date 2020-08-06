@@ -19,7 +19,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |nickname|string|null: false, unique: true|
-|mail_address|string|null: false|
+|email|string|null: false|
 |password|string|null: false, unique: true, minimum: 7|
 |family_name(kanji)|string|null: false|
 |first_name(kanji)|string|null:false|
@@ -32,6 +32,17 @@ Things you may want to cover:
 |house_number|string|null:false|
 |number_sign_etc|string||
 |phone_number|integer||
+
+## user-orderテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user_id|integer|null: false, foreign_key: true|
+|order_id|integer|null: false, foreign_key: true|
+
+## orderテーブル
+|Column|Type|Options|
+|------|----|-------|
+|product_id|integer|null: false, foreign_key: true|
 
 ## credit_cardテーブル
 |Column|Type|Options|
