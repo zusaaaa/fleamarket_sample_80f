@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 2020_08_06_022023) do
     t.string "product_name"
     t.text "product_explanation"
     t.string "brand"
-    t.string "product_status"
-    t.string "shipping_method"
-    t.string "shipping_charge"
-    t.string "shipping_area"
-    t.integer "days_until_shipiing"
+    t.string "product_status_id"
+    t.string "shipping_method_id"
+    t.string "shipping_charge_id"
+    t.string "prefecture_id"
+    t.integer "days_until_shipping_id"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
