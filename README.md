@@ -92,7 +92,7 @@ Things you may want to cover:
 |user_id|integer|null:false, foreign_key: true|
 ### Association
 - belongs_to :user
-- belongs_to :order
+- has_one :order
 - has_many :favorites
 - belongs_to :category
 - has_many :images
