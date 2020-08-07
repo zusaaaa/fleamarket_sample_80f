@@ -38,4 +38,5 @@
   価格（必須）
   = f.text_field :price, placeholder: '数字で入力'
   .Form__submit
+  = f.hidden_field :status, :value => '出品中'
   = f.submit '出品'

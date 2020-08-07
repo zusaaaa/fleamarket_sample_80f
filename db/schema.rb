@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_08_06_022023) do
     t.string "prefecture_id"
     t.integer "days_until_shipping_id"
     t.integer "price"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
