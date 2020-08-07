@@ -1,9 +1,11 @@
 = form_with model: @product, class: "Form", local: true do |f|
   = f.text_field :product_name, class: 'form', placeholder: '商品名'
-  = f.fields_for :images do |i|
-    = i.file_field :src
-  = f.fields_for :images do |i|
-    = i.file_field :src
+  #image-box
+    = f.fields_for :images, id: "add" do |image|
+      .js-file_group{ data: {index: "#{image.index}"}}
+        = image.file_field :src, class: 'js-file'
+        %br
+        %span.js-remove 削除
   = f.text_field :product_explanation, class: 'form', placeholder: '商品説明'
   = f.text_field :brand, class: 'form', placeholder: 'ブランド'
   = f.text_field :product_status, class: 'form', placeholder: '商品状態'
