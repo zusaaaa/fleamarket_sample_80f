@@ -3,14 +3,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
-    def production?
-      Rails.env.production?
-    end
+  def production?
+    Rails.env.production?
+  end
 
   protected
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, key: [:nickname])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :age])
+  end
 
   def basic_auth
     authenticate_or_request_with_http_basic do |username, password|
