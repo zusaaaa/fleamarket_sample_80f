@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Product do
   describe '#create' do
-    it "is valid with a product_name, images, product_explanation, product_status_id, shipping_method_id, shipping_charge_id, prefecture_id, days_until_shipping_id, price, status" do 
+    it "is valid with a product_name, images, product_explanation, product_status_id, shipping_method_id, shipping_charge_id, prefecture_id, days_until_shipping_id, price, status" do
       product = build(:product)
       expect(product).to be_valid
     end
@@ -18,7 +18,6 @@ describe Product do
       product.valid?
       expect(product.errors[:product_explanation]).to include("can't be blank")
     end
-    
 
     it "is invalid without a product_status_id" do
       product = build(:product, product_status_id: nil)
@@ -56,12 +55,10 @@ describe Product do
       product.valid?
       expect(product.errors[:price]).to include("is not a number")
     end
-    it "is valid that price is number" do 
+    it "is valid that price is number" do
       product = build(:product, price: 1)
       expect(product).to be_valid
     end
-
-
 
     it "is invalid without a status" do
       product = build(:product, status: nil)
