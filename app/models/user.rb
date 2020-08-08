@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   #validates :nickname, uniqueness: true
   validates :nickname, :family_name_kannji, :first_name_kannji, :family_name_kana, :first_name_kana, :birthday ,presence: true 
+  has_one :address
 end
