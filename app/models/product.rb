@@ -14,12 +14,12 @@ class Product < ApplicationRecord
   # バリデーション
   validates :product_name, presence: true
   validates :product_explanation, presence: true
-  validates :product_status, presence: true
-  validates :shipping_method, presence: true
-  validates :shipping_charge, presence: true
-  validates :prefecture, presence: true
-  validates :days_until_shipping, presence: true
+  validates :product_status_id, presence: true
+  validates :shipping_method_id, presence: true
+  validates :shipping_charge_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :days_until_shipping_id, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
   validates :images, presence: true
-
+  validates :status, presence: true
 end
