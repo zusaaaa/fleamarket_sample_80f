@@ -38,6 +38,8 @@ group :development, :test do
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -64,3 +66,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'unicorn'
 end
+
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'jquery-rails'
+gem 'active_hash'
+gem 'fog-aws'
+gem 'pry-rails'
