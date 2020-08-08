@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   #validates :nickname, uniqueness: true
-  validates :nickname ,presence: true 
+  validates :nickname, :family_name_kannji, :first_name_kannji, :family_name_kana, :first_name_kana, :birthday ,presence: true 
 end
