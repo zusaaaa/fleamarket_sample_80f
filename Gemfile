@@ -37,9 +37,9 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'capistrano-rbenv'
+  gem 'factory_bot_rails'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0.0.beta2'
-  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -67,10 +67,9 @@ group :production do
   gem 'unicorn'
 end
 
-gem "haml-rails", ">= 1.0", '<= 2.0.1'
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'jquery-rails'
 gem 'active_hash'
+gem 'carrierwave'
 gem 'fog-aws'
-gem 'pry-rails'
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
+gem 'jquery-rails'
+gem 'mini_magick'

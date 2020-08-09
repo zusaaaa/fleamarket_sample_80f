@@ -11,7 +11,7 @@ $(document).on('turbolinks:load', ()=> {
 
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
 
-  $('#image-box').on('change', '.js-file', function(e) {
+  $('#image-box').on('change', '.js-file', function() {
     $('#image-box').append(buildFileField(fileIndex[0]));
     fileIndex.shift();
     fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
