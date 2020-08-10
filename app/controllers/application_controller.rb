@@ -18,8 +18,6 @@ class ApplicationController < ActionController::Base
       password == Rails.application.credentials[:basic_auth][:pass]
     end
   end
-
-  KCODE = 'u'
   
   def self.zenkaku?(str)
     return nil if str.nil?

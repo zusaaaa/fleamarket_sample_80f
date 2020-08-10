@@ -43,13 +43,13 @@ describe User do
       expect(another_user.errors[:email]).to include("has already been taken")
     end
 
-    # 9. passwordが6文字以上であれば登録できること
+    # 9. passwordが7文字以上であれば登録できること
     it "is valid with a password that has more than 7 characters " do
       user = build(:user, password: "000000", password_confirmation: "000000")
       expect(user).to be_valid
     end
 
-    # 10. passwordが5文字以下であれば登録できないこと
+    # 10. passwordが6文字以下であれば登録できないこと
     it "is invalid with a password that has less than 6 characters " do
       user = build(:user, password: "00000", password_confirmation: "00000")
       user.valid?
