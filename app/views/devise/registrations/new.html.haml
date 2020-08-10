@@ -22,13 +22,13 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .field
-    = f.label :family_name_kannji
+    = f.label :family_name_kanji
     %br/
-    = f.text_field :family_name_kannji, autofocus: true, autocomplete: "family_name_kannji"
+    = f.text_field :family_name_kanji, autofocus: true, autocomplete: "family_name_kanji"
   .field
-    = f.label :first_name_kannji
+    = f.label :first_name_kanji
     %br/
-    = f.text_field :first_name_kannji, autofocus: true, autocomplete: "first_name_kannji"
+    = f.text_field :first_name_kanji, autofocus: true, autocomplete: "first_name_kanji"
   .field
     = f.label :family_name_kana
     %br/
@@ -38,9 +38,9 @@
     %br/
     = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana"
   .field
-    = f.label :birthday
+    = f.label :birthday_y_m_d
     %br/
-    = f.date_select :birthday, {discard: true}
+    = f.date_select :birthday_y_m_d, {discard: true}
 
   .actions
     = f.submit "Next"
