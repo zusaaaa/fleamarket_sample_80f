@@ -1,0 +1,47 @@
+%h2 ユーザー情報登録
+= form_for(@user, url: user_registration_path) do |f|
+  = render "devise/shared/error_messages", resource: @user
+  
+  .filed
+    = f.label :nickname
+    %br/
+    = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br/
+    = f.password_field :password, autocomplete: "new-password"
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "new-password"
+  .field
+    = f.label :family_name_kanji
+    %br/
+    = f.text_field :family_name_kanji, autofocus: true, autocomplete: "family_name_kanji"
+  .field
+    = f.label :first_name_kanji
+    %br/
+    = f.text_field :first_name_kanji, autofocus: true, autocomplete: "first_name_kanji"
+  .field
+    = f.label :family_name_kana
+    %br/
+    = f.text_field :family_name_kana, autofocus: true, autocomplete: "family_name_kana"
+  .field
+    = f.label :first_name_kana
+    %br/
+    = f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana"
+  .field
+    = f.label :birthday_y_m_d
+    %br/
+    = f.date_select :birthday_y_m_d, {discard: true}
+
+  .actions
+    = f.submit "Next"
+= render "devise/shared/links"

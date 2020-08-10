@@ -31,20 +31,25 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry-rails'
   gem 'capistrano'
-  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'factory_bot_rails'
+  gem 'capistrano-rbenv'
+  gem 'factory_bot_rails'
+  gem 'pry-rails'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
@@ -64,7 +69,12 @@ group :production do
   gem 'unicorn'
 end
 
-gem 'haml-rails'
 gem 'erb2haml'
+gem 'devise'
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
+gem 'active_hash'
 gem 'carrierwave'
+gem 'fog-aws'
+gem 'jquery-rails'
 gem 'mini_magick'
+
