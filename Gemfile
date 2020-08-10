@@ -68,12 +68,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'unicorn'
 end
-
 gem 'devise'
-gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'active_hash'
 gem 'carrierwave'
 gem 'fog-aws'
+gem "font-awesome-sass"
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'jquery-rails'
 gem 'mini_magick'
