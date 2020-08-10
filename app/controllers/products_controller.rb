@@ -11,6 +11,12 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+
+  end
+  
+  def show
+    @product = Product.new
+    @products = @product.images.includes(:user)
   end
 
   private
