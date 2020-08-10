@@ -67,9 +67,12 @@ group :production do
   gem 'unicorn'
 end
 
+
 gem 'active_hash'
 gem 'carrierwave'
+gem 'devise'
 gem 'fog-aws'
+gem 'font-awesome-sass'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'jquery-rails'
 gem 'mini_magick'
