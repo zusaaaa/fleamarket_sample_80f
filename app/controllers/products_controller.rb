@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  def index
+  end
+  
   def new
     @product = Product.new
     @product.images.build
@@ -13,12 +16,9 @@ class ProductsController < ApplicationController
     end
 
   end
-  
   def show
-    @product = Product.new
-    @products = @product.images.includes(:user)
+    
   end
-
   private
 
   def product_params
