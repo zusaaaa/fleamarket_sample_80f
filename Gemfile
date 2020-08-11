@@ -36,7 +36,10 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
   gem 'capistrano-rbenv'
+  gem 'factory_bot_rails'
+  gem 'factory_bot'
   gem 'pry-rails'
 end
 
@@ -65,8 +68,16 @@ group :production do
   gem 'unicorn'
 end
 
-gem 'payjp'
-gem 'dotenv-rails'
+gem 'erb2haml'
+gem 'devise'
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
+gem 'active_hash'
+gem 'carrierwave'
+gem 'devise'
+gem 'fog-aws'
+gem 'font-awesome-sass'
 gem 'jquery-rails'
-gem "haml-rails", "~> 2.0"
-gem "font-awesome-sass"
+gem 'mini_magick'
+gem 'dotenv-rails'
+gem 'payjp'
+
