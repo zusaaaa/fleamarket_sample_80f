@@ -33,8 +33,8 @@
         %li 
           %h3 お名前(全角)
         %li.required 必須
-      = f.text_field :family_name_kannji, placeholder: '例)山田', autofocus: true, autocomplete: "family_name_kannji", class: 'form-input-half'
-      = f.text_field :first_name_kannji, placeholder: '例)太郎', autofocus: true, autocomplete: "first_name_kannji", class: 'form-input-half'
+      = f.text_field :family_name_kanji, placeholder: '例)山田', autofocus: true, autocomplete: "family_name_kanji", class: 'form-input-half'
+      = f.text_field :first_name_kanji, placeholder: '例)太郎', autofocus: true, autocomplete: "first_name_kanji", class: 'form-input-half'
     .form__nameKana
       %ul
         %li 
@@ -47,7 +47,7 @@
         %li 
           %h3 生年月日
         %li.required 必須
-      = f.date_select :birthday, {discard: true}, class: 'form-input-one-third'
+      = f.date_select :birthday_y_m_d, {discard: true}, class: 'form-input-one-third'
     .form__submit
       = f.submit "次へ進む", class: 'btn'
 = render "devise/shared/links"
