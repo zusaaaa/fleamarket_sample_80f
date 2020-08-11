@@ -1,7 +1,10 @@
 class ItemsController < ApplicationController
   
   def index
+    @product = Product.new
+  end
 
+  def create
   end
 
   def show

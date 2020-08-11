@@ -1,3 +1,37 @@
-.product__Name
-   @product.product_name
+.product
+   .productName
+      商品名
+      - @product_name
+      = #render partial: "product", locals: { product: product }
+
+   .productImage
+      商品画像
    
+   .productExplanation
+      商品説明
+
+   .productBrand
+      ブランド(任意)
+
+   .productProductStatus
+      商品の状態
+
+   .productShippingMethod
+      発送方法
+
+   .productShippingCharge
+      配送料の負担
+
+   .productPrefecture
+      発送地域
+
+   .productDaysUntilShipping
+      配送までの日数
+
+   .productPrice
+      価格
+
+
+
+
+
