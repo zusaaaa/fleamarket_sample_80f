@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_08_08_061250) do
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.integer "postal_code", null: false
     t.string "prefecture", null: false
     t.string "city", null: false
@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 2020_08_08_061250) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
-  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "src"
     t.bigint "product_id"
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "product_name"
     t.text "product_explanation"
     t.string "brand"
@@ -46,18 +46,18 @@ ActiveRecord::Schema.define(version: 2020_08_08_061250) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "family_name_kanji", null: false
-    t.string "first_name_kanji", null: false
+    t.string "family_name_kannji", null: false
+    t.string "first_name_kannji", null: false
     t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.date "birthday_y_m_d", null: false
+    t.date "birthday", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
