@@ -64,3 +64,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'unicorn'
 end
+
+gem 'payjp'
+gem 'dotenv-rails'
+gem 'jquery-rails'
+gem "haml-rails", "~> 2.0"
+gem "font-awesome-sass"
