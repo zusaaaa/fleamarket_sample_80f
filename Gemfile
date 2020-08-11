@@ -37,11 +37,10 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'rspec-rails', '~> 4.0.0.beta2'
-  gem 'factory_bot_rails'
   gem 'capistrano-rbenv'
   gem 'factory_bot_rails'
+  gem 'factory_bot'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 4.0.0.beta2'
 end
 
 group :development do
