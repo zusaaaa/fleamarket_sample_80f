@@ -1,2 +1,8 @@
-%h2 登録が完了しました
-= link_to "トップへ戻る", root_path
+.header
+  =render "devise/header"
+.main
+  登録が完了しました
+  %br
+  = link_to "トップへ戻る", root_path
+.footer
+  =render "devise/footer"
