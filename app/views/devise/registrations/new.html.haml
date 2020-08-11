@@ -1,53 +1,49 @@
 .header
+  =render "devise/header"
   = render "devise/shared/error_messages", resource: @user
 .form
-  .form__title 
-    %h2 ユーザー情報入力
+  .form__title
+    ユーザー情報入力
   = form_for(@user, url: user_registration_path) do |f|
-    .form__nickname
+    .form__nickname.form-item
       %ul
-        %li
-          %h3 ニックネーム
+        %li ニックネーム
         %li.required 必須 
       = f.text_field :nickname, placeholder: '例)フリマ太郎', autofocus: true, autocomplete: "nickname", class: 'form-input'
-    .form__email
+    .form__email.form-item
       %ul
-        %li 
-          %h3 メールアドレス
+        %li メールアドレス
         %li.required 必須
       = f.email_field :email, placeholder: '例)example@mail.com', autofocus: true, autocomplete: "email", class: 'form-input'
-    .form__passward
+    .form__passward.form-item
       %ul
-        %li 
-          %h3 パスワード
+        %li パスワード
         %li.required 必須
-      = f.password_field :password, placeholder: '6文字以上の半角英数字', autocomplete: "new-password", class: 'form-input'
-    .form__passward
+      = f.password_field :password, placeholder: '7文字以上', autocomplete: "new-password", class: 'form-input'
+    .form__passward.form-item
       %ul
-        %li 
-          %h3 確認用パスワード
+        %li 確認用パスワード
         %li.required 必須
       = f.password_field :password_confirmation, placeholder: '上記と同じパスワードを入力', autocomplete: "new-password", class: 'form-input'
-    .form__nameKanji
+    .form__nameKanji.form-item
       %ul
-        %li 
-          %h3 お名前(全角)
+        %li お名前(全角)
         %li.required 必須
-      = f.text_field :family_name_kannji, placeholder: '例)山田', autofocus: true, autocomplete: "family_name_kannji", class: 'form-input-half'
-      = f.text_field :first_name_kannji, placeholder: '例)太郎', autofocus: true, autocomplete: "first_name_kannji", class: 'form-input-half'
-    .form__nameKana
+      = f.text_field :family_name_kanji, placeholder: '例)山田', autofocus: true, autocomplete: "family_name_kanji", class: 'form-input-half'
+      = f.text_field :first_name_kanji, placeholder: '例)太郎', autofocus: true, autocomplete: "first_name_kanji", class: 'form-input-half'
+    .form__nameKana.form-item
       %ul
-        %li 
-          %h3 お名前カナ(全角)
+        %li お名前カナ(全角)
         %li.required 必須
       = f.text_field :family_name_kana, placeholder: '例)ヤマダ', autofocus: true, autocomplete: "family_name_kana", class: 'form-input-half'
       = f.text_field :first_name_kana, placeholder: '例)タロウ', autofocus: true, autocomplete: "first_name_kana", class: 'form-input-half'
-    .form__birthday
+    .form__birthday.form-item
       %ul
-        %li 
-          %h3 生年月日
+        %li 生年月日
         %li.required 必須
-      = f.date_select :birthday, {discard: true}, class: 'form-input-one-third'
+      = f.date_select :birthday_y_m_d, {use_month_numbers:true, start_year:Time.now.year, end_year:1900,default: Date.new(2000, 1, 1)}, class: 'form-input-one-third'
     .form__submit
       = f.submit "次へ進む", class: 'btn'
 = render "devise/shared/links"
+.footer
+  =render "devise/footer"
