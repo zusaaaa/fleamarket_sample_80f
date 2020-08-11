@@ -78,4 +78,4 @@ gem 'fog-aws'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'mini_magick'
-
+gem 'ancestry'
