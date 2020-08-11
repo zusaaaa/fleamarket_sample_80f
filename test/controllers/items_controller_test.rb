@@ -5,4 +5,5 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     get items_index_url
     assert_response :success
   end
+
 end
