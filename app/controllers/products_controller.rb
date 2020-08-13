@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
 
-  # def index
-  #   @products = Product.all
-  # end
+  def index
+    @products = Product.all
+    @images = Image.all
+    @image = Image.find(params[:id])
+  end
 
   # def show
   #   @images = Image.all
