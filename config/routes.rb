@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   resources :items, only: [:index, :show]
-  resources :products, only: [:index, :new, :create, :show]
+  resources :products, only: [:index, :new, :create, :show, :edit]
   devise_scope :user do
     get 'address', to: 'users/ragistrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
