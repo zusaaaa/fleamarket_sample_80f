@@ -13,7 +13,6 @@
       .js-file_group{ data: {index: "#{image.index}"}}
         = image.label :src
         = image.file_field :src, class: 'js-file'
-        = image.hidden_field :src_cache
         %br
         .js-remove 削除
       - if @product.persisted?
