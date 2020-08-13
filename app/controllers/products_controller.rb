@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:index, :edit, :update]
+
   def index
     @products = Product.all
-    # @product = Product.find(params)
+    @images = Image.all
+    @image = Image.find(params[:id])
   end
 
   # def show
