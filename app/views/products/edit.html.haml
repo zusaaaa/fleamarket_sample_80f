@@ -12,9 +12,10 @@
     商品画像（必須）
     #previews
       - @product.images.each do |img|
-        = image_tag img.src.url
+        = image_tag img.src.url, height: 150, width: 150
+        .js-remove 削除
     .image-input
-      = f.fields_for :images, id: "add" do |image|
+      = f.fields_for :images do |image|
         .js-file_group{ data: {index: "#{image.index}"}}
           = image.file_field :src, class: 'js-file'
           %br
