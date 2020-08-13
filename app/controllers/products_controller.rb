@@ -12,8 +12,13 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.images.build
-  end
 
+    @category_parent_array = ["---"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
+  end
+  
   def create
     @product = Product.create(product_params)
     if @product.save
@@ -21,6 +26,14 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def get_category_children # 子カテゴリーの取得
+    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+  end
+  
+  def get_category_grandchildren # 孫カテゴリーの取得
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
   end
 
   private

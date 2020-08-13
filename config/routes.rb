@@ -3,7 +3,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   # resources :items, only: [:index]
-  resources :products, only: [:index, :new, :create]
+  resources :products, only: [:index, :new, :create] do
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+  end
   # 画像の表示
   # resources :images, only: [:show]
 
