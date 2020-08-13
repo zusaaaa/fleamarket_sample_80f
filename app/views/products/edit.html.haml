@@ -3,43 +3,28 @@
 - @product.errors.full_messages.each do |message|
   .errorMessage
     = message
-.product_input
-= form_with model: @product, local: true do |f|
+
+= form_for @product, local: true do |f|
   .productForm
   商品名（必須）
   = f.text_field :product_name, placeholder: '商品名'
-  .productForm.item_input__body
+  .productForm#image-box 
     商品画像（必須）
-    .up-image
-      = f.fields_for :images, do |image|
-        .up-image_group
-          .previews
-            - if @product.persisted?
-              - @product.product_images.each.with_index(1) do |img, i|
-                - next id i >= 6
-                .preview.preview_saved{{data:{name: i}},{data: {index: i}}} 
-                  .image_box
-                    = image_tag img.src.url,data: {index: i}, class: "preview_image"
-                  .preview_btn
-                    削除
-          %label.product_images
-            .up-image__group__dropbox{data: {index: 1}}
-              = image.file_field :src, class: "product_image__default", id: "up_image_last", type: "file", multiple: true, accept: "image/*"
-            - if @product.persisted?
-              = f.fields_for :product_images do |image|
-                =image.check_box :_destroy, data:{index: image.index+1}, class: "hidden-destroy"
-        .under_group
-          .up-image__group_2nd_row
-            .previews_2nd_row
-              - if @product.persisted?
-                - @product.product_images.each.with_index(1) do |img, i|
-                - next id i <= 5
-                .preview.preview_saved{{data: {name: i}}, {data:{ index:i}}}
-                  .image_box
-                    = image_tag img.src.url, data: {index: i}, class: "preview_image"
-                  .preview_btn
-                    削除
-            %label.product_images_2nd_row
+    #previews
+      - @product.images.each do |img|
+        = image_tag img.src.url
+    .image-input
+      = f.fields_for :images, id: "add" do |image|
+        .js-file_group{ data: {index: "#{image.index}"}}
+          = image.file_field :src, class: 'js-file'
+          %br
+          .js-remove 削除
+        - if @product.persisted?
+          = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+      - if @product.persisted?
+        .js-file_group{ data: {index:"#{@product.images.count}"}}
+          = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
+        .js-remove削除
   .productForm
   商品の説明（必須）
   = f.text_field :product_explanation, placeholder: '商品説明'

@@ -1,60 +1,60 @@
-let nextInput = (num, index)=> {
-  let html = `<div class ="up-image__group__dropbox" data-index="${num}" index="${index}">
-                <input class="product_images__default" type="file" multiple="multiple" accept= "image/*"></input></div>`;
-  return html;
-}
-let previewImage = (src)=> {
-  let html =`<div class = "preview preview_unsave">
-              <div class = "image_box>
-                <img src = "${src}" class = "preview_image"></div>
-              <div class = "preview_btn">削除</div></div>`;
-  return html;
-}
-
-$(document).on('change', 'input[type= "file"]', function(e){
-  let render = new FileReader();
-  let file = e.target.files[0];
-  ReadableStreamReader.readAsDataURL(file);
-  render.onload = function(e){
-    if ($('.preview').length <= 4 {
-      ($('.preview').append(previewImages(e.target.result));
-    } else {
-      $('.previews_2nd_row').append(previewImages(e.target.result));
-    }
-    let preview_count = $('.preview').length;
-    let preview_unsave_count = $('.preview_unsave').length;
-    let preview_save_count = $('.preview_saved').length;
-    let preview_saved_count = $('.hidden-destroy').length;
-    if (preview_count <= 5){
-      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview').appendTo('.product_images');
-    } else {
-      $('.up-image__group__dropbox').removeClass('up-image__group__dropbox').addClass('image-preview').appendTo('.product_images_2nd_row');
-    }
-    if (preview_count <= 4) {
-      $('.product_images').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
-    } else {
-    $('.product_images_2nd_row').prepend(nextInput(preview_count + 1, preview_unsave_count + 1));
-    }
-    if (preview_total_num == 5) {
-      $('.product_images').css('display', 'none');
-      $('.under_group').css('display', 'block');
-      $('.product_images_2nd_row').css('display', 'block');
-    }
-    if (preview_total_num == 10) {
-      $('.product_images_2nd_row').css('display', 'none');
-    }
-    $('.preview').each(function(i) {
-      $(this).attr('data-index', (i+1));
-    });
-    $('.preview_unsave').each(function(i) {
-      $(this).attr('index', (i+1));
-    });
-    $('.image-preview').each(function(i) {
-      $(this).attr('index', (i+1));
-      $(this).attr('data-index', (preview_save_count+i+1));
-      $(this).children().attr('name', "product[product_images_attributes][" + (preview_saved_count+i) + "][src]");
-      $(this).children().attr('data-index', (i+1));
-    });
-    }
+$(document).on('turbolinks:load', ()=> {
+  // 画像用のinputを生成する関数
+  const buildFileField = (num)=> {
+    const html = `<div data-index="${num}" class="js-file_group">
+                    <input class="js-file" type="file"
+                    name="product[images_attributes][${num}][src]"
+                    id="product_images_attributes_${num}_src"><br>
+                    <div class="js-remove">削除</div>
+                  </div>`;
+    return html;
   }
-})
+  // プレビュー用のimgタグを生成する関数
+  const buildImg = (index, url)=> {
+    const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+    return html;
+  }
+
+  // file_fieldのnameに動的なindexをつける為の配列
+  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  // 既に使われているindexを除外
+  lastIndex = $('.js-file_group:last').data('index');
+  fileIndex.splice(0, lastIndex);
+
+  $('.hidden-destroy').hide();
+
+  $('#image-box').on('change', '.js-file', function(e) {
+    console.log(111)
+    const targetIndex = $(this).parent().data('index');
+    // ファイルのブラウザ上でのURLを取得する
+    const file = e.target.files[0];
+    const blobUrl = window.URL.createObjectURL(file);
+
+    // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
+    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+      img.setAttribute('src', blobUrl);
+    } else {  // 新規画像追加の処理
+      $('#previews').append(buildImg(targetIndex, blobUrl));
+      // fileIndexの先頭の数字を使ってinputを作る
+      $('#image-box').append(buildFileField(fileIndex[0]));
+      fileIndex.shift();
+      // 末尾の数に1足した数を追加する
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
+    }
+  });
+
+  $('#image-box').on('click', '.js-remove', function() {
+    console.log(222)
+    const targetIndex = $(this).parent().data('index');
+    // 該当indexを振られているチェックボックスを取得する
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    // もしチェックボックスが存在すればチェックを入れる
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
+
+    $(this).parent().remove();
+    $(`img[data-index="${targetIndex}"]`).remove();
+
+    // 画像入力欄が0個にならないようにしておく
+    if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+  });
+});
