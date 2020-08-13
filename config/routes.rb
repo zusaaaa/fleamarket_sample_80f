@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
-  # resources :items, only: [:index]
+  resources :items, only: [:index]
   resources :products, only: [:index, :new, :create]
   # 画像の表示
   # resources :images, only: [:show]

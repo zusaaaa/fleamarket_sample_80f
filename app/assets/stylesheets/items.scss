@@ -251,6 +251,7 @@
           margin: auto;
           background-color: white;
           .productList {
+            // display: flex;
             width: 20%;
             a {
               text-decoration: none;
@@ -260,9 +261,10 @@
               img {
                 height: 100%;
                 width: 100%;
+                background-color: white;
               }
             }
-            &__details {
+            &__details__name {
               padding: 15px;
               color: black;
               .detail {
