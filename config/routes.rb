@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   # resources :items, only: [:index]
-  resources :products, only: [:index, :new, :create]
+  resources :products do
+    resources :images
+  end
   # 画像の表示
   # resources :images, only: [:show]
 

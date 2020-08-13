@@ -1,0 +1,69 @@
+出品編集
+.errorMessage__box
+- @product.errors.full_messages.each do |message|
+  .errorMessage
+    = message
+.product_input
+= form_with model: @product, local: true do |f|
+  .productForm
+  商品名（必須）
+  = f.text_field :product_name, placeholder: '商品名'
+  .productForm.item_input__body
+    商品画像（必須）
+    .up-image
+      = f.fields_for :images, do |image|
+        .up-image_group
+          .previews
+            - if @product.persisted?
+              - @product.product_images.each.with_index(1) do |img, i|
+                - next id i >= 6
+                .preview.preview_saved{{data:{name: i}},{data: {index: i}}} 
+                  .image_box
+                    = image_tag img.src.url,data: {index: i}, class: "preview_image"
+                  .preview_btn
+                    削除
+          %label.product_images
+            .up-image__group__dropbox{data: {index: 1}}
+              = image.file_field :src, class: "product_image__default", id: "up_image_last", type: "file", multiple: true, accept: "image/*"
+            - if @product.persisted?
+              = f.fields_for :product_images do |image|
+                =image.check_box :_destroy, data:{index: image.index+1}, class: "hidden-destroy"
+        .under_group
+          .up-image__group_2nd_row
+            .previews_2nd_row
+              - if @product.persisted?
+                - @product.product_images.each.with_index(1) do |img, i|
+                - next id i <= 5
+                .preview.preview_saved{{data: {name: i}}, {data:{ index:i}}}
+                  .image_box
+                    = image_tag img.src.url, data: {index: i}, class: "preview_image"
+                  .preview_btn
+                    削除
+            %label.product_images_2nd_row
+  .productForm
+  商品の説明（必須）
+  = f.text_field :product_explanation, placeholder: '商品説明'
+  .productForm
+  ブランド（任意）
+  = f.text_field :brand, placeholder: 'ブランド'
+  .productForm
+  商品の状態（必須）
+  = f.collection_select :product_status_id, ProductStatus.all, :id, :name
+  .productForm
+  発送方法（必須）
+  = f.collection_select :shipping_method_id, ShippingMethod.all, :id, :name
+  .productForm
+  配送料の負担（必須）
+  = f.collection_select :shipping_charge_id, ShippingCharge.all, :id, :name
+  .productForm
+  発送地域（必須）
+  = f.collection_select :prefecture_id, Prefecture.all, :id, :name
+  .productForm
+  配送までの日数（必須）
+  = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name
+  .productForm
+  価格（必須）
+  = f.text_field :price, placeholder: '数字で入力'
+  .Form__submit
+  = f.hidden_field :status, :value => '出品中'
+  = f.submit '出品'
