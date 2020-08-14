@@ -8,6 +8,9 @@
       - @product.images.each do |image|
          = image_tag image.src.url
 
+   .productUserId
+      出品者
+      = @product.user_id
    .productExplanation
       商品説明
       = @product.product_explanation
