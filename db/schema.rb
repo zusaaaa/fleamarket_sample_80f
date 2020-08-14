@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_100110) do
     t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "exhibitor_id"
-    t.index ["exhibitor_id"], name: "index_products_on_exhibitor_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
