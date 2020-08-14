@@ -1,3 +1,19 @@
-= form_with local: true, url: card_index_path do |form|
-  金額：#{form.text_field :amount}
-  %script.payjp-button{"data-key" => "#{ENV["PAYJP_PUBLIC_KEY"]}", :src => "https://checkout.pay.jp", :type => "text/javascript"}
+%h2.header_title
+  購入確認
+.single-container
+  %section.creditcard_section
+    %h3 クレジットカード一覧
+    - if @card.present?
+      .container
+        .creditcard-info
+          %p.creditcard-info__number
+          = "**** **** **** " + @card_info.last4 #クレジットカードの下４桁を表示
+          %p.creditcard-info__period 
+          = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
+    - else
+      .new-card
+        = link_to new_card_path, class:"new-card-btn" do
+          %i.far.fa-credit-card 
+          クレジットカードを追加する
+  -# = form_tag({controller: :card , action: :buy})
+  -#   %button 購入する

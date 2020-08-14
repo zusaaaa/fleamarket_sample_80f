@@ -1,30 +1,42 @@
-$(function() {
-  $('#cardCreateForm').on('submit', function(e) {
-      e.preventDefault()
-      Payjp.setPublicKey(['PAYJP_PUBLIC_KEY']);
-      var card = {
-        number: document.getElementById("card-number").value,
-        exp_month: document.getElementById("credit_exp_month").value,
-        exp_year: document.getElementById("credit_exp_year").value,
-        cvc: document.getElementById("cvc").value
+$(document).on('turbolinks:load',function(){
+  // PAY.JPの公開鍵をセットします。
+  Payjp.setPublicKey('pk_test_35f6203f9c0aa1345fd7c6f3');
+
+  //formのsubmitを止めるために, クレジットカード登録のformを定義します。
+  var form = $(".form");
+
+  $("#charge-form").click(function() {
+    // submitが完了する前に、formを止めます。
+    form.find("input[type=submit]").prop("disabled", true);
+    // submitを止められたので、PAY.JPの登録に必要な処理をします。
+
+    // formで入力された、カード情報を取得します。
+    var card = {
+      number: $("#card_number").val(),
+      cvc: $("#cvc").val(),
+      exp_month: $("#exp_month").val(),
+      exp_year: $("#exp_year").val(),
+    };
+
+    // PAYJPに登録するためのトークン作成
+    Payjp.createToken(card, function(status, response) {
+      if (response.error){
+        // エラーがある場合処理しない。
+        form.find('.payment-errors').text(response.error.message);
+        form.find('button').prop('disabled', false);
+      }   
+      else {
+        // エラーなく問題なく進めた場合
+        // formで取得したカード情報を削除して、Appにカード情報を残さない。
+        $("#card_number").removeAttr("name");
+        $("#cvc").removeAttr("name");
+        $("#exp_month").removeAttr("name");
+        $("#exp_year").removeAttr("name");
+        var token = response.id;
+        form.append($('<input type="hidden" name="payjpToken" />').val(token));
+        form.get(0).submit();
+        alert("カード登録に成功しました");
       };
-      if (card.number == "" || card.cvc == "") {
-        alert("入力漏れがあります");
-      } else {
-        Payjp.createToken(card, function(status, response) {
-          if (status === 200 ) {   //公式リファレンス参照 payjp側と通信がうまく行った際にpayjp側から返されるステータス
-            $("#card_number").removeAttr("name");
-            $("#cvc").removeAttr("name");
-            $("#exp_year").removeAttr("name");
-            $("#card_token").append(
-              $('%input type: "hidden" name: "payjp-token').val(response.id)
-            );
-            $('#cardCreateForm').get(0).submit();
-            alert("登録に成功しました");
-          } else {
-            alert("カード情報が正しくありません");
-          }
-        });
-      }
+    });
   });
 });

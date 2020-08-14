@@ -1,2 +1,14 @@
-= form_tag(action: :pay, method: :post) do
-  %script.payjp-button{src: "https://checkout.pay.jp", type: "text/javascript", "data-text": "購入する", 'data-key': ENV["PAYJP_PRIVATE_KEY"]}
+%label (show)
+%br 商品情報
+= #@product[:name]
+%br カード情報
+- #exp_month = @default_card_information.exp_month.to_s
+- #exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+= #exp_month + " / " + exp_year 
+
+= form_tag(buy_card_path) do
+  %button 購入する
+
+-# = form_tag(done_path, action: :done  method: :get, id: 'charge-form',  name: "inputForm") do
+-#   %input{ type: "hidden", name: "card_id", value: "send" }
+-#   %button 購入する

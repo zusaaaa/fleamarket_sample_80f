@@ -4,10 +4,10 @@ class ProductsController < ApplicationController
   #   @products = Product.all
   # end
 
-  # def show
-  #   @images = Image.all
-  #   @images = Image.find(params[:id])
-  # end
+  def show
+    @images = Image.all
+    @images = Image.find(params[:id])
+  end
 
   def new
     @product = Product.new

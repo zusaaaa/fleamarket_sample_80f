@@ -1,8 +1,9 @@
-!!!
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title FleamarketSample80f
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
+    -# このscriptを記載
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -10,7 +11,3 @@
     = javascript_include_tag 'application'
   %body
     = yield
-      %body
-        -# チェックアウト 入力されたカード情報のトークン化に必要なフォーム
-        %form{:action => "/pay", :method => "post"}
-        %script.payjp-button{"data-key" => "pk_test_35f6203f9c0aa1345fd7c6f3", :src => "https://checkout.pay.jp/"}

@@ -1,14 +1,10 @@
 Rails.application.routes.draw do
-  resources :card, only: [:new, :show] do
-    collection do
-      get 'index', to: 'card#index'
-      get 'new', to: 'card#new'
-      post 'show', to: 'card#show'
-      post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
+  resources :card, only: [:index, :new, :create, :show, :destroy] do
+    member do
+      post 'buy', to: 'card#buy'
+      get 'done', to: 'card#done'
     end
   end
-  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -22,5 +18,4 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root to: "items#index"
- 
 end
