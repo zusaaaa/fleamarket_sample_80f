@@ -7,4 +7,5 @@ class User < ApplicationRecord
   validates :nickname, :family_name_kanji, :first_name_kanji, :family_name_kana, :first_name_kana, :birthday_y_m_d ,presence: true 
   has_one :address
   has_many :cards, foreign_key: true
+  has_many :products
 end
