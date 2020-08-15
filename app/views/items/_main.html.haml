@@ -1,0 +1,98 @@
+.main
+  .mainPic
+    .mainPic__text
+      %h2 人生を変えるフリマアプリ
+      %p FURIMAはだれでもかんたんに出品・購入できる
+      %p フリマアプリです
+    .mainPic__btn
+      = link_to image_tag("Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg", class: "appBtn"), "#"
+      = link_to image_tag("google-play-badge.png", class: "googleBtn"), "#"
+  
+  .threePics
+    %h2.subtitle
+      FURIMAが選ばれる3つの理由
+    %ul.lists
+      %li.list
+        .list__pic
+          %span.number 1
+          = image_tag ("pict-reason-01.jpg")
+        .list__text
+          %h3
+            %span
+              3分
+            ですぐに出品
+        .list__explanation
+          %p スマホで入力するだけで簡単に出品できる！
+      %li.list
+        .list__pic
+          %span.number 2
+          = image_tag ("pict-reason-02.jpg")
+        .list__text
+          %h3
+            %span
+              シンプル
+            で使いやすい
+        .list__explanation
+          %p めんどくさい入力は必要なく、検索も購入もスムーズ！
+      %li.list
+        .list__pic
+          %span.number 3
+          = image_tag ("pict-reason-03.jpg")
+        .list__text
+          %h3 
+            手数料
+            %span
+              業界最安
+        .list__explanation
+          %p 最大3％でお得に出品＆購入！
+  .middlePic
+    %h2.middlePic__heading 会員数日本一位
+    %p FURIMAは、フリマアプリで最も人気。
+    %p 出品・購入回数も業界最多です！
+    %p ほしかったあの商品に出会えるかもしれません。
+    .middlePic__btn
+      = link_to image_tag("Download_on_the_App_Store_Badge_JP_RGB_blk_100317.svg", class: "appBtn"), "#"
+      = link_to image_tag("google-play-badge.png", class: "googleBtn"), "#"
+
+  .features
+    .heading
+      %h2 FURIMAの特徴
+    .featureItems
+      .item
+        .item__pic
+          = image_tag ("icon-01.png")
+        .item__text
+          %h3 簡単に売り買いできる
+        .item__explanation
+          %p スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+      .item
+        .item__pic
+          = image_tag ("icon-03.png")
+        .item__text
+          %h3 売上金は即日振り込みに対応
+        .item__explanation
+          %p 午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
+      .item
+        .item__pic
+          = image_tag ("icon-04.png")
+        .item__text
+          %h3 様々な支払いに対応
+        .item__explanation
+          %p お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+  .pickupBox
+    .pickupContents
+      .head
+        %h2 ピックアップカテゴリー
+      .productBox
+        .productHead
+          %h3 新規投稿商品
+        .productLists
+          = render "productList"
+    .pickupContents
+      .head
+        %h2 ピックアップブランド
+      .productBox
+        .productHead
+          %h3 アーカイバ
+        .productLists
+          = render "productList"

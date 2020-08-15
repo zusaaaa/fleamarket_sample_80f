@@ -1,0 +1,380 @@
+@mixin afterLine {
+  content: "";
+  height: 4px;
+  width: 80px;
+  background-color: #3CCACE;
+  position: absolute;
+  display: block;
+  left: 47%;
+  margin-top: 10px;
+}
+@mixin appGoogleBtn {
+  .appBtn {
+    height: 60px;
+    margin-bottom: 10px;
+  }
+  .googleBtn {
+    width: 220px;
+  }
+}
+
+.header {
+  padding: 0 60px;
+  .headerContents {
+    width: 100%;
+    padding: 15px 0 0 0;
+    min-height: 82px;
+    margin: 0 auto;
+    .mainHeader  {
+      display: flex;
+      align-items: center;
+      position: relative;
+      height: 70px;
+      .icon {
+        img {
+          width: 150px;
+          margin-right: 30px;
+        }
+      }
+      .searchForm {
+        position: relative;
+        margin-left: auto;
+        width: 100%;
+        &__input {
+          height: 35px;
+          width: calc(100% - 35px);
+          padding-left: 5px;
+        }
+        button {
+          position: absolute;
+          background-color: #3CCACE;
+          border-style: none;
+          padding:5px;
+          height: 35px;
+          width: 35px;
+          img {
+            width: 100%;
+            background-color: #3CCACE;
+          }
+        }
+      }
+    }
+    .navBar {
+      display: flex;
+      color: rgb(75, 74, 74);
+      font-size: 14px;
+      padding-bottom: 15px;
+      .leftContents {
+        display: flex;
+        li {
+          margin-right: 50px;
+          a {
+            text-decoration: none;
+            color: rgb(75, 74, 74);
+          }
+          a:hover {
+            color: orange;
+          }
+        }
+      }
+      .rightContents {
+        display: flex;
+        margin-left: auto;
+        &__login {
+          margin-right: 15px;
+        }
+        a {
+          text-decoration: none;
+          color: rgb(75, 74, 74);
+        }
+      }
+    }
+  }
+}
+
+.main {
+  .mainPic {
+    height: 560px;
+    background-image: url("bg-mainVisual-pict_pc.jpg");
+    background-size: cover;
+    background-position: top center;
+    color: white;
+    padding: 0 60px;
+    text-shadow:0px 0px 5px #6e6966;
+    &__text {
+      font-size: 20px;
+      h2 {
+        padding-top: 200px;
+        font-size: 60px;
+      }
+    }
+    &__btn {
+      @include appGoogleBtn;
+    }
+
+  }
+  .threePics {
+    width: 100vw;
+    padding-top: 70px;
+    .subtitle {
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .subtitle:after {
+      @include afterLine;
+    }
+    
+    .lists {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 50px;
+
+      .list {
+        width: 30%;
+        text-align: center;
+        &__pic {
+          position: relative;
+          span {
+            position: absolute;
+            color: white;
+            background-color: #3CCACE;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 20px;
+          }
+          img {
+            width: 100%;
+            vertical-align: bottom;
+          }
+        }
+        &__text {
+          h3 {
+            font-weight: bold;
+            padding: 20px 0;
+            font-size: 20px;
+            span {
+              color:#3CCACE;
+            }
+          }
+        }
+        &__explanation {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .features {
+    padding: 50px 0 100px 0;
+    text-align: center;
+    justify-content: space-between;
+    .heading {
+      position: relative;
+      margin-bottom: 30px;
+      h2{
+        font-weight: bold;
+        font-size: 30px;
+      }
+    }
+    .heading:after {
+      @include afterLine;
+    }
+    .featureItems {
+      display: flex;
+      .item {
+        padding: 0 15px;
+        &__pic {
+          img {
+            width: 50%;
+          }
+        }
+        &__text{
+          h3 {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+          p {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+  .middlePic {
+    height: 400px;
+    background-image: url("bg-topMiddleDl-pict.jpg");
+    background-size: cover;
+    text-shadow:0px 0px 5px #6e6966;
+    color: white;
+    padding: 100px 0 0 50px;
+    h2 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    } 
+    &__btn {
+      @include appGoogleBtn;
+    }
+  }
+  .pickupBox {
+    padding-bottom: 100px;
+    background-color: rgb(247, 247, 247);
+    .pickupContents {
+      padding-top: 80px;
+      .head {
+        text-align: center;
+        h2 {
+        font-weight: bold;
+        font-size: 25px;
+        }
+      }
+      .productBox {
+        .productHead {
+          padding-bottom: 20px;
+          h3 {
+            font-weight: bold;
+            color: #3CCACE;
+            font-size: 23px;
+            text-align: center;
+          }
+        }
+        .productLists{
+          display: flex;
+          width: 1100px;
+          margin: auto;
+          background-color: white;
+          .productList {
+            width: 20%;
+            a {
+              text-decoration: none;
+            }
+            &__img {
+              height: 150px;
+              img {
+                height: 100%;
+                width: 100%;
+              }
+            }
+            &__details__name {
+              padding: 15px;
+              color: black;
+              .detail {
+                display: flex;
+                &__price {
+                  p {
+                    font-size: 5px;
+                  }
+                }
+                &__fav {
+                  display: flex;
+                  margin-left: auto;
+                  &--icon {
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  .appBannerBottom {
+    height: 400px;
+    background-image: url("bg-appBanner-pict.jpg");
+    background-size: cover;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .inner {
+      text-align: center;
+      color: white;
+      text-shadow:0px 0px 5px #6e6966;
+      &__title {
+        h2 {
+          font-weight: bold;
+          font-size: 23px;
+        }
+        p {
+          font-size: 35px;
+        }
+      }
+      &__btn {
+        @include appGoogleBtn;
+      }
+    }
+  }
+  .guideBox {
+    background-color: rgb(39, 38, 38);
+    text-align: center;
+    padding: 60px 50px;
+    .guideContents {
+      display: flex;
+      margin: auto;
+      justify-content: space-around;
+      text-align: center;
+      max-width: 800px;
+      .guideContent {
+        color: white;
+        &__head {
+          font-size: 100%;
+          font-weight: bold;
+          margin-bottom: 25px;
+        }
+        ul {
+          li {
+            padding: 5px;
+            font-size: 13px;
+            a {
+              text-decoration: none;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+    .footer__logo {
+      a {
+        img {
+          width: 150px;
+          vertical-align: bottom;
+        }
+      }
+      p {
+        color: white;
+      }
+    }
+  }
+}
+
+.exhibition {
+  width: 120px;
+  height: 120px;
+  background-color: #3CCACE;
+  text-align: center;
+  padding: 15px;
+  border-radius: 7%;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  a {
+    text-decoration: none;
+  }
+  &__content {
+    p {
+      color: white;
+      margin-bottom: 5px;
+    }
+    img {
+      width: 60px;
+    }
+  }
+}

@@ -1,3 +1,4 @@
+
 - @products.each do |product|
   商品名
   %p= product.product_name
@@ -40,3 +41,31 @@
 - @products.each do |product|
   価格
   %p= product.price
+
+-# .Products
+-#   .Products__main
+-#     .Products__main__content
+-#       .Products__title
+-#         .Products__title__box
+-#           Tシャツ/カットソー(半袖/半袖なし)の商品一覧
+-#       .Products__list
+-#         .Products__listBox
+-#           - @products.each do |product|
+-#             .ProductBox
+-#               .ProductBox__image
+-#                 -# = product.image
+-#                 -# = image_tag image.image.url, class: "Product__image"
+-#                 .ProductBox__body
+-#                   .ProductName
+-#                     = product.product_name
+-#                   .Price
+-#                     - @products.each do |product|
+-#                     価格
+-#                     %p= product.price
+
+-#         .ProductBox__image__each
+-#           = link_to product_path(product) do
+-#             - product.images.each do |image|
+-#               商品画像
+-#               = image_tag "#{image.src}", class: "img"
+
