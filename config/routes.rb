@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
-  resources :items, only: [:index]
-  resources :products, only: [:index, :new, :create]
+
+  resources :items, only: [:index, :show]
+  resources :products, only: [:index, :new, :create, :show, :edit]
   # 画像の表示
   # resources :images, only: [:show]
 
@@ -12,5 +13,4 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root to: "items#index"
- 
 end
