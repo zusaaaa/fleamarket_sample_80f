@@ -1,0 +1,58 @@
+.product
+  .productName
+    商品名
+    = @product.product_name
+
+  .productImage
+    商品画像
+    - @product.images.each do |image|
+      = image_tag image.src.url
+
+  .productUserId
+    出品者
+    -# = @product.user_id
+
+  .productCategory
+    .productCategory__parent
+      = @product.category_id
+    .productCategory__child
+    .productCategory__grandchild
+  .productExplanation
+    商品説明
+    = @product.product_explanation
+
+  .productBrand
+    ブランド(任意)
+    = @product.brand
+
+  .productProductStatusId
+    商品の状態
+    = @product.product_status_id
+
+  .productShippingMethodId
+    発送方法
+    = @product.shipping_method_id
+
+  .productShippingChargeId
+    配送料の負担
+    = @product.shipping_charge_id
+
+  .productPrefectureId
+    発送地域
+    = @product.prefecture_id
+
+  .productDaysUntilShippingId
+    配送までの日数
+    = @product.days_until_shipping_id
+
+  .productPrice
+    価格
+    = @product.price
+
+- if user_signed_in? && current_user.id != @product.user_id
+  = link_to "購入画面", "#"
+
+
+- if user_signed_in? && current_user.id == @product.user_id
+  = link_to "編集", "#"
+  = link_to "削除", "#"

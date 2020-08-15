@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :product_status
   belongs_to_active_hash :prefecture
   # has_many :product_categories, dependent: :destroy
-  belongs_to :category
+  belongs_to :category, optional: true
 
   # 子モデルimagesのアソシエーション
   has_many :images

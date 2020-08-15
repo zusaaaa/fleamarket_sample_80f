@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   # resources :items, only: [:index]
-  resources :products, only: [:index, :new, :create] do
+  resources :products, only: [:index, :new, :create, :show] do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }

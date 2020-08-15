@@ -3,17 +3,17 @@ $(function(){
     var html = `<option value="${category.name}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
-  function appendChidrenBox(insertHTML){
+  function appendChildrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<div class='listing-select-wrapper__added' id= 'children_wrapper'>
-                        <select class="listing-select-wrapper__box--select" id="child_category" name="category_id">
+                        <select class="listing-select-wrapper__box--select" id="child_category" name="item">
                           <option value="---" data-category="---">---</option>
                           ${insertHTML}
                         <select>
                       </div>`;
     $('.productForm__category').append(childSelectHtml);
   }
-  function appendGrandchidrenBox(insertHTML){
+  function appendGrandchildrenBox(insertHTML){
     var grandchildSelectHtml = '';
     grandchildSelectHtml = `<div class='listing-select-wrapper__added' id= 'grandchildren_wrapper'>
                               <select class="listing-select-wrapper__box--select" id="grandchild_category" name="category_id">
@@ -25,6 +25,7 @@ $(function(){
   }
   $('#parent_category').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value;
+    // $('#parent_category').removeAttr('data-disable-with');
     if (parentCategory != "---"){
       $.ajax({
         url: 'get_category_children',
@@ -39,7 +40,7 @@ $(function(){
         children.forEach(function(child){
           insertHTML += appendOption(child);
         });
-        appendChidrenBox(insertHTML);
+        appendChildrenBox(insertHTML);
       })
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
@@ -65,7 +66,7 @@ $(function(){
           grandchildren.forEach(function(grandchild){
             insertHTML += appendOption(grandchild);
           });
-          appendGrandchidrenBox(insertHTML);
+          appendGrandchildrenBox(insertHTML);
         }
       })
       .fail(function(){

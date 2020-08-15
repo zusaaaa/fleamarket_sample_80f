@@ -1,19 +1,40 @@
-.productList
-  = link_to "#" do
-    .productList__img
-      =image_tag("pet_darui_dog.png")
-      -# 商品の写真
-    .productList__details
-      %h3.name テスト
-      -# 商品名
-      .detail
-        .detail__price
-          %h4 4000
-          -# 値段
-          %p (税込)
-        .detail__fav
-          .detail__fav--icon
-            = icon('fas', 'star')
+-# .productList
+-#   = link_to "#" do
+-#     .productList__img
+-#       =image_tag("pet_darui_dog.png")
+-#       -# 商品の写真
+-#     .productList__details
+-#       %h3.name テスト
+-#       -# 商品名
+-#       .detail
+-#         .detail__price
+-#           %h4 4000
+-#           -# 値段
+-#           %p (税込)
+-#         .detail__fav
+-#           .detail__fav--icon
+-#             = icon('fas', 'star')
+-#           .detail__fav--num
+-#             3
+-#             -# お気に入り数
+
+- if @products.present?
+  - @products.each do |product|
+    - product.images.each do |image|
+      .productList
+        = link_to product_path(product[:id]), method: :get do
+          = image_tag "#{image.src}", class: "img", size: "220x150"
+          %p 
+          = product.product_name
+        %p 
+        %h4
+        = product.price
+        円
+        %p (税込)
+        .detail
+          .detail__fav
+            .detail__fav--icon
+              = icon('fas', 'star')
+              3
           .detail__fav--num
-            3
-            -# お気に入り数
+        -# お気に入り
