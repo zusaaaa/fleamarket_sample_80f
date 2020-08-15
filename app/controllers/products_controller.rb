@@ -22,11 +22,17 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
 
     def show
       @product = Product.find(params[:id])
     end
-  end
+
+    def destroy
+      product = Product.find(params[:id])
+      product.destroy
+      redirect_to root_path
+    end
 
   private
 
