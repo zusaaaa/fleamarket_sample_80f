@@ -5,13 +5,8 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @images = Image.all
-    @image = Image.find(params[:id])
+    #@image = Image.find(params[:id])
   end
-
-  # def show
-  #   @images = Image.all
-  #   @images = Image.find(params[:id])
-  # end
 
   def new
     @product = Product.new
@@ -21,8 +16,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.create(product_params)
     if @product.save
-      # 仮 後からパス変更
-      redirect_to root_path
+      redirect_to items_path
     else
       render :new
     end
@@ -39,6 +33,11 @@ class ProductsController < ApplicationController
     else
       render :edit
     end
+  end
+  def show
+    @product = Product.find(params[:id])
+    # @images = Image.all
+    # @images = Image.find(params[:id])
   end
 
   private
