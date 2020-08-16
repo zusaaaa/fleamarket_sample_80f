@@ -15,5 +15,6 @@ CarrierWave.configure do |config|
       region: 'ap-northeast-1'
     }
     config.fog_directory = 'fleamarket80f'
+    config.asset_host = 'https://fleamarket80f.s3.amazonaws.com'
   end
 end
