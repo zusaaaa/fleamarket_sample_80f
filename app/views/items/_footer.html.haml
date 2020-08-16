@@ -39,6 +39,7 @@
     .footer__logo
       = link_to image_tag("logo-white.png"), "#"
       %p ©️ FURIMA
+    -if user_signed_in?
       .exhibition
         = link_to new_product_path do
           .exhibition__content

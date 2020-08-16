@@ -6,10 +6,6 @@ class ProductsController < ApplicationController
     #@image = Image.find(params[:id])
   end
 
-  # def show
-  #   @images = Image.all
-  #   @images = Image.find(params[:id])
-  # end
   def new
     @product = Product.new
     @product.images.build
@@ -22,10 +18,12 @@ class ProductsController < ApplicationController
     else
       render :new
     end
+  end
 
-    def show
-      @product = Product.find(params[:id])
-    end
+  def show
+    @product = Product.find(params[:id])
+    # @images = Image.all
+    # @images = Image.find(params[:id])
   end
 
   private
