@@ -22,8 +22,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    # @images = Image.all
-    # @images = Image.find(params[:id])
   end
 
   private
