@@ -10,38 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_100110) do
+ActiveRecord::Schema.define(version: 2020_08_17_092819) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "postal_code", null: false
-    t.string "prefecture", null: false
-    t.string "city", null: false
+    t.string "prefecture", limit: 255, null: false
+    t.string "city", limit: 255, null: false
     t.integer "house_number", null: false
     t.integer "number_sign_etc"
-    t.string "phone_number"
+    t.string "phone_number", limit: 255
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "payjp_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_cards_on_user_id"
+  end
+
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "src"
+    t.string "src", limit: 255
     t.bigint "product_id"
     t.index ["product_id"], name: "index_images_on_product_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "product_name"
+    t.string "product_name", limit: 255
     t.text "product_explanation"
-    t.string "brand"
-    t.string "product_status_id"
-    t.string "shipping_method_id"
-    t.string "shipping_charge_id"
-    t.string "prefecture_id"
+    t.string "brand", limit: 255
+    t.string "product_status_id", limit: 255
+    t.string "shipping_method_id", limit: 255
+    t.string "shipping_charge_id", limit: 255
+    t.string "prefecture_id", limit: 255
     t.integer "days_until_shipping_id"
     t.integer "price"
-    t.string "status"
+    t.string "status", limit: 255
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
@@ -49,21 +57,22 @@ ActiveRecord::Schema.define(version: 2020_08_13_100110) do
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "nickname", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string "nickname", limit: 255, null: false
+    t.string "email", limit: 255, default: "", null: false
+    t.string "encrypted_password", limit: 255, default: "", null: false
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "family_name_kanji", null: false
-    t.string "first_name_kanji", null: false
-    t.string "family_name_kana", null: false
-    t.string "first_name_kana", null: false
+    t.string "family_name_kanji", limit: 255, null: false
+    t.string "first_name_kanji", limit: 255, null: false
+    t.string "family_name_kana", limit: 255, null: false
+    t.string "first_name_kana", limit: 255, null: false
     t.date "birthday_y_m_d", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "cards", "users"
   add_foreign_key "images", "products"
 end

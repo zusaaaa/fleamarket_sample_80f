@@ -1,0 +1,26 @@
+%h2.header_title
+  購入確認
+
+.product
+  .productName
+    商品名
+  - @products.each do |product|
+    = product.product_id
+
+.single-container
+  %section.creditcard_section
+    %h3 クレジットカード一覧
+    - if @card.present?
+      .container
+        .creditcard-info
+          %p.creditcard-info__number
+          = "**** **** **** " + @card_info.last4 #クレジットカードの下４桁を表示
+          %p.creditcard-info__period 
+          = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
+    - else
+      .new-card
+        = link_to new_card_path(@product), class:"new-card-btn" do
+          %i.far.fa-credit-card 
+          クレジットカードを追加する
+  -# = form_tag({controller: :card , action: :buy})
+  -#   %button 購入する

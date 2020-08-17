@@ -15,10 +15,10 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
 
-    def show
-      @product = Product.find(params[:product_id])
-    end
+  def show
+    @product = Product.find(params[:product_id])
   end
   
   private
