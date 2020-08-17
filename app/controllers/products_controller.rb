@@ -6,10 +6,6 @@ class ProductsController < ApplicationController
     #@image = Image.find(params[:id])
   end
 
-  # def show
-  #   @images = Image.all
-  #   @images = Image.find(params[:id])
-  # end
   def new
     @product = Product.new
     @product.images.build
@@ -18,7 +14,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.create(product_params)
     if @product.save
-      redirect_to root_path
+      redirect_to items_path
     else
       render :new
     end
