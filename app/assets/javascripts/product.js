@@ -24,7 +24,6 @@ $(document).on('turbolinks:load', ()=> {
   $('.hidden-destroy').hide();
 
   $('#image-box').on('change', '.js-file', function(e) {
-    console.log(111)
     const targetIndex = $(this).parent().data('index');
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
@@ -56,4 +55,5 @@ $(document).on('turbolinks:load', ()=> {
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
+
 });

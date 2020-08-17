@@ -96,8 +96,3 @@
           %h3 アーカイバ
         .productLists
           = render "productList" 
-出品編集
-- @products.each do |product|
-  - if user_signed_in? && current_user.id == product.user_id
-    = link_to edit_product_path(product) do
-      = product.id
