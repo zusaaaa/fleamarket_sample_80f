@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.images.build
+    @images = @product.images.build
   end
 
   def create
@@ -28,7 +28,6 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      # 仮 後からパス変更
       redirect_to root_path
     else
       render :edit

@@ -1,81 +1,86 @@
 .header
   =render "devise/header"
-
+.form
+  .form__title 商品出品
 .errorMessage__box
   - @product.errors.full_messages.each do |message|
     .errorMessage
       = message
 
-.ProductNew
-  = form_with model: @product, class: "Form", local: true do |f|
-    .productForm
-      %ul
-        %li 商品名
-        %li.required（必須）
-      = f.text_field :product_name, placeholder: "商品名", autofocus: true, class: "form-input"
-    .productForm#image-box 
-      %ul
-        %li 商品画像
-        %li.required-pic（必須）
-      = f.fields_for :images, id: "add" do |image|
-        .js-file_group{ data: {index: "#{image.index}"}}
-          = image.file_field :src, class: "js-file"
-          %br
-          %span.js-remove 削除
-          %br
-          %br
-      
-    .productForm__name
-      %ul
-        %li 商品の説明
-        %li.required（必須）
-      = f.text_field :product_explanation, placeholder: "商品説明", autofocus: true, class: "form-input"
-    .productForm__brand
-      %ul
-        %li ブランド
-        %li.not-required（任意）
-      = f.text_field :brand, placeholder: "ブランド", autofocus: true, class: "form-input"
-    .productForm__product-status
-      %ul
-        %li 商品の状態
-        %li.required（必須）
-      = f.collection_select :product_status_id, ProductStatus.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
-    .productForm__shipping-method
-      %ul
-        %li 発送方法
-        %li.required（必須）
-      = f.collection_select :shipping_method_id, ShippingMethod.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
-    .productForm__postage
-      %ul
-        %li 配送料の負担
-        %li.required（必須）
-      = f.collection_select :shipping_charge_id, ShippingCharge.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
-    .productForm__prefecture
-      %ul
-        %li 発送地域
-        %li.required（必須）
-      = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
-    .productForm__days-until-shipping
-      %ul
-        %li 配送までの日数
-        %li.required（必須）
-      = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
-    .productForm__price
-      %ul
-        %li 価格
-        %li.required（必須）
-      = f.text_field :price, placeholder: "数字で入力", autofocus: true, class: "form-input"
 
-    -# .productForm__category
-    -#   %ul
-    -#     %li カテゴリー
-    -#     %li.required（必須）
-      -# .listing-select-wrapper
-      -#   =f.select :category, @category_parent_array, {}, {class: "listing-select-wrapper__box--select", id: "parent_category"}
+= form_with model: @product, class: "productNew", local: true do |f|
+  .productForm__name
+    %ul
+      %li 商品名
+      %li.required 必須
+    = f.text_field :product_name, placeholder: "商品名", autofocus: true, class: "form-input"
+  .productForm__image
+    %ul
+      %li 商品画像(5枚まで)
+      %li.required 必須
+    .post__drop__box__container
+      .preview-content
+      .label-content
+        %label{for: "product_images_attributes_0_image", class: "label-box", id: "label-box--0"}
+          .label-box__text クリックしてファイルをアップロード
+      .hidden-content
+        = f.fields_for :images do |i|
+          = i.file_field :src, class: "hidden-field", id: "product_images_attributes_0_image"
+          %input{class:"hidden-field", type: "file", name: "product[images_attributes][1][src]", id: "product_images_attributes_1_image" }
+          %input{class:"hidden-field", type: "file", name: "product[images_attributes][2][src]", id: "product_images_attributes_2_image" }
+          %input{class:"hidden-field", type: "file", name: "product[images_attributes][3][src]", id: "product_images_attributes_3_image" }
+          %input{class:"hidden-field", type: "file", name: "product[images_attributes][4][src]", id: "product_images_attributes_4_image" }
+  .productForm__exprain
+    %ul
+      %li 商品の説明
+      %li.required 必須
+    = f.text_field :product_explanation, placeholder: "商品説明", autofocus: true, class: "form-input"
+  .productForm__brand
+    %ul
+      %li ブランド
+      %li.not-required 任意
+    = f.text_field :brand, placeholder: "ブランド", autofocus: true, class: "form-input"
+  .productForm__product-status
+    %ul
+      %li 商品の状態
+      %li.required 必須
+    = f.collection_select :product_status_id, ProductStatus.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
+  .productForm__shipping-method
+    %ul
+      %li 発送方法
+      %li.required 必須 
+    = f.collection_select :shipping_method_id, ShippingMethod.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
+  .productForm__postage
+    %ul
+      %li 配送料の負担
+      %li.required 必須
+    = f.collection_select :shipping_charge_id, ShippingCharge.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
+  .productForm__prefecture
+    %ul
+      %li 発送地域
+      %li.required 必須 
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
+  .productForm__days-until-shipping
+    %ul
+      %li 配送までの日数
+      %li.required 必須
+    = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name, {prompt: "選択してください"}, {class: "form-input"}
+  .productForm__price
+    %ul
+      %li 価格
+      %li.required 必須 
+    = f.text_field :price, placeholder: "数字で入力", autofocus: true, class: "form-input"
 
-    .Form__submit
-      = f.hidden_field :status, :value => "出品中"
-      = f.submit "出品", class: "btn"
+  -# .productForm__category
+  -#   %ul
+  -#     %li カテゴリー
+  -#     %li.required 必須 
+    -# .listing-select-wrapper
+    -#   =f.select :category, @category_parent_array, {}, {class: "listing-select-wrapper__box--select", id: "parent_category"}
+
+  .Form__submit
+    = f.hidden_field :status, :value => "出品中"
+    = f.submit "出品", class: "btn"
 
 .footer
   =render "devise/footer"

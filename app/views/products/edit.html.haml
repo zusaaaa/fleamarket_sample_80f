@@ -1,89 +1,95 @@
 .header
   =render "devise/header"
-
-出品編集
+.form
+  .form__title 出品編集
 .errorMessage__box
 - @product.errors.full_messages.each do |message|
   .errorMessage
     = message
 
-.ProductNew
-  = form_with model: @product, calss: "Form", local: true do |f|
-    .productForm
-      %ul
-        %li 商品名
-        %li.required（必須）
-      = f.text_field :product_name, placeholder: '商品名'
-    .productForm#image-box 
-      %ul
-        %li 商品画像
-        %li.required-pic（必須）
-      #previews
-        - @product.images.each do |img|
-          - if img.src.url present?
-            = image_tag img.src.url, height: 150, width: 150
-      .image-input
-        = f.fields_for :images do |image|
-          .js-file_group{ data: {index: "#{image.index}"}}
-            = image.file_field :src, class: 'js-file'
-            .js-remove 削除
-          - if @product.persisted?
-            = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
-        - if @product.persisted?
-          .js-file_group{ data: {index:"#{@product.images.count}"}}
-            = file_field_tag :src, name: "product[images_attributes][#{@product.images.count}][src]", class: 'js-file'
-          .js-remove削除
-    .productForm__name
-      %ul
-        %li 商品の説明
-        %li.required（必須）
-      = f.text_field :product_explanation, placeholder: '商品説明'
-    .productForm__brand
-      %ul
-        %li ブランド
-        %li.not-required（任意）
-      = f.text_field :brand, placeholder: 'ブランド'
-    .productForm__product-status
-      %ul
-        %li 商品の状態
-        %li.required（必須）
-      = f.collection_select :product_status_id, ProductStatus.all, :id, :name
-    .productForm__shipping-method
-      %ul
-        %li 発送方法
-        %li.required（必須）
-      = f.collection_select :shipping_method_id, ShippingMethod.all, :id, :name
-    .productForm__postage
-      %ul
-        %li 配送料の負担
-        %li.required（必須）
-      = f.collection_select :shipping_charge_id, ShippingCharge.all, :id, :name
-    .productForm__prefecture
-      %ul
-        %li 発送地域
-        %li.required（必須）
-      = f.collection_select :prefecture_id, Prefecture.all, :id, :name
-    .productForm__days-until-shipping
-      %ul
-        %li 配送までの日数
-        %li.required（必須）
-      = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name
-    .productForm__price
-      %ul
-        %li 価格
-        %li.required（必須）
-      = f.text_field :price, placeholder: '数字で入力'
 
-    -# .productForm__category
-    -#   %ul
-    -#     %li カテゴリー
-    -#     %li.required（必須）
-      -# .listing-select-wrapper
-      -#   =f.select :category, @category_parent_array, {}, {class: "listing-select-wrapper__box--select", id: "parent_category"}
+= form_with model: @product, class: "productNew", local: true do |f|
+  .productForm__name
+    %ul
+      %li 商品名
+      %li.required 必須
+    = f.text_field :product_name, placeholder: "商品名", autofocus: true, class: "form-input"
+  .productForm__image
+    %ul
+      %li 商品画像(5枚まで)
+      %li.required 必須
+    .post__drop__box__container
+      .preview-content
+        - @product.images.each do |image|
+          .preview-box
+            .upper-box
+              = image_tag image.src.url, width: "112", height: "112", alt: "preview"
+            .lower-box
+              .update-box
+                %label.edit-btn 編集
+              .delete-box
+                .delete-btn
+                  %span 削除
+      .label-content
+        = f.label :"images_attributes_#{@product.images.length}_image", class: "label-box", id: "label-box--#{@product.images.length}" do
+          .label-box__text クリックしてファイルをアップロード
+      .hidden-content
+        = f.fields_for :images do |i|
+          = i.file_field :src, class: "hidden-field"
+          = i.check_box:_destroy, class: "hidden-checkbox"
+        - @product.images.length.upto(4) do |i|
+          %input{name: "product[images_attributes][#{i}][src]", id: "product_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
+  .productForm__exprain
+    %ul
+      %li 商品の説明
+      %li.required 必須
+    = f.text_field :product_explanation, placeholder: "商品説明", class: "form-input"
+  .productForm__brand
+    %ul
+      %li ブランド
+      %li.not-required 任意
+    = f.text_field :brand, placeholder: 'ブランド', class: "form-input"
+  .productForm__product-status
+    %ul
+      %li 商品の状態
+      %li.required 必須
+    = f.collection_select :product_status_id, ProductStatus.all, :id, :name, {prompt: ""}, {class: "form-input"}
+  .productForm__shipping-method
+    %ul
+      %li 発送方法
+      %li.required 必須
+    = f.collection_select :shipping_method_id, ShippingMethod.all, :id, :name, {prompt: ""}, {class: "form-input"}
+  .productForm__postage
+    %ul
+      %li 配送料の負担
+      %li.required 必須
+    = f.collection_select :shipping_charge_id, ShippingCharge.all, :id, :name, {prompt: ""}, {class: "form-input"}
+  .productForm__prefecture
+    %ul
+      %li 発送地域
+      %li.required 必須
+    = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: ""}, {class: "form-input"}
+  .productForm__days-until-shipping
+    %ul
+      %li 配送までの日数
+      %li.required 必須 
+    = f.collection_select :days_until_shipping_id, DaysUntilShipping.all, :id, :name, {prompt: ""}, {class: "form-input"}
+  .productForm__price
+    %ul
+      %li 価格
+      %li.required 必須 
+    = f.text_field :price, placeholder: '数字で入力', class: "form-input"
 
-    .Form__submit
-    = f.hidden_field :status, :value => '出品中'
-    = f.submit '出品'
+  -# .productForm__category
+  -#   %ul
+  -#     %li カテゴリー
+  -#     %li.required 必須
+    -# .listing-select-wrapper
+    -#   =f.select :category, @category_parent_array, {}, {class: "listing-select-wrapper__box--select", id: "parent_category"}
+
+  .Form__submit
+  = f.hidden_field :status, :value => '出品中'
+  = f.submit "更新", class: "btn"
 
 .footer
   =render "devise/footer"
