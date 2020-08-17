@@ -427,10 +427,28 @@
 
 
 // 商品詳細ページ
-.productShow {
+.main {
   background-color: #f8f8f8;
   .showMain {
     padding: 40px;
     margin: 0 auto;
+    width: 700px;
+    .content {
+      margin-top: 20px;
+      background-color: white;
+      .itemBox {
+        background-color: #fff;
+        padding: 24px 40px 40px;
+        .productName {
+          text-align: center;
+          font-weight: bold;
+          font-size: 24px;
+        }
+        .productImage {
+          margin: 16px 0 0;
+          text-align: center;
+        }
+      }
+    }
   }
 }
