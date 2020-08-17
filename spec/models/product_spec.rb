@@ -59,7 +59,6 @@ describe Product do
       expect(product.errors[:price]).to include("is not a number")
     end
     it "is valid that price is number" do
-      user = @user
       product = build(:product, price: 1, user: @user)
       expect(product).to be_valid
     end
@@ -125,7 +124,6 @@ describe Product do
       expect(product.errors[:price]).to include("is not a number")
     end
     it "is valid that price is number" do
-      user = @user
       product = build(:product, price: 1, user: @user)
       expect(product).to be_valid
     end
