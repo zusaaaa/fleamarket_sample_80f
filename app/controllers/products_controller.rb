@@ -25,8 +25,9 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product.destroy
-    redirect_to root_path
+      @product.destroy
+      render :delete unless @product.user_id == current_user.id && @product.destroy
+      redirect_to root_path
   end
 
   private
@@ -38,5 +39,4 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-
 end
