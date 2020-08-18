@@ -5,7 +5,14 @@ class CardController < ApplicationController
 
   def index
     @products = Product.all
-    product = Product.find(params[:product_id])
+    @images = Image.all
+    @addresses = Address.all
+    @users = User.all
+    @product = Product.find(params[:format])
+    @address = Address.find(params[:format])
+    @product = Product.find(params[:format])
+    @user = User.find(params[:format])
+    #product = Product.find(params[:product_format])
     # すでにクレジットカードが登録しているか？
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
@@ -24,8 +31,13 @@ class CardController < ApplicationController
     end
   end
 
+  def new
+    @product = Product.new
+    @product.images.build
+  end
+
   def show
-    @product = Product.find(params[:id])
+    
   end
 
   def edit
