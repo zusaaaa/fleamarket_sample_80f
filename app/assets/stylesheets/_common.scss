@@ -12,6 +12,9 @@ a {
     color: red;
     border: 1px solid red;
   }
+  ::placeholder {
+    color: red;
+  }
 }
 
 
