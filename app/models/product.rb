@@ -13,6 +13,9 @@ class Product < ApplicationRecord
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
+  # アソシエーション
+  belongs_to :user
+
   # バリデーション
   validates :product_name, presence: true
   validates :product_explanation, presence: true

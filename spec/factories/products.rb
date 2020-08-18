@@ -9,6 +9,7 @@ FactoryBot.define do
     days_until_shipping_id { "1" }
     price { 100 }
     status { "出品中" }
+    user_id { 1 }
     after(:build) do |product|
       product.images << build(:image, product: product)
     end
