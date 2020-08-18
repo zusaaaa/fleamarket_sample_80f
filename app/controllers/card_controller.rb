@@ -6,7 +6,7 @@ class CardController < ApplicationController
     @products = Product.all
     @product = Product.find(params[:format])
     # すでにクレジットカードが登録しているか？
-    if @card.present?
+    return unless @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
       # PAY.JPの秘密鍵をセットする。
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
@@ -75,7 +75,6 @@ class CardController < ApplicationController
 
   def buy
     @product = Product.find(params[:id])
-    binding.pry
     # すでに購入されていないか？
     if @product.status.blank?
       redirect_back(fallback_location: root_path)
@@ -96,14 +95,10 @@ class CardController < ApplicationController
     # 売り切れなので、productの情報をアップデートして売り切れにする画面
     if @product.update(status: "売り切れ")
       flash[:notice] = '購入しました。'
-      redirect_to controller: 'products', action: 'show', id: @product.id
     else
       flash[:alert] = '購入に失敗しました。'
-      redirect_to controller: 'products', action: 'show', id: @product.id
     end
-  end
-
-  def done; end
+    redirect_to controller: 'products', action: 'show', id: @product.id
   end
 
 private
