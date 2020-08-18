@@ -2,10 +2,8 @@
   =render "devise/header"
 .form
   .form__title 出品編集
-.errorMessage__box
-- @product.errors.full_messages.each do |message|
-  .errorMessage
-    = message
+.error-message
+  = render 'shared/errors', { target: @product }
 
 
 = form_with model: @product, class: "productNew", local: true do |f|
