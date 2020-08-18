@@ -27,4 +27,12 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
   validates :images, presence: true
   validates :status, presence: true
+
+  def self.search(search)
+    if search
+      Product.where('product_name LIKE(?)', "%#{search}%")
+    else
+      Product.all
+    end
+  end
 end
