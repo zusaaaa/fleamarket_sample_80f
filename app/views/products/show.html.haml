@@ -15,49 +15,74 @@
                   -# size: "220x220"
 
             .productPrice
-               = @product.price
+               ¥
+               = @product.price.to_s(:delimited)
+            .productPrice__detail
+               %span.tax
+               (税込)
+               %span.postage
+               送料込み
 
             .productExplanation
-               商品説明
                = @product.product_explanation
 
-            .productUserId
-               出品者
-               = @product.user.nickname
 
-            .productBrand
-               ブランド(任意)
-               = @product.brand
+            .table
+               %table
+                  %tbody
+                     %tr
+                        %th
+                           出品者
+                           %td
+                              = @product.user.nickname
 
-            .productProductStatusId
-               商品の状態
-               = @product.product_status_id
+                     %tr
+                        %th
+                           ブランド
+                           %td
+                              = @product.brand
 
-            .productShippingMethodId
-               発送方法
-               = @product.shipping_method_id
+                     %tr
+                        %th
+                           商品の状態
+                           %td
+                              = @product.product_status.name
 
-            .productShippingChargeId
-               配送料の負担
-               = @product.shipping_charge_id
+                     %tr
+                        %th
+                           発送方法
+                           %td
+                              = @product.shipping_method.name
 
-            .productPrefectureId
-               発送地域
-               = @product.prefecture_id
+                     %tr
+                        %th
+                           配送料の負担
+                           %td
+                              = @product.shipping_charge.name
 
-            .productDaysUntilShippingId
-               配送までの日数
-               = @product.days_until_shipping_id
+                     %tr
+                        %th
+                           発送地域
+                           %td
+                              = @product.prefecture.name
 
-            
+                     %tr
+                        %th
+                           発送日の目安
+                           %td
+                              = @product.days_until_shipping.name
 
-   - if user_signed_in? && current_user.id != @product.user_id
-      = link_to "購入画面", "#"
 
+         - if user_signed_in? && current_user.id != @product.user_id
+            = link_to "購入画面", "#"
 
-   - if user_signed_in? && current_user.id == @product.user_id
-      = link_to "編集", "#"
-      = link_to "削除", "#"
+         - if user_signed_in? && current_user.id == @product.user_id
+            .EditDelete
+               .EditDelete__box
+                  = link_to "商品の編集", "#", class: "submit-btn-blue"
+               or
+               .EditDelete__box
+                  = link_to "この商品を削除する", "#", class: "submit-btn-gray"
 
 
 .footer
