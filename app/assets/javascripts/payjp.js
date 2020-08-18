@@ -24,6 +24,7 @@ $(document).on('turbolinks:load',function(){
         // エラーがある場合処理しない。
         form.find('.payment-errors').text(response.error.message);
         form.find('button').prop('disabled', false);
+        alert("登録に失敗しました")
       }   
       else {
         // エラーなく問題なく進めた場合
@@ -32,10 +33,12 @@ $(document).on('turbolinks:load',function(){
         $("#cvc").removeAttr("name");
         $("#exp_month").removeAttr("name");
         $("#exp_year").removeAttr("name");
+        // 変数tokenに値が格納されていない可能性が高い？→その為、コントローラー側でトークンが取得できずnewに戻される
         var token = response.id;
+        console.log(token)
         form.append($('<input type="hidden" name="payjpToken" />').val(token));
         form.get(0).submit();
-        alert("カード登録に成功しました");
+        alert("登録に成功しました");
       };
     });
   });
