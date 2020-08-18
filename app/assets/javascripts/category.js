@@ -53,7 +53,7 @@ $(function(){
   });
   $('.productForm__category').on('change', '#child_category', function(){
     var childId = $('#child_category option:selected').data('category');
-    if (childId != "---"){
+    if (childId != 1){
       $.ajax({
         url: 'get_category_grandchildren',
         type: 'GET',

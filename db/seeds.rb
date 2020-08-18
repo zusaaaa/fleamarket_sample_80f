@@ -53,11 +53,11 @@
                 {level2:"その他",level2_children:["コスプレ","下着","その他"]}
               ]
 
-  category2s.each.with_index(1) do |category1,i|
-    level2_var="@category1_#{i}"
-    level2_val= @category1.children.create(name:"#{category1[:level2]}")
+  category2s.each.with_index(1) do |category2,i|
+    level2_var="@category2_#{i}"
+    level2_val= @category2.children.create(name:"#{category2[:level2]}")
     eval("#{level2_var} = level2_val")
-    category1[:level2_children].each do |level2_children_val|
+    category2[:level2_children].each do |level2_children_val|
       eval("#{level2_var}.children.create(name:level2_children_val)")
     end
   end
@@ -65,42 +65,42 @@
 @category3 = Category.create(name:"メンズ")
 
   category3s =[
-                {level2:"トップス",level2_children:["Tシャツ/カットソー(半袖/袖なし)","Tシャツ/カットソー(七分/長袖)","シャツ",
+                {level3:"トップス",level3_children:["Tシャツ/カットソー(半袖/袖なし)","Tシャツ/カットソー(七分/長袖)","シャツ",
                 "ポロシャツ","タンクトップ","ニット/セーター","パーカー","カーディガン","スウェット","ジャージ","ベスト","その他"]},
-                {level2:"ジャケット/アウター",level2_children:["テーラードジャケット","ノーカラージャケット","Gジャン/デニムジャケット",
+                {level3:"ジャケット/アウター",level3_children:["テーラードジャケット","ノーカラージャケット","Gジャン/デニムジャケット",
                 "レザージャケット","ダウンジャケット","ライダースジャケット","ミリタリージャケット","ナイロンジャケット",
                 "フライトジャケット","ダッフルコート","ピーコート","ステンカラーコート","トレンチコート","モッズコート","チェスターコート",
                 "スタジャン","スカジャン","ブルゾン","マウンテンパーカー","ダウンベスト","ポンチョ","カバーオール","その他"]},
-                {level2:"パンツ",level2_children:["デニム/ジーンズ","ワークパンツ/カーゴパンツ","スラックス","チノパン",
+                {level3:"パンツ",level3_children:["デニム/ジーンズ","ワークパンツ/カーゴパンツ","スラックス","チノパン",
                 "ショートパンツ","ペインターパンツ","サルエルパンツ","オーバーオール","その他"]},
-                {level2:"靴",level2_children:["スニーカー","サンダル","ブーツ","モカシン","ドレス/ビジネス","長靴/レインシューズ",
+                {level3:"靴",level3_children:["スニーカー","サンダル","ブーツ","モカシン","ドレス/ビジネス","長靴/レインシューズ",
                 "デッキシューズ","その他"]},
-                {level2:"バッグ",level2_children:["ショルダーバッグ","トートバッグ","リュック/バックパック","ボストンバッグ",
+                {level3:"バッグ",level3_children:["ショルダーバッグ","トートバッグ","リュック/バックパック","ボストンバッグ",
                 "ウエストポーチ","ボディーバッグ","ドラムバッグ","ビジネスバッグ","トラベルバッグ","メッセンジャーバッグ",
                 "エコバッグ","その他"]},
-                {level2:"スーツ",level2_children:["スーツジャケット","スーツベスト","スラックス","セットアップ","その他"]},
-                {level2:"帽子",level2_children:["キャップ","ハット","ニットキャップ/ビーニー","ハンチング/ベレー帽",
+                {level3:"スーツ",level3_children:["スーツジャケット","スーツベスト","スラックス","セットアップ","その他"]},
+                {level3:"帽子",level3_children:["キャップ","ハット","ニットキャップ/ビーニー","ハンチング/ベレー帽",
                 "キャスケット","サンバイザー","その他"]},
-                {level2:"アクセサリー",level2_children:["ネックレス","ブレスレット","バングル/リストバンド","リング",
+                {level3:"アクセサリー",level3_children:["ネックレス","ブレスレット","バングル/リストバンド","リング",
                 "ピアス(片耳用)","ピアス(両耳用)","アンクレット","その他"]},
-                {level2:"小物",level2_children:["長財布","折り財布","マネークリップ","コインケース/小銭入れ",
+                {level3:"小物",level3_children:["長財布","折り財布","マネークリップ","コインケース/小銭入れ",
                 "名刺入れ/定期入れ","キーケース","キーホルダー","ネクタイ","手袋","ハンカチ","ベルト","マフラー","ストール",
                 "バンダナ","ネックウォーマー","サスペンダー","ウォレットチェーン","サングラス/メガネ","モバイルケース/カバー",
                 "手帳","ストラップ","ネクタイピン","カフリンクス","イヤマフラー","傘","レインコート","ミラー",
                 "タバコグッズ","その他"]},
-                {level2:"時計",level2_children:["腕時計(アナログ)","腕時計(デジタル)","ラバーベルト","レザーベルト",
+                {level3:"時計",level3_children:["腕時計(アナログ)","腕時計(デジタル)","ラバーベルト","レザーベルト",
                 "金属ベルト","その他"]},
-                {level2:"水着",level2_children:["一般水着","スポーツ用","アクセサリー","その他"]},
-                {level2:"レッグウェア",level2_children:["ソックス","レギンス/スパッツ","レッグウォーマー","その他"]},
-                {level2:"アンダーウェア",level2_children:["トランクス","ボクサーパンツ","その他"]},
-                {level2:"その他"},
+                {level3:"水着",level3_children:["一般水着","スポーツ用","アクセサリー","その他"]},
+                {level3:"レッグウェア",level3_children:["ソックス","レギンス/スパッツ","レッグウォーマー","その他"]},
+                {level3:"アンダーウェア",level3_children:["トランクス","ボクサーパンツ","その他"]},
+                {level3:"その他"},
               ]
-  category3s.each.with_index(1) do |category2,i|
-    level2_var="@category2_#{i}"
-    level2_val= @category2.children.create(name:"#{category2[:level2]}")
-    eval("#{level2_var} = level2_val")
-    category2[:level2_children].each do |level2_children_val|
-      eval("#{level2_var}.children.create(name:level2_children_val)")
+  category3s.each.with_index(1) do |category3,i|
+    level3_var="@category3_#{i}"
+    level3_val= @category3.children.create(name:"#{category3[:level3]}")
+    eval("#{level3_var} = level3_val")
+    category3[:level3_children].each do |level3_children_val|
+      eval("#{level3_var}.children.create(name:level3_children_val)")
     end
   end
 

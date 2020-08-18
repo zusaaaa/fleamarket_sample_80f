@@ -13,10 +13,17 @@
     -# = @product.user_id
 
   .productCategory
+    カテゴリー
     .productCategory__parent
-      = @product.category
+      = link_to "#" do
+      # 親
+        = @child_category.parent.name
     .productCategory__child
+      = link_to "#" do
+        = @product.category.parent.name
     .productCategory__grandchild
+      = link_to "#" do
+        = @product.category.name
 
   .productExplanation
     商品説明
