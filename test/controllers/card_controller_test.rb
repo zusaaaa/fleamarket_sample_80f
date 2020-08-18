@@ -10,5 +10,4 @@ class CardControllerTest < ActionDispatch::IntegrationTest
     get card_show_url
     assert_response :success
   end
-
 end

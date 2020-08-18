@@ -1,5 +1,4 @@
 class CardController < ApplicationController
-
   require "payjp"
   before_action :set_card
 
@@ -20,16 +19,15 @@ class CardController < ApplicationController
       @card_brand = @card_info.brand
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
-      @exp_year = @card_info.exp_year.to_s.slice(2,3)
+      @exp_year = @card_info.exp_year.to_s.slice(2, 3)
     end
   end
 
   def show
-    #@product = Product.find(params[:id])
+    # @product = Product.find(params[:id])
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     # cardがすでに登録済みの場合、indexのページに戻します。
@@ -49,12 +47,12 @@ class CardController < ApplicationController
       customer = Payjp::Customer.create(
         description: 'test',
         card: params['payjpToken'],
-        metadata: {user_id: current_user.id}
+        metadata: { user_id: current_user.id }
       )
       # PAY.JPのユーザーが作成できたので、creditcardモデルを登録します。
       @card = Card.new(user_id: current_user.id, payjp_id: customer.id)
       if @card.save
-        redirect_to action: "index", notice:"支払い情報の登録が完了しました"
+        redirect_to action: "index", notice: "支払い情報の登録が完了しました"
       else
         render 'new'
       end
@@ -80,7 +78,7 @@ class CardController < ApplicationController
     binding.pry
     # すでに購入されていないか？
     if @product.status.blank?
-      redirect_back(fallback_location: root_path) 
+      redirect_back(fallback_location: root_path)
     elsif @card.blank?
       # カード情報がなければ、買えないから戻す
       redirect_to action: "new"
@@ -90,27 +88,25 @@ class CardController < ApplicationController
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
       # 請求を発行
       Payjp::Charge.create(
-      amount: @product.price,
-      customer: @card.payjp_id,
-      currency: 'jpy',
+        amount: @product.price,
+        customer: @card.payjp_id,
+        currency: 'jpy'
       )
     end
-      # 売り切れなので、productの情報をアップデートして売り切れにする画面
-      if @product.update(status: "売り切れ")
-        flash[:notice] = '購入しました。'
-        redirect_to controller: 'products', action: 'show', id: @product.id
-      else
-        flash[:alert] = '購入に失敗しました。'
-        redirect_to controller: 'products', action: 'show', id: @product.id
-      end
-  end
-
-    def done
+    # 売り切れなので、productの情報をアップデートして売り切れにする画面
+    if @product.update(status: "売り切れ")
+      flash[:notice] = '購入しました。'
+      redirect_to controller: 'products', action: 'show', id: @product.id
+    else
+      flash[:alert] = '購入に失敗しました。'
+      redirect_to controller: 'products', action: 'show', id: @product.id
     end
   end
-  
-  private
-  def set_card
-    @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
+
+  def done; end
   end
 
+private
+def set_card
+  @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
+end
