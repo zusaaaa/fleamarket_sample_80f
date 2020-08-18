@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show]
   resources :products do
     resources :images
+    collection do
+      get 'search'
+    end
   end
 
   devise_scope :user do
