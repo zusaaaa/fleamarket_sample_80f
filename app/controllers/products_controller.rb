@@ -16,9 +16,9 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.build
 
-    @category_parent = ["---"]
+    @category_parent = []
     Category.where(ancestry: nil).each do |parent|
-      @category_parent << parent.name
+      @category_parent << parent
     end
   end
   
@@ -27,16 +27,16 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      @category_parent = ["---"]
+      @category_parent = []
       Category.where(ancestry: nil).each do |parent|
-        @category_parent << parent.name
+        @category_parent << parent
       end
       render :new
     end
   end
 
   def get_category_children # 子カテゴリーの取得
-    @category_children = Category.find_by(name: "#{params[:parent_name]}", ancestry: nil).children
+    @category_children = Category.find_by(id: "#{params[:parent_id]}", ancestry: nil).children
   end
   
   def get_category_grandchildren # 孫カテゴリーの取得

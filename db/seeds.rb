@@ -5,10 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+@category1 = Category.create(name:"---")
 
-@category1 = Category.create(name:"レディース")
+@category2 = Category.create(name:"レディース")
 
-  category1s =[
+  category2s =[
                 {level2:"トップス",level2_children:["Tシャツ/カットソー(半袖/袖なし)","Tシャツ/カットソー(七分/長袖)",
                 "シャツ/ブラウス(半袖/袖なし)","シャツ/ブラウス(七分/長袖)","ポロシャツ","キャミソール","タンクトップ","ホルターネック",
                 "ニット/セーター","チュニック","カーディガン/ボレロ","アンサンブル","ベスト/ジレ","パーカー","トレーナー/スウェット",
@@ -52,7 +53,7 @@
                 {level2:"その他",level2_children:["コスプレ","下着","その他"]}
               ]
 
-  category1s.each.with_index(1) do |category1,i|
+  category2s.each.with_index(1) do |category1,i|
     level2_var="@category1_#{i}"
     level2_val= @category1.children.create(name:"#{category1[:level2]}")
     eval("#{level2_var} = level2_val")
@@ -61,9 +62,9 @@
     end
   end
 
-@category2 = Category.create(name:"メンズ")
+@category3 = Category.create(name:"メンズ")
 
-  category2s =[
+  category3s =[
                 {level2:"トップス",level2_children:["Tシャツ/カットソー(半袖/袖なし)","Tシャツ/カットソー(七分/長袖)","シャツ",
                 "ポロシャツ","タンクトップ","ニット/セーター","パーカー","カーディガン","スウェット","ジャージ","ベスト","その他"]},
                 {level2:"ジャケット/アウター",level2_children:["テーラードジャケット","ノーカラージャケット","Gジャン/デニムジャケット",
@@ -94,7 +95,7 @@
                 {level2:"アンダーウェア",level2_children:["トランクス","ボクサーパンツ","その他"]},
                 {level2:"その他"},
               ]
-  category2s.each.with_index(1) do |category2,i|
+  category3s.each.with_index(1) do |category2,i|
     level2_var="@category2_#{i}"
     level2_val= @category2.children.create(name:"#{category2[:level2]}")
     eval("#{level2_var} = level2_val")
