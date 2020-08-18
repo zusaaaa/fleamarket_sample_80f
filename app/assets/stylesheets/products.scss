@@ -45,6 +45,15 @@
               overflow: hidden;
               margin: 0;
               z-index: auto;
+                .ProductList__img {
+                background-color: lightblue;
+                width: 220px;
+                height: 150px;
+                overflow: hidden;
+                margin: 0;
+                z-index: auto;
+                display: flex;
+              }
             }
             &__body {
               background-color: white;

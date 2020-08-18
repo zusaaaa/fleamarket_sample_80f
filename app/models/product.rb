@@ -7,9 +7,14 @@ class Product < ApplicationRecord
   belongs_to_active_hash :product_status
   belongs_to_active_hash :prefecture
 
+  belongs_to :user, optional: true
+
   # 子モデルimagesのアソシエーション
-  has_many :images
+  has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
+
+  # アソシエーション
+  belongs_to :user
 
   # バリデーション
   validates :product_name, presence: true
@@ -22,4 +27,12 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
   validates :images, presence: true
   validates :status, presence: true
+
+  def self.search(search)
+    if search
+      Product.where('product_name LIKE(?)', "%#{search}%")
+    else
+      Product.all
+    end
+  end
 end
