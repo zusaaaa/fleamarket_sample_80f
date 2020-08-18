@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
       redirect_to root_path
   end
 
-  def search 
+  def search
     @products = Product.search(params[:keyword])
   end
 
