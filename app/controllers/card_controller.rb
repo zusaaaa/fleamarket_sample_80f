@@ -1,6 +1,7 @@
 class CardController < ApplicationController
   require "payjp"
   before_action :set_card
+  before_action :set_product, only: [:show, :buy] 
 
   def index
     # すでにクレジットカードが登録しているか？
@@ -52,7 +53,6 @@ class CardController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
       # PAY.JPの秘密鍵をセットする。
@@ -85,7 +85,6 @@ class CardController < ApplicationController
   end
 
   def buy
-    @product = Product.find(params[:id])
     # すでに購入されていないか？
     if @product.status.blank?
       redirect_back(fallback_location: root_path)
@@ -117,4 +116,8 @@ end
 private
 def set_card
   @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
+end
+
+def set_product
+  @product = Product.find(params[:id])
 end
