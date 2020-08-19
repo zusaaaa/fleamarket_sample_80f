@@ -1,7 +1,7 @@
 class CardController < ApplicationController
   require "payjp"
   before_action :set_card
-  before_action :set_product, only: [:show, :buy] 
+  before_action :set_product, only: [:show, :buy]
 
   def index
     # すでにクレジットカードが登録しているか？
