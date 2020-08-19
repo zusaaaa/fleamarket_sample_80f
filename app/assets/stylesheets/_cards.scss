@@ -11,23 +11,40 @@
   background-color: rgb(245, 245, 245);
   .product__Body{
     text-align: center;
-    width: 60vw;
+    width: 40vw;
     height: 80vh;
     background-color: white;
     margin: 0 auto;
     .header_title{
       font-size: 25px;
       padding: 20px;
+      border-bottom: 1px solid gray;
+      margin: 0 70px 0 70px;
     }
     .product{
       display: flex;
-      justify-content: space-around;
       align-items: center;
+      border-bottom: 1px solid gray;
+      margin: 0 70px 0 70px;
       .productName{
         padding: 20px;
-        margin: 30px 30px 30px 30px;
-        
+        margin: 10px 20px 20px 80px;
+        padding: 10px 0 0 20px;
       }
+      .image{
+        width: 80px;
+        height: 60px;
+        margin: 30px;
+      }
+    }
+    .product__Price{
+      font-size: 20px;
+      margin: 30px 70px 30px 70px;
+      padding: 0 0 30px 0;
+      border-bottom: 1px solid gray;
+    }
+    .single-container{
+
     }
   }
 }

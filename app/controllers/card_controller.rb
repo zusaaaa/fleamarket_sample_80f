@@ -11,7 +11,7 @@ class CardController < ApplicationController
     @product = Product.find(params[:format])
     @address = Address.find(params[:format])
     @product = Product.find(params[:format])
-    @user = User.find(params[:format])
+    @user = User.find(current_user[:id])
     #product = Product.find(params[:product_format])
     # すでにクレジットカードが登録しているか？
     if @card.present?

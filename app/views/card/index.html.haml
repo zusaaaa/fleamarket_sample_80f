@@ -10,10 +10,10 @@
         = @product.product_name
       .product__Image
         - @product.images.each do |image|
-          = image_tag image.src.url
-      .product__Price
-        送料込み（税別）¥
-        = @product.price
+          = image_tag image.src.url, class: "image"
+    .product__Price
+      送料込み（税別）¥
+      = @product.price
     .single-container
       %section.creditcard_section
         %h3 クレジットカード一覧
