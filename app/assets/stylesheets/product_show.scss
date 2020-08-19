@@ -17,9 +17,20 @@
           font-size: 24px;
           text-align: center;
         }
-        .productImage {
+        .productImageMain {
           margin: 16px 0 0;
           text-align: center;
+        }
+        ul {
+          display: flex;
+          position: relative;
+          li {
+            display: flex;
+            flex-direction: column;
+            width: 560px;
+            align-items: center;
+            margin: 0 auto;
+          }
         }
         .productPrice {
           font-size: 46px;
@@ -60,6 +71,24 @@
               font-size: 14px;
               }
             }
+          }
+        }
+      }
+      .Buy {
+        background-color: #fff;
+        padding: 24px;
+        margin: 10px 0;
+        text-align: center;
+        .BuyProduct {
+          .submit-btn-blue {
+            display: block;
+            line-height: 48px;
+            background: #3CCACE;
+            border: 1px solid #3CCACE;
+            color: #fff;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 10px 0;
           }
         }
       }

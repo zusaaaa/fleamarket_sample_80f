@@ -2,7 +2,7 @@
   .headerContents
     .mainHeader
       .icon 
-        = link_to image_tag('logo.png'), "#"
+        = link_to image_tag('logo.png'), root_path
       .searchForm
         = form_with(url: "#", local: true, method: :get) do |f|
           =f.text_field :keyword, placeholder: "キーワードから探す", class: "searchForm__input"

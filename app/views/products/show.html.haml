@@ -8,11 +8,14 @@
             %h1.productName
                = @product.product_name
 
-            .productImage
-               -# 商品画像
+            .productImageMain
                - @product.images.each do |image|
                   = image_tag image.src.url
-                  -# size: "220x220"
+
+            %ul.productImage
+               - @product.images.each do |image|
+                  %li.productImageEach
+                     = image_tag image.src.url, size: "140x100"
 
             .productPrice
                ¥
@@ -25,7 +28,6 @@
 
             .productExplanation
                = @product.product_explanation
-
 
             .table
                %table
@@ -72,9 +74,10 @@
                            %td
                               = @product.days_until_shipping.name
 
-
          - if user_signed_in? && current_user.id != @product.user_id
-            = link_to "購入画面", "#"
+            .Buy
+               .BuyProduct
+                  = link_to "購入画面", "#", class: "submit-btn-blue"
 
          - if user_signed_in? && current_user.id == @product.user_id
             .EditDelete
@@ -83,7 +86,6 @@
                or
                .EditDelete__box
                   = link_to "この商品を削除する", "#", class: "submit-btn-gray"
-
 
 .footer
    = render partial: "items/footer"
