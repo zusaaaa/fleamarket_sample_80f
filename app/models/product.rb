@@ -6,6 +6,8 @@ class Product < ApplicationRecord
   belongs_to_active_hash :days_until_shipping
   belongs_to_active_hash :product_status
   belongs_to_active_hash :prefecture
+  # has_many :product_categories, dependent: :destroy
+  belongs_to :category, optional: true
 
   belongs_to :user, optional: true
   belongs_to :card, optional: true
@@ -25,4 +27,12 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
   validates :images, presence: true
   validates :status, presence: true
+
+  def self.search(search)
+    if search
+      Product.where('product_name LIKE(?)', "%#{search}%")
+    else
+      Product.all
+    end
+  end
 end
