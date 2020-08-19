@@ -1,5 +1,9 @@
 = render "items/header"
 
+.breadcrumbs
+  - breadcrumb :product_buy
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
 .title
   検索結果
 .search__result

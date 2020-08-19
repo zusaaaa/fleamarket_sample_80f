@@ -1,5 +1,8 @@
 .header
   =render "devise/header"
+.breadcrumbs
+  - breadcrumb :product_edit
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
 .form
   .form__title 出品編集
 .error-message

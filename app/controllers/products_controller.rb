@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.create(product_params)
     if @product.save
-      redirect_to items_path
+      redirect_to product_path(@product), notice: "#{@product.product_name}を出品しました"
     else
       @category_parent = []
       Category.where(ancestry: nil).each do |parent|
@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to root_path
+      redirect_to product_path(@product), notice: "#{@product.product_name}を更新しました"
     else
       render :edit
     end
@@ -58,7 +58,7 @@ class ProductsController < ApplicationController
 
   def destroy
       render :delete unless @product.user_id == current_user.id && @product.destroy
-      redirect_to root_path
+      redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
   def search 
