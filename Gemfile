@@ -41,6 +41,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'factory_bot'
   gem 'pry-rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -73,10 +74,10 @@ gem 'devise'
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'active_hash'
 gem 'carrierwave'
-gem 'devise'
 gem 'fog-aws'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'gretel'
-
+gem 'dotenv-rails'
+gem 'payjp'
