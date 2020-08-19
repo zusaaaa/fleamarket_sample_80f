@@ -3,8 +3,6 @@ class CardController < ApplicationController
   before_action :set_card
 
   def index
-    @products = Product.all
-    @product = Product.find_by(params[:id])
     # すでにクレジットカードが登録しているか？
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
