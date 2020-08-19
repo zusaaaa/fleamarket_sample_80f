@@ -49,7 +49,6 @@
         }
         .table {
           width: 100%;
-          height: 375px;
           border-collapse: collapse;
           border: 1px solid #f8f8f8;
           tbody {
@@ -62,6 +61,11 @@
               border: 1px solid #dedede;
               font-size: 14px;
               text-align: center;
+              }
+              td.category {
+                a {
+                  color: #3CCACE;
+                }
               }
               td {
               width: 50%;

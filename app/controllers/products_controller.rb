@@ -1,8 +1,4 @@
 class ProductsController < ApplicationController
- 
-  def show
-    @product = Product.find(params[:id])
-    @child_category = @product.category.parent
   before_action :set_product, only: [:index, :edit, :update, :show, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
