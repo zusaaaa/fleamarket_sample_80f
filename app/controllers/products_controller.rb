@@ -17,10 +17,7 @@ class ProductsController < ApplicationController
     @product.images.build
     @images = @product.images.build
 
-    @category_parent = []
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent << parent
-    end
+    @category_parent = Category.where(ancestry: nil)
   end
 
   def create
@@ -28,10 +25,7 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to product_path(@product), notice: "#{@product.product_name}を出品しました"
     else
-      @category_parent = []
-      Category.where(ancestry: nil).each do |parent|
-        @category_parent << parent
-      end
+      @category_parent = Category.where(ancestry: nil)
       render :new
     end
   end
