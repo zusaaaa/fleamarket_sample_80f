@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :card, only: [:index, :new, :create, :show, :edit, :destroy] do
+    member do
+      post 'buy', to: 'card#buy'
+      get 'done', to: 'card#done'
+    end
+  end
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
