@@ -25,7 +25,6 @@ $(function(){
   }
   $('#parent_category').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value;
-    // $('#parent_category').removeAttr('data-disable-with');
     console.log(parentCategory)
     if (parentCategory != 1){
       $.ajax({

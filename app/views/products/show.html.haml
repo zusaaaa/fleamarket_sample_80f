@@ -15,13 +15,15 @@
   .productCategory
     カテゴリー
     .productCategory__parent
+      -# 親カテゴリーのURL
       = link_to "#" do
-      # 親
         = @child_category.parent.name
     .productCategory__child
+      -# 子カテゴリーのURL
       = link_to "#" do
         = @product.category.parent.name
     .productCategory__grandchild
+      -# 孫カテゴリーのURL
       = link_to "#" do
         = @product.category.name
 
