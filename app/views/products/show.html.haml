@@ -9,7 +9,11 @@
                = @product.product_name
 
             .productImageMain
-               = image_tag (@product.images[0].src.url)
+               = image_tag (@product.images[0].src.url) 
+               - if @product.status == "売り切れ"
+                  .productImage__sold
+                     .productImage__sold__inner
+                        SOLD OUT
 
             %ul.productImage
                - @product.images.each do |image|
@@ -17,8 +21,7 @@
                      = image_tag image.src.url, size: "140x100"
 
             .productPrice
-               ¥
-               = @product.price.to_s(:delimited)
+               = "¥#{@product.price.to_s(:delimited)}-"
             .productPrice__detail
                %span.tax
                (税込)
@@ -66,8 +69,12 @@
                         %th
                            発送日の目安
                            %td= @product.days_until_shipping.name
+                     %tr
+                        %th
+                           出品状態
+                           %td= @product.status
 
-         - if user_signed_in? && current_user.id != @product.user_id
+         - if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
             .Buy
                .BuyProduct
                   = link_to "購入画面", card_path(@product), method: :get, class: "submit-btn-blue"

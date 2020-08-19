@@ -19,6 +19,27 @@
         .productImageMain {
           margin: 16px 0 0;
           text-align: center;
+          .productImage__sold{
+            width: 0;
+            height: 0;
+            border-top: 150px solid #ea352d ;
+            border-right: 150px solid transparent;
+            border-bottom: 60px solid transparent;
+            border-left: 60px solid #ea352d ;
+            z-index:100;
+            position: relative;
+            top:-375px;
+            left: 20px;
+            &__inner{
+              width: 200px;
+              transform: rotate(-45deg);
+              font-size: 30px;
+              margin:-90px 0px 0px -90px;
+              color: #fff;
+              letter-spacing: 2px;
+              font-weight: 600;
+            }
+          }
         }
         ul {
           display: flex;
@@ -30,6 +51,7 @@
             align-items: center;
             margin: 0 auto;
           }
+
         }
         .productPrice {
           font-size: 46px;
