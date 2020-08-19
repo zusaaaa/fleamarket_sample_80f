@@ -1,24 +1,23 @@
 - if @products.present?
   - @products.each do |product|
-    - product.images.each do |image|
-      .productList
-        = link_to product_path(product[:id]), method: :get do
-          = image_tag "#{image.src}", class: "img", size: "220x150"
-          - if product.status == "売り切れ"
-            .productImage__sold
-              .productImage__sold__inner
-                SOLD OUT
-          %p 
-          = product.product_name
+    .productList
+      = link_to product_path(product[:id]), method: :get do
+        = image_tag product.images[0].src.to_s, class: "img", size: "220x150"
+        - if product.status == "売り切れ"
+          .productImage__sold
+            .productImage__sold__inner
+              SOLD OUT
         %p 
-        %h4
-        = product.price.to_s(:delimited)
-        円
-        %p (税込)
-        .detail
-          .detail__fav
-            .detail__fav--icon
-              = icon('fas', 'star')
-              3
-          .detail__fav--num
-        -# お気に入り
+        = product.product_name
+      %p 
+      %h4
+      = product.price.to_s(:delimited)
+      円
+      %p (税込)
+      .detail
+        .detail__fav
+          .detail__fav--icon
+            = icon('fas', 'star')
+            3
+        .detail__fav--num
+      -# お気に入り
