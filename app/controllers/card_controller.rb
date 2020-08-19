@@ -53,6 +53,25 @@ class CardController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+    if @card.present?
+      # 登録している場合,PAY.JPからカード情報を取得する
+      # PAY.JPの秘密鍵をセットする。
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # PAY.JPから顧客情報を取得する。
+      customer = Payjp::Customer.retrieve(@card.payjp_id)
+      # PAY.JPの顧客情報から、デフォルトで使うクレジットカードを取得する。
+      @card_info = customer.cards.retrieve(customer.default_card)
+      # クレジットカード情報から表示させたい情報を定義する。
+      # クレジットカードの画像を表示するために、カード会社を取得
+      @card_brand = @card_info.brand
+      # クレジットカードの有効期限を取得
+      @exp_month = @card_info.exp_month.to_s
+      @exp_year = @card_info.exp_year.to_s.slice(2, 3)
+    end
+  end
+
   def destroy
     # 今回はクレジットカードを削除するだけでなく、PAY.JPの顧客情報も削除する。
     # PAY.JPの秘密鍵をセットして、PAY.JPから情報をする。
