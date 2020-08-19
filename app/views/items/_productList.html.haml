@@ -3,11 +3,11 @@
     .productList
       = link_to product_path(product[:id]), method: :get do
         = image_tag product.images[0].src.to_s, class: "img", size: "220x150"
+        %br
         = product.product_name
         %h4
         = product.price.to_s(:delimited)
-        円
-        %p (税込)
+        円 (税込)
         .detail
           .detail__fav
             .detail__fav--icon

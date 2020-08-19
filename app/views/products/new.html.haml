@@ -71,11 +71,12 @@
       %li.required 必須 
     = f.text_field :price, placeholder: "数字で入力", autofocus: true, class: "form-input"
 
-  .productForm
-  カテゴリー(必須)
   .productForm__category
+    %ul
+      %li カテゴリー
+      %li.required 必須 
     .listing-select-wrapper
-      = f.select :category_id, options_for_select( @category_parent.map{|c| [c[:name], c[:id]]}), {}, { class: "parent_category_box", id: "parent_category"}
+      = f.select :category_id, options_for_select( @category_parent.map{|c| [c[:name], c[:id]]}), {}, { class: "parent_category_box form-input", id: "parent_category"}
 
   .Form__submit
     = f.hidden_field :status, :value => "出品中"
