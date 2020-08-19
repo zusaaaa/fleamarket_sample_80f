@@ -1,8 +1,8 @@
 .header
-   = render partial: "items/header"
+  = render partial: "items/header"
 .breadcrumbs
-   - breadcrumb :product_show
-   = breadcrumbs pretext: "",separator: " &rsaquo; "
+  - breadcrumb :product_show
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
 .main
   .showMain
     .content
@@ -23,9 +23,9 @@
           = @product.price.to_s(:delimited)
         .productPrice__detail
           %span.tax
-          (税込)
+            (税込)
           %span.postage
-          送料込み
+            送料込み
 
         .productExplanation
           = @product.product_explanation
