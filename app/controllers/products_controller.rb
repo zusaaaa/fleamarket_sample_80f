@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-
   def index
     @products = Product.all
   end
@@ -22,7 +21,7 @@ class ProductsController < ApplicationController
       @category_parent << parent
     end
   end
-  
+
   def create
     @product = Product.create(product_params)
     if @product.save
@@ -37,17 +36,17 @@ class ProductsController < ApplicationController
   end
 
   def get_category_children # 子カテゴリーの取得
-    @category_children = Category.find_by(id: "#{params[:parent_id]}", ancestry: nil).children
+    @category_children = Category.find_by(id: params[:parent_id].to_s, ancestry: nil).children
   end
-  
+
   def get_category_grandchildren # 孫カテゴリーの取得
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
+    @category_grandchildren = Category.find(params[:child_id].to_s).children
   end
 
   private
 
   def product_params
     params.require(:product).permit(:product_name, :product_explanation, :brand, :product_status_id, :shipping_method_id,
-    :shipping_charge_id, :prefecture_id, :days_until_shipping_id, :price, :status, :category_id, images_attributes: [:src])
+                                    :shipping_charge_id, :prefecture_id, :days_until_shipping_id, :price, :status, :category_id, images_attributes: [:src])
   end
 end
