@@ -9,8 +9,7 @@
                = @product.product_name
 
             .productImageMain
-               - @product.images.each do |image|
-                  = image_tag image.src.url
+               = image_tag (@product.images[0].src.url)
 
             %ul.productImage
                - @product.images.each do |image|
@@ -35,44 +34,37 @@
                      %tr
                         %th
                            出品者
-                           %td
-                              = @product.user.nickname
+                           %td= @product.user.nickname
 
                      %tr
                         %th
                            ブランド
-                           %td
-                              = @product.brand
+                           %td= @product.brand
 
                      %tr
                         %th
                            商品の状態
-                           %td
-                              = @product.product_status.name
+                           %td= @product.product_status.name
 
                      %tr
                         %th
                            発送方法
-                           %td
-                              = @product.shipping_method.name
+                           %td= @product.shipping_method.name
 
                      %tr
                         %th
                            配送料の負担
-                           %td
-                              = @product.shipping_charge.name
+                           %td= @product.shipping_charge.name
 
                      %tr
                         %th
                            発送地域
-                           %td
-                              = @product.prefecture.name
+                           %td= @product.prefecture.name
 
                      %tr
                         %th
                            発送日の目安
-                           %td
-                              = @product.days_until_shipping.name
+                           %td= @product.days_until_shipping.name
 
          - if user_signed_in? && current_user.id != @product.user_id
             .Buy
