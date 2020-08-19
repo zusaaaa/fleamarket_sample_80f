@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to product_path(@product), notice: '#{@product.product_name}を更新しました'
+      redirect_to product_path(@product), notice: "#{@product.product_name}を更新しました"
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
 
   def destroy
       render :delete unless @product.user_id == current_user.id && @product.destroy
-      redirect_to root_path, notice: '#{@product.product_name}を削除しました'
+      redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
   def search 
