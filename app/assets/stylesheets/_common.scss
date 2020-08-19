@@ -1,0 +1,19 @@
+a {
+  text-decoration: none;
+}
+* {
+  box-sizing: border-box;
+}
+
+.field_with_errors {
+  display: contents;
+  input,select,textarea {
+    display:block;
+    color: red;
+    border: 1px solid red;
+  }
+}
+
+
+
+

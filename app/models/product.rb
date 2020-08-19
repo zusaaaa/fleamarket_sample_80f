@@ -9,8 +9,11 @@ class Product < ApplicationRecord
   # has_many :product_categories, dependent: :destroy
   belongs_to :category, optional: true
 
+  belongs_to :user, optional: true
+  belongs_to :card, optional: true
+
   # 子モデルimagesのアソシエーション
-  has_many :images
+  has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   # バリデーション
@@ -24,4 +27,12 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true }
   validates :images, presence: true
   validates :status, presence: true
+
+  def self.search(search)
+    if search
+      Product.where('product_name LIKE(?)', "%#{search}%")
+    else
+      Product.all
+    end
+  end
 end

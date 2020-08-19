@@ -1,11 +1,12 @@
 .other-form
   - if controller_name != 'sessions'
-    = link_to "ログイン", new_session_path(resource_name)
+    アカウントをお持ちの方はこちら
+    = link_to "ログイン", new_session_path(resource_name), class: 'btn'
     %br/
   - if devise_mapping.registerable? && controller_name != 'registrations'
     アカウントをお持ちでない方はこちら
     %br
-    = button_to "新規登録", new_registration_path(resource_name), class: 'btn'
+    = link_to "新規登録", new_user_registration_path(resource_name), class: 'btn'
     %br/
   - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
     = link_to "パスワードをお忘れの方", new_password_path(resource_name)
