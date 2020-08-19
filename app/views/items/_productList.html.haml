@@ -8,7 +8,7 @@
           = product.product_name
         %p 
         %h4
-        = product.price
+        = product.price.to_s(:delimited)
         円
         %p (税込)
         .detail
