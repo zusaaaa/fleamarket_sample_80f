@@ -26,14 +26,14 @@
       border-bottom: 1px solid gray;
       margin: 0 70px 0 70px;
       .productName{
-        margin: 30px 10px 60px 30px;
+        margin: 30px 10px 60px 100px;
         padding: 20px 10px 0 30px;
         font-size: 15px;
       }
       .image{
         width: 80px;
         height: 60px;
-        margin: 30px;
+        margin: 10px 0 0 50px;
       }
     }
     .product__Price{
@@ -43,10 +43,20 @@
       border-bottom: 1px solid gray;
     }
     .single-container{
-      font-size: 20px;
+      font-size: 25px;
       margin: 20px 70px 30px 70px;
       padding: 10px 0 30px 0;
       border-bottom: 1px solid gray;
+      .creditcard_section{
+        font-size: 15px;
+        .container{
+          .creditcard-info{
+            .creditcard-info__number{
+              
+            }
+          }
+        }
+      }
     }
   }
 }
