@@ -1,6 +1,8 @@
 .header
    = render partial: "items/header"
-
+.breadcrumbs
+   - breadcrumb :product_show
+   = breadcrumbs pretext: "",separator: " &rsaquo; "
 .main
    .showMain
       .content
