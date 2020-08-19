@@ -51,6 +51,7 @@
                            発送方法
                            %td= @product.shipping_method.name
 
+
                      %tr
                         %th
                            配送料の負担
@@ -69,15 +70,15 @@
          - if user_signed_in? && current_user.id != @product.user_id
             .Buy
                .BuyProduct
-                  = link_to "購入画面", "#", class: "submit-btn-blue"
+                  = link_to "購入画面", card_path(@product), method: :get, class: "submit-btn-blue"
 
          - if user_signed_in? && current_user.id == @product.user_id
             .EditDelete
                .EditDelete__box
-                  = link_to "商品の編集", "#", class: "submit-btn-blue"
+                  = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
                or
                .EditDelete__box
-                  = link_to "この商品を削除する", "#", class: "submit-btn-gray"
+                  = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
 
 .footer
    = render partial: "items/footer"
