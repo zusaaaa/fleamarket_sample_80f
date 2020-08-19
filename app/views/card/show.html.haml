@@ -25,7 +25,7 @@
               %p.creditcard-info__period
               = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
               %p.creditcard-info__period
-              = button_to "購入する", buy_card_path(@product.id), method: :post, class:"creditcard-info__buy"
+              = button_to "購入する", buy_card_path(@product), method: :post, class:"creditcard-info__buy"
         - else
           .new-card
             = link_to new_card_path(@product), class:"new-card-btn" do
@@ -40,3 +40,4 @@
       = @address.number_sign_etc
       = @user.family_name_kanji
       = @user.first_name_kanji
+

@@ -60,11 +60,11 @@ Things you may want to cover:
 ## credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_brand|string|null: false|
-|card_last_number|integer|null: false, maximum: 4|
-|expiration_year|integer|null: false, maximum: 2|
-|expiration_month|integer|null: false, maximum: 2|
-|user_id|integer|null: false, foreign_key: true|
+## referenceに変更
+|user_id|integer|null: false foreign_key: true|
+## payjpで入力する情報のみに変更
+|customer_id|string|null: false|
+|card_id|string|null: false|
 ### Association
 - belongs_to :user
 

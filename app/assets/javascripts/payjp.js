@@ -21,7 +21,7 @@ $(document).on('turbolinks:load',function(){
         form.find('.payment-errors').text(response.error.message);
         form.find('button').prop('disabled', false);
         alert("登録に失敗しました")
-      }
+      }   
       else {
         // エラーなく問題なく進めた場合
         // formで取得したカード情報を削除して、Appにカード情報を残さない。
@@ -35,7 +35,7 @@ $(document).on('turbolinks:load',function(){
         form.append($('<input type="hidden" name="payjpToken" />').val(token));
         form.get(0).submit();
         alert("登録に成功しました");
-      };
+      }
     });
   });
 });

@@ -1,4 +1,4 @@
-= form_with url:card_path(id: current_user), method: :get, name: "inputForm", class:"form" do |f|
+= form_with url:card_index_path(id: @current_user.id), method: :post, name: "inputForm", class:"form" do |f|
   .form__upper
     .form__upper__group
       = f.label :カード番号

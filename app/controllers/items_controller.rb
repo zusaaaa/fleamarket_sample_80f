@@ -29,4 +29,3 @@ class ItemsController < ApplicationController
     @images = Image.all
   end
 end
-

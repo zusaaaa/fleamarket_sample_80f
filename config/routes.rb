@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
-
   resources :items, only: [:index, :show]
-  resources :products, only: [:index, :new, :create, :show, :edit]
-  # 画像の表示
-  # resources :images, only: [:show]
+  resources :products do
+    resources :images
+    collection do
+      get 'search'
+    end
+  end
 
   devise_scope :user do
     get 'address', to: 'users/ragistrations#new_address'

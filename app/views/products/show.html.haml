@@ -45,10 +45,7 @@
       = @product.price
 
 - if user_signed_in? && current_user.id != @product.user_id
-   = link_to "購入画面", card_index_path(@product), method: :get
-
-
+   = link_to "購入画面", card_path(@product), method: :get
 - if user_signed_in? && current_user.id == @product.user_id
-   = link_to "編集", "#"
-   = link_to "削除", "#"
-
+   = link_to "編集", edit_product_path(@product)
+   = link_to "削除", product_path(@product.id), method: :delete
