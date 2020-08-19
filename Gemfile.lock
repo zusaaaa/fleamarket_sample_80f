@@ -62,6 +62,8 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    ancestry (3.1.0)
+      activerecord (>= 4.2.0)
     ast (2.4.1)
     bcrypt (3.1.15)
     bcrypt (3.1.15-java)
@@ -121,6 +123,7 @@ GEM
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
+      railties (>= 3.2)
     erb2haml (0.1.5)
       html2haml
     erubi (1.9.0)
@@ -187,6 +190,9 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    jquery-turbolinks (2.1.0)
+      railties (>= 3.1.0)
+      turbolinks
     kgio (2.11.3)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -448,6 +454,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  ancestry
   bootsnap (>= 1.4.2)
   byebug
   capistrano
@@ -469,6 +476,7 @@ DEPENDENCIES
   haml-rails (>= 1.0, <= 2.0.1)
   jbuilder (~> 2.7)
   jquery-rails
+  jquery-turbolinks
   listen (~> 3.2)
   mini_magick
   mysql2 (>= 0.4.4)

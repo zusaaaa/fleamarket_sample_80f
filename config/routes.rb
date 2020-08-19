@@ -9,10 +9,13 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   resources :items, only: [:index, :show]
+
   resources :products do
     resources :images
     collection do
       get 'search'
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
 

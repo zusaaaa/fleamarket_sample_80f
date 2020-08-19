@@ -1,8 +1,8 @@
 .header
-   = render partial: "items/header"
+  = render partial: "items/header"
 .breadcrumbs
-   - breadcrumb :product_show
-   = breadcrumbs pretext: "",separator: " &rsaquo; "
+  - breadcrumb :product_show
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
 .main
    .showMain
       .content
@@ -38,8 +38,25 @@
                   %tbody
                      %tr
                         %th
-                           出品者
-                           %td= @product.user.nickname
+                          出品者
+                          %td= @product.user.nickname
+
+                      %tr
+                        %th
+                          カテゴリー
+                          %td.category
+                            %p
+                              = link_to "#" do
+                                -# 親カテゴリのURL
+                              = @child_category.parent.name
+                            %p
+                              = link_to "#" do
+                                -# 子カテゴリのURL
+                              = @product.category.parent.name
+                            %p
+                              = link_to "#" do
+                                -# 孫カテゴリのURL
+                              = @product.category.name
 
                      %tr
                         %th
@@ -90,4 +107,4 @@
                   = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
 
 .footer
-   = render partial: "items/footer"
+  = render partial: "items/footer"

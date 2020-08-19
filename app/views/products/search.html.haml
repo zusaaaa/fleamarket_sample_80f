@@ -4,17 +4,13 @@
   - breadcrumb :product_buy
   = breadcrumbs pretext: "",separator: " &rsaquo; "
 
-.title
-  検索結果
-.searchForm
-  = search_form_for (@q, url: search_products_path) do |f|
-    = f.label :product_name, "Keyword"
-    = f.search_field :product_name_cont
+.form
+  .form__title 検索結果
 
-  = f.submit "検索"
 .search__result
   - @products.each do |product|
-    = render "items/productList"
+    - if product.present?
+      = render "items/productList"
 
 
 = render "items/footer"
