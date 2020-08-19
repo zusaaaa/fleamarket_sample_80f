@@ -9,8 +9,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
   }
   resources :items, only: [:index, :show]
-
-  resources :products, only: [:index, :new, :create, :show, :edit]
   resources :products do
     resources :images
     collection do

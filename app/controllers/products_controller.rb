@@ -5,6 +5,8 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     @images = Image.all
+    @q = Product.ransack(params[:q])
+    @products =@q.result(distinct: true)
   end
 
   def new
@@ -47,6 +49,8 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.search(params[:keyword])
+    @q = Product.search(search_params)
+    @products = @q.result(distinct: true)
   end
 
   private
@@ -59,7 +63,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def set_product
-    @product = Product.find(params[:id])
+  def search_params
+    params.require(:q).permit!
   end
 end
