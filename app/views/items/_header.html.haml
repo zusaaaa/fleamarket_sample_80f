@@ -4,7 +4,7 @@
       .icon 
         = link_to image_tag('logo.png'), root_path
       .searchForm
-        = form_with(url: "#", local: true, method: :get) do |f|
+        = form_with(url: search_products_path, local: true, method: :get, class: "search-form") do |f|
           =f.text_field :keyword, placeholder: "キーワードから探す", class: "searchForm__input"
           %button{type: "submit", class: "search--btn"}
             = image_tag("icon-search 1.png")
