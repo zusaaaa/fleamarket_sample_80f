@@ -2,11 +2,15 @@
 
 .title
   検索結果
+.searchForm
+  = search_form_for @q do |f|
+    = f.label :product_name, "Keyword"
+    = f.search_field :product_name_cont
+
+  = f.submit "検索"
 .search__result
   - @products.each do |product|
-    - if product.present?
-      = render "items/productList"
-    - else
-      = "検索結果はありません"
+    = render "items/productList"
+
 
 = render "items/footer"
