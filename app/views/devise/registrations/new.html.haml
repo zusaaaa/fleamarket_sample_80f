@@ -1,6 +1,7 @@
 .header
   =render "devise/header"
-  = render "devise/shared/error_messages", resource: @user
+.error-message
+  = render 'shared/errors', { target: @user }
 .form
   .form__title
     ユーザー情報入力

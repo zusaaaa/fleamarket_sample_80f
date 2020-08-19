@@ -1,6 +1,7 @@
 .header
   =render "devise/header"
-  = render "devise/shared/error_messages", resource: @address
+.error-message
+  = render 'shared/errors', { target: @address }
 .form
   .form__title
     住所情報登録
