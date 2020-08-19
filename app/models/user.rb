@@ -8,5 +8,6 @@ class User < ApplicationRecord
 
   has_many :products
   has_one :address
+  has_many :cards, foreign_key: true
   has_many :products
 end
