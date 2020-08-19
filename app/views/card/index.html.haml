@@ -1,19 +1,5 @@
 .wrapper
   = render partial: "devise/header", locals: {product: "product"}
-.product__All
-  .product__Body
-    %h2.header_title
-      購入確認
-    .product
-      .productName
-        商品名
-        = @product.product_name
-      .product__Image
-        - @product.images.each do |image|
-          = image_tag image.src.url, class: "image"
-    .product__Price
-      送料込み（税別）¥
-      = @product.price
     .single-container
       %section.creditcard_section
         %h3 クレジットカード一覧
@@ -31,13 +17,4 @@
             = link_to new_card_path(@product), class:"new-card-btn" do
               %i.far.fa-credit-card
               クレジットカードを追加する
-    .product__Shipping_Address
-      発送先
-      = @address.postal_code
-      = @address.prefecture
-      = @address.city
-      = @address.house_number
-      = @address.number_sign_etc
-      = @user.family_name_kanji
-      = @user.first_name_kanji
-
+  

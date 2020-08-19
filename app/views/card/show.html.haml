@@ -16,7 +16,7 @@
       = @product.price
     .single-container
       %section.creditcard_section
-        %h3 クレジットカード一覧
+        %h3 支払い方法
         - if @card.present?
           .container
             .creditcard-info
@@ -33,11 +33,14 @@
               クレジットカードを追加する
     .product__Shipping_Address
       発送先
-      = @address.postal_code
+      .address_postal_code
+        〒
+        = @address.postal_code
       = @address.prefecture
       = @address.city
       = @address.house_number
       = @address.number_sign_etc
-      = @user.family_name_kanji
-      = @user.first_name_kanji
+      .user_name
+        = @user.family_name_kanji
+        = @user.first_name_kanji
 

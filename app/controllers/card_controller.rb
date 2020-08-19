@@ -1,24 +1,16 @@
 class CardController < ApplicationController
-
   require "payjp"
   before_action :set_card
+  before_action :set_product, only: [:show, :buy]
 
   def index
     @products = Product.all
     @images = Image.all
     @addresses = Address.all
     @users = User.all
-    @product = Product.find(params[:format])
     @address = Address.find(params[:format])
-    @product = Product.find(params[:format])
     @user = User.find(current_user[:id])
     #product = Product.find(params[:product_format])
-
-  require "payjp"
-  before_action :set_card
-  before_action :set_product, only: [:show, :buy]
-
-  def index
 
     # すでにクレジットカードが登録しているか？
     if @card.present?
@@ -36,10 +28,6 @@ class CardController < ApplicationController
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)
     end
-  end
-
-  def show
-    
   end
 
   def new
@@ -75,6 +63,13 @@ class CardController < ApplicationController
   end
 
   def show
+    @products = Product.all
+    @images = Image.all
+    @addresses = Address.all
+    @users = User.all
+    @address = Address.find(params[:id])
+    @user = User.find(current_user[:id])
+    #product = Product.find(params[:product_format])
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
       # PAY.JPの秘密鍵をセットする。
