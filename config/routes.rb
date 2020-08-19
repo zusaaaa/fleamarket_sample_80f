@@ -10,11 +10,12 @@ Rails.application.routes.draw do
   }
   resources :items, only: [:index, :show]
 
-  resources :products, only: [:index, :new, :create, :show, :edit]
   resources :products do
     resources :images
     collection do
       get 'search'
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
 
