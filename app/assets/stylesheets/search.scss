@@ -1,0 +1,50 @@
+.search__result {
+  .productLists{
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+    margin: auto;
+    background-color: white;
+    .productList {
+      margin:5px;
+      width: 220px;
+      .img {
+        height: 150px;
+      }
+      .productImage__sold{
+        width: 0;
+        border-top: 40px solid #ea352d ;
+        border-right: 40px solid transparent;
+        border-bottom: 60px solid transparent;
+        border-left: 60px solid #ea352d ;
+        position: relative;
+        top: -150px;
+        margin-bottom: -124px;
+        &__inner{
+          width: 200px;
+          transform: rotate(-45deg);
+          font-size: 15px;
+          margin:-42px 0px 0px -80px;
+          color: #fff;
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+      }
+      .detail {
+        display: flex;
+        &__price {
+          p {
+            font-size: 5px;
+          }
+        }
+        &__fav {
+          display: flex;
+          margin-left: auto;
+          &--icon {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}

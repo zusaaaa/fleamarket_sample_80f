@@ -1,5 +1,5 @@
 - if @products.present?
-  - @products.each do |product|
+  - @products.first(5).each do |product|
     .productList
       = link_to product_path(product[:id]), method: :get do
         = image_tag product.images[0].src.to_s, class: "img", size: "220x150"
