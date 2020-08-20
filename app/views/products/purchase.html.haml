@@ -1,5 +1,5 @@
 %h2.header_title
-  購入確認(show id受け渡し可)
+  購入確認(purchase)
 .product
   .productName
     商品名
@@ -13,7 +13,7 @@
         .creditcard-info
           %p.creditcard-info__number
           = "**** **** **** " + @card_info.last4 #クレジットカードの下４桁を表示
-          %p.creditcard-info__period 
+          %p.creditcard-info__period
           = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
           %p.creditcard-info__period
           = button_to "購入する", buy_product_path(@product.id), method: :post, class:"creditcard-info__buy"
