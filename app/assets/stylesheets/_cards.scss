@@ -51,16 +51,16 @@
         font-size: 15px;
         .container{
           .creditcard-info{
-            .creditcard-info__number{
+            &__number{
             }
-            .creditcard-info__delete{
+            &__delete{
               padding: 5px 150px;
               cursor: pointer;
               color: white;
               background-color: #aaa;
               border: 1px solid #aaa;
             }
-            .creditcard-info__buy{
+            &__buy{
               background-color: #3CCACE;
               padding: 5px 150px;
               cursor: pointer;
