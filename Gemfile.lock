@@ -239,10 +239,10 @@ GEM
     parallel (1.19.2)
     parser (2.7.1.4)
       ast (~> 2.4.1)
-    polyamorous (2.3.2)
-      activerecord (>= 5.2.1)
     payjp (0.0.7)
       rest-client (~> 2.0)
+    polyamorous (2.3.2)
+      activerecord (>= 5.2.1)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -484,8 +484,8 @@ DEPENDENCIES
   pry-rails
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
-  ransack
   rails-controller-testing
+  ransack
   rspec-rails (~> 4.0.0.beta2)
   rubocop
   sass-rails (>= 6)

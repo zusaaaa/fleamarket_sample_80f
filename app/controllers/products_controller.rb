@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.build
     @images = @product.images.build
-
     @category_parent = Category.where(ancestry: nil)
   end
 
@@ -58,9 +57,9 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search(params[:keyword])
-    @q = Product.search(search_params)
-    @products = @q.result(distinct: true)
+    @q = Product.ransack(params[:q])
+    @categories = Categorys.all
+    @products =@q.result(distinct: true)
   end
 
   private
@@ -74,6 +73,6 @@ class ProductsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit!
+    params.permit!
   end
 end

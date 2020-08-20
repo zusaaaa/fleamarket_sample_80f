@@ -4,107 +4,99 @@
   - breadcrumb :product_show
   = breadcrumbs pretext: "",separator: " &rsaquo; "
 .main
-   .showMain
-      .content
-         .itemBox
-            %h1.productName
-               = @product.product_name
+  .showMain
+    .content
+      .itemBox
+        %h1.productName
+          = @product.product_name
 
-            .productImageMain
-               = image_tag (@product.images[0].src.url) 
-               - if @product.status == "売り切れ"
-                  .productImage__sold
-                     .productImage__sold__inner
-                        SOLD OUT
+        .productImageMain
+          = image_tag (@product.images[0].src.url) 
+          - if @product.status == "売り切れ"
+            .productImage__sold
+              .productImage__sold__inner
+                SOLD OUT
 
-            %ul.productImage
-               - @product.images.each do |image|
-                  %li.productImageEach
-                     = image_tag image.src.url, size: "140x100"
+        %ul.productImage
+          - @product.images.each do |image|
+            %li.productImageEach
+              = image_tag image.src.url, size: "140x100"
 
-            .productPrice
-               = "¥#{@product.price.to_s(:delimited)}-"
-            .productPrice__detail
-               %span.tax
-               (税込)
-               %span.postage
-               送料込み
+        .productPrice
+          = "¥#{@product.price.to_s(:delimited)}-"
+        .productPrice__detail
+          %span.tax
+            (税込)
+          %span.postage
+            送料込み
 
-            .productExplanation
-               = @product.product_explanation
+        .productExplanation
+          = @product.product_explanation
 
-            .table
-               %table
-                  %tbody
-                     %tr
-                        %th
-                          出品者
-                          %td= @product.user.nickname
+        .table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                  %td= @product.user.nickname
 
-                      %tr
-                        %th
-                          カテゴリー
-                          %td.category
-                            %p
-                              = link_to "#" do
-                                -# 親カテゴリのURL
-                              = @child_category.parent.name
-                            %p
-                              = link_to "#" do
-                                -# 子カテゴリのURL
-                              = @product.category.parent.name
-                            %p
-                              = link_to "#" do
-                                -# 孫カテゴリのURL
-                              = @product.category.name
+                  %tr
+                    %th
+                      カテゴリー
+                      %td.category
+                        %p
+                          = link_to "#" do
+                            -# 親カテゴリのURL
+                          = @child_category.parent.name
+                        %p
+                          = link_to "#" do
+                            -# 子カテゴリのURL
+                          = @product.category.parent.name
+                        %p
+                          = link_to "#" do
+                            -# 孫カテゴリのURL
+                          = @product.category.name
+                  %tr
+                    %th
+                      ブランド
+                      %td= @product.brand
+                  %tr
+                    %th
+                      商品の状態
+                      %td= @product.product_status.name
+                  %tr
+                    %th
+                      発送方法
+                      %td= @product.shipping_method.name
+                  %tr
+                    %th
+                      配送料の負担
+                      %td= @product.shipping_charge.name
+                  %tr
+                    %th
+                      発送地域
+                      %td= @product.prefecture.name
+                  %tr
+                    %th
+                      発送日の目安
+                      %td= @product.days_until_shipping.name
+                  %tr
+                    %th
+                      出品状態
+                      %td= @product.status
+      - if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
+        .Buy
+          .BuyProduct
+            = link_to "購入画面", card_path(@product), method: :get, class: "submit-btn-blue"
 
-                     %tr
-                        %th
-                           ブランド
-                           %td= @product.brand
-
-                     %tr
-                        %th
-                           商品の状態
-                           %td= @product.product_status.name
-
-                     %tr
-                        %th
-                           発送方法
-                           %td= @product.shipping_method.name
-
-
-                     %tr
-                        %th
-                           配送料の負担
-                           %td= @product.shipping_charge.name
-
-                     %tr
-                        %th
-                           発送地域
-                           %td= @product.prefecture.name
-
-                     %tr
-                        %th
-                           発送日の目安
-                           %td= @product.days_until_shipping.name
-                     %tr
-                        %th
-                           出品状態
-                           %td= @product.status
-
-         - if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
-            .Buy
-               .BuyProduct
-                  = link_to "購入画面", card_path(@product), method: :get, class: "submit-btn-blue"
-
-         - if user_signed_in? && current_user.id == @product.user_id
-            .EditDelete
-               .EditDelete__box
-                  = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
-               or
-               .EditDelete__box
-                  = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
+      - if user_signed_in? && current_user.id == @product.user_id
+        .EditDelete
+          .EditDelete__box
+            = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
+          or
+          .EditDelete__box
+            = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
 
 .footer
   = render partial: "items/footer"

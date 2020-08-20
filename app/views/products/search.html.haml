@@ -7,6 +7,31 @@
 .form
   .form__title 検索結果
 
+.search-form
+  = search_form_for @q do |f|
+    = f.label :product_name, "Keyword"
+    = f.search_field :product_name_or_product_explanation_cont
+    %br
+    = f.label :price, "価格"
+    = f.number_field :price_gteq 
+    = f.number_field :price_lt 
+    %br
+    = f.label :category_id_eq, '学部'
+    = f.collection_select :category_id_eq, @categories, :id, :name
+    = f.submit "検索"
+
+.soat
+  %tr
+    %th
+      = sort_link(@q, :product_name, "商品名")
+    %th
+      = sort_link(@q, :price, "価格")
+    %th
+      = sort_link(@q, :sex, "")
+    %th
+      = sort_link(@q, :address, "Address")
+    %th{colspan: "3"}
+
 .search__result
   - @products.each do |product|
     - if product.present?
