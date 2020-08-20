@@ -115,8 +115,6 @@ class ProductsController < ApplicationController
     @users = User.all
     @user = User.find(params[:id])
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
-    @products = Product.all
-    @product = Product.find(params[:id])
     # すでにクレジットカードが登録しているか？
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
