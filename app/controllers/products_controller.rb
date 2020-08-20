@@ -83,7 +83,7 @@ class ProductsController < ApplicationController
 
   def buy
     # すでに購入されていないか？
-    if @product.status.blank?
+    if @product.status == "売り切れ"
       redirect_back(fallback_location: root_path)
     elsif @card.blank?
       # カード情報がなければ、買えないから戻す
