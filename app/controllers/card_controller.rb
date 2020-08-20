@@ -35,12 +35,6 @@ class CardController < ApplicationController
   end
 
   def show
-    @products = Product.all
-    @images = Image.all
-    @addresses = Address.all
-    @users = User.all
-    @address = Address.find(params[:id])
-    @user = User.find(current_user[:id])
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
       # PAY.JPの秘密鍵をセットする。
