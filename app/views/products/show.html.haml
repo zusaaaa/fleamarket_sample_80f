@@ -99,11 +99,6 @@
           .EditDelete__box
             = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
 
-.comment
-- if user_signed_in?
-  = form_with model: [@post, @comment], local: true, id: "comment-form" do |form|
-    = form.text_area :text, placeholder: "コメントする",rows: "2", class: "textbox"
-    = form.submit "投稿", class: "form__submit"
 
 
 .footer
