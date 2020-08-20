@@ -1,51 +1,110 @@
-.product
-   .productName
-      商品名
-      = @product.product_name
+.header
+  = render partial: "items/header"
+.breadcrumbs
+  - breadcrumb :product_show
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+.main
+  .showMain
+    .content
+      .itemBox
+        %h1.productName
+          = @product.product_name
 
-   .productImage
-      商品画像
-      - @product.images.each do |image|
-         = image_tag image.src.url
+        .productImageMain
+          = image_tag (@product.images[0].src.url)
+        
+        %ul.productImage
+          - @product.images.each do |image|
+            %li.productImageEach
+              = image_tag image.src.url, size: "140x100"
 
-   .productUserId
-      出品者
-      = @product.user_id
-   .productExplanation
-      商品説明
-      = @product.product_explanation
+        .productPrice
+          ¥
+          = @product.price.to_s(:delimited)
+        .productPrice__detail
+          %span.tax
+            (税込)
+          %span.postage
+            送料込み
 
-   .productBrand
-      ブランド(任意)
-      = @product.brand
+        .productExplanation
+          = @product.product_explanation
 
-   .productProductStatusId
-      商品の状態
-      = @product.product_status_id
+        .table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                  %td= @product.user.nickname
 
-   .productShippingMethodId
-      発送方法
-      = @product.shipping_method_id
+              %tr
+                %th
+                  カテゴリー
+                  %td.category
+                    %p
+                      = link_to "#" do
+                        -# 親カテゴリのURL
+                        = @child_category.parent.name
+                    %p
+                      = link_to "#" do
+                        -# 子カテゴリのURL
+                        = @product.category.parent.name
+                    %p
+                      = link_to "#" do
+                        -# 孫カテゴリのURL
+                        = @product.category.name
 
-   .productShippingChargeId
-      配送料の負担
-      = @product.shipping_charge_id
+              %tr
+                %th
+                  ブランド
+                  %td= @product.brand
 
-   .productPrefectureId
-      発送地域
-      = @product.prefecture_id
+              %tr
+                %th
+                  商品の状態
+                  %td= @product.product_status.name
 
-   .productDaysUntilShippingId
-      配送までの日数
-      = @product.days_until_shipping_id
+              %tr
+                %th
+                  発送方法
+                  %td= @product.shipping_method.name
 
-   .productPrice
-      価格
-      = @product.price
 
-- if user_signed_in? && current_user.id != @product.user_id
-   = link_to "購入画面", purchase_product_path(@product), method: :get
+              %tr
+                %th
+                  配送料の負担
+                  %td= @product.shipping_charge.name
 
-- if user_signed_in? && current_user.id == @product.user_id
-   = link_to "編集", edit_product_path(@product)
-   = link_to "削除", product_path(@product.id), method: :delete
+              %tr
+                %th
+                  発送地域
+                  %td= @product.prefecture.name
+
+              %tr
+                %th
+                  発送日の目安
+                  %td= @product.days_until_shipping.name
+
+      - if user_signed_in? && current_user.id != @product.user_id
+        .Buy
+          .BuyProduct
+            = link_to "購入画面", purchase_product_path(@product), method: :get, class: "submit-btn-blue"
+
+      - if user_signed_in? && current_user.id == @product.user_id
+        .EditDelete
+          .EditDelete__box
+            = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
+          or
+          .EditDelete__box
+            = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
+
+.comment
+- if user_signed_in?
+  = form_with model: [@post, @comment], local: true, id: "comment-form" do |form|
+    = form.text_area :text, placeholder: "コメントする",rows: "2", class: "textbox"
+    = form.submit "投稿", class: "form__submit"
+
+
+.footer
+  = render partial: "items/footer"

@@ -1,0 +1,16 @@
+= render "items/header"
+
+.breadcrumbs
+  - breadcrumb :product_buy
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
+.form
+  .form__title 検索結果
+
+.search__result
+  - @products.each do |product|
+    - if product.present?
+      = render "items/productList"
+
+
+= render "items/footer"
