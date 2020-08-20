@@ -11,7 +11,12 @@
           = @product.product_name
 
         .productImageMain
-          = image_tag (@product.images[0].src.url)
+          = image_tag (@product.images[0].src.url) 
+          - if @product.status == "売り切れ"
+            .productImage__sold
+              .productImage__sold__inner
+                SOLD OUT
+
         
         %ul.productImage
           - @product.images.each do |image|
