@@ -243,11 +243,12 @@
         }
         .productLists{
           display: flex;
-          width: 1100px;
+          width: 1150px;
           margin: auto;
-          background-color: white;
           .productList {
-            width: 20%;
+            background-color: white;
+            width: 220px;
+            margin:5px;
             .img {
               height: 150px;
               }
