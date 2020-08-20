@@ -95,7 +95,6 @@ end
                 {level2:"レッグウェア",level2_children:["ソックス","レギンス/スパッツ","レッグウォーマー","その他"]},
                 {level2:"アンダーウェア",level2_children:["トランクス","ボクサーパンツ","その他"]},
                 {level2:"その他",level2_children:["コスプレ","下着","その他"]}
-                
               ]
   category3s.each.with_index(1) do |category3,i|
 
