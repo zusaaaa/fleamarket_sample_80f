@@ -91,12 +91,12 @@
                   発送日の目安
                   %td= @product.days_until_shipping.name
 
-      - if user_signed_in? && current_user.id != @product.user_id
+      - if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
         .Buy
           .BuyProduct
             = link_to "購入画面", purchase_product_path(@product), method: :get, class: "submit-btn-blue"
 
-      - if user_signed_in? && current_user.id == @product.user_id
+      - if user_signed_in? && current_user.id == @product.user_id && @product.status == "出品中"
         .EditDelete
           .EditDelete__box
             = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"

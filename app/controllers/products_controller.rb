@@ -132,12 +132,13 @@ class ProductsController < ApplicationController
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)
+      @address = Address.find_by(user_id:current_user.id)
     end
   end
 
   def buy
     # すでに購入されていないか？
-    if @product.status.blank?
+    if @product.status == "売り切れ"
       redirect_back(fallback_location: root_path)
     elsif @card.blank?
       # カード情報がなければ、買えないから戻す
