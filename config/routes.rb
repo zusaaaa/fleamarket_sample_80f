@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       get :purchase
       post :buy
+    end
     collection do
       get 'search'
       get 'get_category_children', defaults: { format: 'json' }
