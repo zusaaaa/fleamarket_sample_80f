@@ -52,7 +52,20 @@
         .container{
           .creditcard-info{
             .creditcard-info__number{
-              
+            }
+            .creditcard-info__delete{
+              padding: 5px 220px;
+              cursor: pointer;
+              color: white;
+              background-color: #aaa;
+              border: 1px solid #aaa;
+            }
+            .creditcard-info__buy{
+              background-color: #3CCACE;
+              padding: 5px 220px;
+              cursor: pointer;
+              color: white;
+              border: 1px solid #3CCACE;
             }
           }
         }
@@ -62,12 +75,12 @@
 }
 .product__Shipping_Address{
   font-size: 15px;
-  margin: 10px 70px 30px 70px;
+  margin: 10px 40px 30px 70px;
   padding: 0 0 30px 0;
   border-bottom: 1px solid gray;
 
   .address_postal_code{
-    margin: 0 30px 10px 5px;
+    margin: 0 30px 10px 30px;
     padding: 0 10px 0 0;
   }
 }
