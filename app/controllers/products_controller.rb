@@ -37,10 +37,8 @@ class ProductsController < ApplicationController
       render :edit
     end
   end
-  
 
   def show
-    
   end
 
   def destroy
