@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
-  resources :card, only: [:index, :new, :create, :show, :edit, :destroy] do
+  resources :card, only: [:new, :create, :show, :edit, :destroy] do
     member do
       post 'buy', to: 'card#buy'
-      get 'done', to: 'card#done'
     end
   end
   devise_for :users, controllers: {
@@ -12,6 +11,9 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :images
+    member do
+      get :purchase
+      post :buy
     collection do
       get 'search'
       get 'get_category_children', defaults: { format: 'json' }
