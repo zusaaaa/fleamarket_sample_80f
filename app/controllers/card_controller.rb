@@ -24,6 +24,7 @@ class CardController < ApplicationController
       )
       # PAY.JPのユーザーが作成できたので、creditcardモデルを登録します。
       @card = Card.new(user_id: current_user.id, payjp_id: customer.id)
+
       if @card.save
         card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
         redirect_to card_path(card), notice: "支払い情報の登録が完了しました"
@@ -71,7 +72,8 @@ class CardController < ApplicationController
     end
   end
 
-private
+  private
+
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end

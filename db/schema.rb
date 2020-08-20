@@ -33,6 +33,14 @@ ActiveRecord::Schema.define(version: 2020_08_17_092819) do
     t.index ["user_id"], name: "index_cards_on_user_id"
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
+  end
+
   create_table "images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "src"
     t.bigint "product_id"
@@ -42,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_092819) do
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "product_name"
     t.text "product_explanation"
+    t.bigint "category_id"
     t.string "brand"
     t.string "product_status_id"
     t.string "shipping_method_id"
@@ -53,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_092819) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -75,5 +85,6 @@ ActiveRecord::Schema.define(version: 2020_08_17_092819) do
   add_foreign_key "addresses", "users"
   add_foreign_key "cards", "users"
   add_foreign_key "images", "products"
+  add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
 end

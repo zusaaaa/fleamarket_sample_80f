@@ -3,9 +3,11 @@ $(document).on('turbolinks:load',function(){
   Payjp.setPublicKey('pk_test_35f6203f9c0aa1345fd7c6f3');
   //formのsubmitを止めるために, クレジットカード登録のformを定義します。
   var form = $(".form");
-  $("#charge-form").click(function() {
+
+  $("#charge-form").submit(function(e) {
     // submitが完了する前に、formを止めます。
-    form.find("input[type=submit]").prop("disabled", true);
+    // form.find("input[type=submit]").prop("disabled", true);
+    e.preventDefault()
     // submitを止められたので、PAY.JPの登録に必要な処理をします。
     // formで入力された、カード情報を取得します。
     var card = {
