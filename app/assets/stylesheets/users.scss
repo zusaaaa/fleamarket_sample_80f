@@ -1,0 +1,16 @@
+.contentsWrapper {
+  width: calc(100vw - 250px);
+  height: 100vh;
+  margin: 120px, 250px;
+  display: flex;
+  position: relative;
+  background-color: cadetblue;
+
+
+  .sideNavlist {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: azure;
+  }
+}
