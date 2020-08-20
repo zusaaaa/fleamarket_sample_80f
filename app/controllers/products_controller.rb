@@ -57,12 +57,6 @@ class ProductsController < ApplicationController
   end
 
   def purchase
-    @products = Product.all
-    @images = Image.all
-    @addresses = Address.all
-    @users = User.all
-    @address = Address.find(params[:id])
-    @user = User.find(current_user[:id])
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
     # すでにクレジットカードが登録しているか？
     if @card.present?
@@ -79,6 +73,7 @@ class ProductsController < ApplicationController
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)
+      @address = Address.find_by(user_id:current_user.id)
     end
   end
   def buy
@@ -115,7 +110,13 @@ class ProductsController < ApplicationController
   end
 
   def purchase
+    @addresses = Address.all
+    @address = Address.find(params[:id])
+    @users = User.all
+    @user = User.find(params[:id])
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
+    @products = Product.all
+    @product = Product.find(params[:id])
     # すでにクレジットカードが登録しているか？
     if @card.present?
       # 登録している場合,PAY.JPからカード情報を取得する
