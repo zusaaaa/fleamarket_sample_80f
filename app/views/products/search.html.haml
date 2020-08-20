@@ -9,16 +9,34 @@
 
 .search-form
   = search_form_for @q do |f|
-    = f.label :product_name, "Keyword"
-    = f.search_field :product_name_or_product_explanation_cont
+    = f.label :product_name, "キーワード"
+    = f.search_field :product_name_cont
     %br
     = f.label :price, "価格"
     = f.number_field :price_gteq 
     = f.number_field :price_lt 
     %br
-    = f.label :category_id_eq, '学部'
-    = f.collection_select :category_id_eq, @categories, :id, :name
+    =  f.label :product_status_id_in, '商品の状態'
+    =  f.collection_check_boxes :product_status_id_in, ProductStatus.all, :id, :name
+    %br
+    =  f.label :shipping_charge_id_in, '配送料の負担'
+    =  f.collection_check_boxes :shipping_charge_id_in, ShippingCharge.all, :id, :name
+    %br
     = f.submit "検索"
+
+-#   | 検索クエリ
+-# - unless params[:q][:product_name_cont].empty?
+-#   | キーワード:
+-#   = params[:q][:product_name_cont]
+-#   %br
+-# - unless params[:q][:product_status_id_in].reject(&:blank?).empty?
+-#   | 商品の状態:
+-#   = params[:q][:product_status_id_in].reject(&:blank?).map{|product_status_id| ProductStatus.find(product_status_id).name}.join(', ')
+-#   %br
+-# - unless params[:q][:shipping_charge_id_in].reject(&:blank?).empty?
+-#   | 履修科目:
+-#   = params[:q][:shipping_charge_id_in].reject(&:blank?).map{|shipping_charge_id| ShippingCharge.find(shipping_charge_id).name}.join(', ')
+
 
 .soat
   %tr
