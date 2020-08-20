@@ -1,7 +1,9 @@
 .header
   =render "devise/header"
-.error-message
-  = render 'shared/errors', { target: @address }
+.breadcrumbs
+  - breadcrumb :user_address
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+= render "devise/shared/error_messages", resource: @address
 .form
   .form__title
     住所情報登録

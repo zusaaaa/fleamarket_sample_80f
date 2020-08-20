@@ -3,6 +3,7 @@ class CreateProducts < ActiveRecord::Migration[6.0]
     create_table :products do |t|
       t.string :product_name
       t.text :product_explanation
+      t.references :category, foreign_key: true
       t.string :brand
       t.string :product_status_id
       t.string :shipping_method_id

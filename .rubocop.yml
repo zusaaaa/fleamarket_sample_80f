@@ -36,3 +36,7 @@ AsciiComments:
 # "Block has too many lines" を無効
 BlockLength:
   Enabled: false
+
+# メソッド名のprefixに「set_」「get_」を許可
+AccessorMethodName:
+  Enabled: false
