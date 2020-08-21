@@ -8,6 +8,13 @@ class ProductsController < ApplicationController
     @images = Image.all
   end
 
+  def show
+    @product = Product.find(params[:id])
+    @child_category = @product.category.parent
+    @comment = Comment.new 
+    @comments = @product.comments.includes(:user)
+  end
+
   def new
     @product = Product.new
     @product.images.build
@@ -24,6 +31,15 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+    
+  def get_category_children
+    @category_children = Category.find_by(id: params[:parent_id].to_s, ancestry: nil).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id].to_s).children
+  end
+
 
   def edit
     @images = @product.images
@@ -127,4 +143,5 @@ class ProductsController < ApplicationController
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
+
 end

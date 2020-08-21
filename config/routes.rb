@@ -11,10 +11,13 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :images
+    resources :comments, only: [:create, :new, :destroy]
+
     member do
       get :purchase
       post :buy
     end
+
     collection do
       get 'search'
       get 'get_category_children', defaults: { format: 'json' }

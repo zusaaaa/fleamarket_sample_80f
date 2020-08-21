@@ -1,8 +1,10 @@
 .header
   = render partial: "items/header"
+
 .breadcrumbs
   - breadcrumb :product_show
   = breadcrumbs pretext: "",separator: " &rsaquo; "
+
 .main
   .showMain
     .content
@@ -16,7 +18,6 @@
             .productImage__sold
               .productImage__sold__inner
                 SOLD OUT
-
         
         %ul.productImage
           - @product.images.each do |image|
@@ -28,9 +29,9 @@
           = @product.price.to_s(:delimited)
         .productPrice__detail
           %span.tax
-            (税込)
+          (税込)
           %span.postage
-            送料込み
+          送料込み
 
         .productExplanation
           = @product.product_explanation
@@ -42,7 +43,10 @@
                 %th
                   出品者
                   %td= @product.user.nickname
-
+              %tr
+                %th
+                  ブランド
+                  %td= @product.brand
               %tr
                 %th
                   カテゴリー
@@ -59,7 +63,6 @@
                       = link_to "#" do
                         -# 孫カテゴリのURL
                         = @product.category.name
-
               %tr
                 %th
                   ブランド
@@ -69,23 +72,18 @@
                 %th
                   商品の状態
                   %td= @product.product_status.name
-
               %tr
                 %th
                   発送方法
                   %td= @product.shipping_method.name
-
-
               %tr
                 %th
                   配送料の負担
                   %td= @product.shipping_charge.name
-
               %tr
                 %th
                   発送地域
                   %td= @product.prefecture.name
-
               %tr
                 %th
                   発送日の目安
@@ -94,9 +92,10 @@
       - if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
         .Buy
           .BuyProduct
-            = link_to "購入画面", purchase_product_path(@product), method: :get, class: "submit-btn-blue"
+            = link_to "購入画面に進む", purchase_product_path(@product), method: :get, class: "submit-btn-blue"
 
       - if user_signed_in? && current_user.id == @product.user_id && @product.status == "出品中"
+
         .EditDelete
           .EditDelete__box
             = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
@@ -104,7 +103,35 @@
           .EditDelete__box
             = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
 
+      - if @comments.present?
+        .comments
+          .commentsList
+            < コメント一覧 >
+            %br
+          - @comments.each do |comment|
+            %br
+            .commentNickname 
+              = @product.user.nickname
+            %br
+            .commentText
+              = comment.text
+              %br
+              %br
+              .commentTime
+                = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                - if user_signed_in? && current_user.id == comment.user_id
+                  = link_to product_comment_path(comment.product.id, comment.id), method: :delete, class: "delete-btn" do
+                    %i.fas.fa-trash-alt
 
+      .commentBox
+        - if user_signed_in?
+          = form_with model: [@product, @comment], local: true, id: "commentForm" do |form|
+            = form.text_area :text, autofocus: true, rows: "2", class: "commentContent"
+            %br
+            .messageContent
+              %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+
+            = form.submit "コメントする", class: "commentSubmit"
 
 .footer
   = render partial: "items/footer"
