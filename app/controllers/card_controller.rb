@@ -46,6 +46,12 @@ class CardController < ApplicationController
       # クレジットカード情報から表示させたい情報を定義する。
       # クレジットカードの画像を表示するために、カード会社を取得
       @card_brand = @card_info.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "icon-visa.png"
+      when "American Express"
+        @card_src = "icon-american-express.png"
+      end
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)

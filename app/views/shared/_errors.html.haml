@@ -1,8 +1,9 @@
-.error-message
 - if target.errors.any?
-  エラー項目があります
-  %ul
-    - target.errors.full_messages.each do |message|
-      %li
-        =message
+  .error-message
+    .error_explanation
+      エラー項目があります
+    %ul
+      - target.errors.full_messages.each do |message|
+        %li
+          = message
 

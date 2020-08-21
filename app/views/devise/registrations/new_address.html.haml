@@ -3,10 +3,12 @@
 .breadcrumbs
   - breadcrumb :user_address
   = breadcrumbs pretext: "",separator: " &rsaquo; "
-= render "devise/shared/error_messages", resource: @address
+
 .form
   .form__title
     住所情報登録
+  .error-messages
+    = render "devise/shared/error_messages", resource: @address
   = form_for @address do |f|
     .form__postalCode.form-item
       %ul

@@ -9,14 +9,14 @@
   height: 100%;
   background-color: rgb(245, 245, 245);
   .product__Body{
-    width: 40vw;
+    width: 600px;
     height: 90vh;
     background-color: white;
     margin: 0 auto;
     text-align: center;
     .header_title{
       font-size: 25px;
-      padding: 20px;
+      padding: 10px;
       border-bottom: 1px solid gray;
       margin: 0 70px 0 70px;
     }
@@ -31,9 +31,9 @@
         font-size: 15px;
       }
       .image{
-        width: 80px;
-        height: 60px;
-        margin: 10px 0 0 50px;
+        width: 70px;
+        height: 80px;
+        margin: 10% 0 0 20%;
       }
     }
     .product__Price{
@@ -54,7 +54,7 @@
             &__number{
             }
             &__delete{
-              padding: 5px 150px;
+              // padding: 5px 200px;
               cursor: pointer;
               color: white;
               background-color: #aaa;
@@ -62,7 +62,7 @@
             }
             &__buy{
               background-color: #3CCACE;
-              padding: 5px 150px;
+              padding: 5px 200;
               cursor: pointer;
               color: white;
               border: 1px solid #3CCACE;
@@ -76,11 +76,31 @@
       margin: 10px 40px 30px 70px;
       padding: 0 0 30px 0;
       border-bottom: 1px solid gray;
-    
+      position: relative;
       .address_postal_code{
         margin: 0 30px 10px 30px;
         padding: 0 10px 0 0;
       }
     }
+  }
+}
+
+
+.card-icon {
+  margin: -10px 0 10px;
+}
+.form-input-limit {
+  height: 40px;
+  width: 125px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.creditcard-info {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 50px;
+  .creditcard-info__pay-num {
+    margin-bottom: 50px;
   }
 }
