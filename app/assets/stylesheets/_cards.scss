@@ -54,7 +54,7 @@
             &__number{
             }
             &__delete{
-              padding: 5px 200px;
+              // padding: 5px 200px;
               cursor: pointer;
               color: white;
               background-color: #aaa;
@@ -82,5 +82,25 @@
         padding: 0 10px 0 0;
       }
     }
+  }
+}
+
+
+.card-icon {
+  margin: -10px 0 10px;
+}
+.form-input-limit {
+  height: 40px;
+  width: 125px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.creditcard-info {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 50px;
+  .creditcard-info__pay-num {
+    margin-bottom: 50px;
   }
 }

@@ -50,7 +50,7 @@
                     %p
                       = link_to "#" do
                         -# 親カテゴリのURL
-                        = @child_category.parent.name
+                        = @product.category.parent.parent.name
                     %p
                       = link_to "#" do
                         -# 子カテゴリのURL
