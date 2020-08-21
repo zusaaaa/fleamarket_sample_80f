@@ -221,11 +221,11 @@ end
     end
   end
 
-@category7 = Category.create(name:"おもちゃ・ホビーグッズ")
-@category8 = Category.create(name:"コスメ・香水・美容")
-@category9 = Category.create(name:"家電・スマホ・カメラ")
-@category10 = Category.create(name:"スポーツ・レジャー")
-@category11 = Category.create(name:"ハンドメイド")
-@category12 = Category.create(name:"チケット")
-@category13 = Category.create(name:"自動車・オートバイ")
-@category14 = Category.create(name:"その他")
+# @category7 = Category.create(name:"おもちゃ・ホビーグッズ")
+# @category8 = Category.create(name:"コスメ・香水・美容")
+# @category9 = Category.create(name:"家電・スマホ・カメラ")
+# @category10 = Category.create(name:"スポーツ・レジャー")
+# @category11 = Category.create(name:"ハンドメイド")
+# @category12 = Category.create(name:"チケット")
+# @category13 = Category.create(name:"自動車・オートバイ")
+# @category14 = Category.create(name:"その他")

@@ -17,7 +17,6 @@ class ProductsController < ApplicationController
     @product = Product.new
     @product.images.build
     @images = @product.images.build
-
     @category_parent = Category.where(ancestry: nil)
   end
 
@@ -41,12 +40,15 @@ class ProductsController < ApplicationController
 
   def edit
     @images = @product.images
+    # @category_parent = Category.where(ancestry: nil)
   end
 
   def update
-    if @product.update(product_params)
+    @product = Product.find(params[:id])
+    if @product.update(update_params)
       redirect_to product_path(@product), notice: "#{@product.product_name}を更新しました"
     else
+      @category_parent = Category.where(ancestry: nil)
       render :edit
     end
   end
@@ -163,6 +165,10 @@ class ProductsController < ApplicationController
   private
 
   def product_params
+    params.require(:product).permit(:product_name, :product_explanation, :brand, :product_status_id, :shipping_method_id, :shipping_charge_id, :prefecture_id, :days_until_shipping_id, :price, :status, :category_id, images_attributes: [:src, :src_cache, :_destroy, :id]).merge(user_id: current_user.id)
+  end
+
+  def update_params
     params.require(:product).permit(:product_name, :product_explanation, :brand, :product_status_id, :shipping_method_id, :shipping_charge_id, :prefecture_id, :days_until_shipping_id, :price, :status, :category_id, images_attributes: [:src, :src_cache, :_destroy, :id]).merge(user_id: current_user.id)
   end
 
