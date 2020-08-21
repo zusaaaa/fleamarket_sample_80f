@@ -125,6 +125,7 @@
         margin: 10px 0;
         .commentsList {
           color: 3CCACE;
+          text-align: center;
         }
         .commentNickname {
           float: left;
@@ -135,7 +136,7 @@
           margin: 1.5em 0 1.5em 15px;
           padding: 7px 10px;
           min-width: 120px;
-          width: 100%;
+          width: 95%;
           color: #555;
           font-size: 16px;
           background: #eef0f4;
@@ -173,6 +174,12 @@
         }
         .commentTime {
           float: left;
+        }
+        .delete-btn {
+          color: #3CCACE;
+          font-size: 18px;
+          border-radius: 5px;
+          margin: 10px 0;
         }
       }
 
