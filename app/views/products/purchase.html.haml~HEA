@@ -1,5 +1,5 @@
-%h2.header_title
-  カード一覧
+.wrapper
+  = render partial: "devise/header", locals: {product: "product"}
 
 .single-container
   %section.creditcard_section
@@ -9,12 +9,12 @@
         .creditcard-info
           %p.creditcard-info__number
           = "**** **** **** " + @card_info.last4 #クレジットカードの下４桁を表示
-          %p.creditcard-info__period 
+          %p.creditcard-info__period
           = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
           %p.creditcard-info__period
-          = button_to "購入する", buy_card_path(@product.id), method: :post, class:"creditcard-info__buy"
+          = button_to "購入する", buy_product_path(@product.id), method: :post, class:"creditcard-info__buy"
     - else
       .new-card
-        = link_to new_card_path(@product), class:"new-card-btn" do
+        = link_to new_card_path, class:"new-card-btn" do
           %i.far.fa-credit-card
           クレジットカードを追加する

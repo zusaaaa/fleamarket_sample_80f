@@ -1,0 +1,14 @@
+.Notification {
+  height: 24px;
+  .notice {
+    background-color: #3CCACE;
+    color: #fff;
+    text-align: center;
+  }
+
+  .alert {
+    background-color: #F35500;
+    color: #fff;
+    text-align: center;
+  }
+}

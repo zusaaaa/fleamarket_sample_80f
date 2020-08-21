@@ -1,6 +1,10 @@
 .header
   = render partial: "items/header"
 
+.breadcrumbs
+  - breadcrumb :product_show
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
 .main
   .showMain
     .content
@@ -9,8 +13,13 @@
           = @product.product_name
 
         .productImageMain
-          = image_tag (@product.images[0].src.url)
+          = image_tag (@product.images[0].src.url) 
+          - if @product.status == "売り切れ"
+            .productImage__sold
+              .productImage__sold__inner
+                SOLD OUT
 
+        
         %ul.productImage
           - @product.images.each do |image|
             %li.productImageEach
@@ -33,56 +42,65 @@
             %tbody
               %tr
                 %th
-                  出品者
-                  %td= @product.user.nickname
+                  カテゴリー
+                  %td.category
+                    %p
+                      = link_to "#" do
+                        -# 親カテゴリのURL
+                        = @child_category.parent.name
+                    %p
+                      = link_to "#" do
+                        -# 子カテゴリのURL
+                        = @product.category.parent.name
+                    %p
+                      = link_to "#" do
+                        -# 孫カテゴリのURL
+                        = @product.category.name
 
-                %tr
-                  %th
-                    ブランド
-                    %td= @product.brand
+              %tr
+                %th
+                  ブランド
+                  %td= @product.brand
 
-                %tr
-                  %th
-                    商品の状態
-                    %td= @product.product_status.name
+              %tr
+                %th
+                  商品の状態
+                  %td= @product.product_status.name
 
-                %tr
-                  %th
-                    発送方法
-                    %td= @product.shipping_method.name
-
-
-                %tr
-                  %th
-                    配送料の負担
-                    %td= @product.shipping_charge.name
-
-                %tr
-                  %th
-                    発送地域
-                    %td= @product.prefecture.name
-
-                %tr
-                  %th
-                    発送日の目安
-                    %td= @product.days_until_shipping.name
+              %tr
+                %th
+                  発送方法
+                  %td= @product.shipping_method.name
 
 
+              %tr
+                %th
+                  配送料の負担
+                  %td= @product.shipping_charge.name
 
-      - if user_signed_in? && current_user.id != @product.user_id
+              %tr
+                %th
+                  発送地域
+                  %td= @product.prefecture.name
+
+              %tr
+                %th
+                  発送日の目安
+                  %td= @product.days_until_shipping.name
+
+      - if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
         .Buy
           .BuyProduct
-            = link_to "購入画面に進む", card_path(@product), method: :get, class: "submit-btn-blue"
+            = link_to "購入画面に進む", purchase_product_path(@product), method: :get, class: "submit-btn-blue"
 
-      - if user_signed_in? && current_user.id == @product.user_id
+      - if user_signed_in? && current_user.id == @product.user_id && @product.status == "出品中"
+
         .EditDelete
           .EditDelete__box
             = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
           or
           .EditDelete__box
             = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
-            
-  
 
       .comments
         - if @comments
