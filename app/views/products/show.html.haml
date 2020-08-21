@@ -84,8 +84,8 @@
             
   
 
-      .comments
-        - if @comments
+      - if @comments.present?
+        .comments
           .commentsList
             < コメント一覧 >
             %br

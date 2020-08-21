@@ -1,7 +1,11 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.create(comment_params)
-    redirect_to "/products/#{@comment.product.id}"
+    @comment = Comment.new(comment_params)
+    if @comment.save
+      redirect_to product_path(@comment.product.id)
+    else
+      redirect_to root_path
+    end
   end
 
   def new
@@ -9,8 +13,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find_by(id: params[:id],product_id: params[:product_id]).destroy
-    redirect_to root_path
+    if Comment.find(params[:id]).destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   private
