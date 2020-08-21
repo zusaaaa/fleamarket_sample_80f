@@ -5,7 +5,7 @@
   = breadcrumbs pretext: "",separator: " &rsaquo; "
 .form
   .form__title 商品出品
-.error-message
+.error-messages
   = render 'shared/errors', { target: @product }
 
 = form_with model: @product, class: "productNew", local: true do |f|
