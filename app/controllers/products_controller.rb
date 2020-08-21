@@ -43,8 +43,7 @@ class ProductsController < ApplicationController
       redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
-  def show
-  end
+  def show; end
 
   def search 
     @products = Product.search(params[:keyword])
