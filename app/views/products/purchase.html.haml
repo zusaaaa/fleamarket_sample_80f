@@ -32,7 +32,7 @@
                 = @exp_month + " / " + @exp_year
               = button_to "カード情報を削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
               or
-              = link_to "商品詳細へ戻る", product_path(@product), class:"creditcard-info__delete"
+              = link_to "商品詳細へ戻る", product_path(@product), class:"creditcard-info__delete__show"
               or
               = button_to "購入する", buy_product_path(@product.id), method: :post, class:"creditcard-info__buy"
         - else
