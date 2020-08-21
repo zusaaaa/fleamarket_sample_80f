@@ -45,7 +45,7 @@ class CardController < ApplicationController
       @card_info = customer.cards.retrieve(customer.default_card)
       # クレジットカード情報から表示させたい情報を定義する。
       # クレジットカードの画像を表示するために、カード会社を取得
-      @card_brand = @card_info.brand 
+      @card_brand = @card_info.brand
       case @card_brand
       when "Visa"
         @card_src = "icon-visa.png"
