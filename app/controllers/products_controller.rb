@@ -11,6 +11,8 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @child_category = @product.category.parent
+    @comment = Comment.new 
+    @comments = @product.comments.includes(:user)
   end
 
   def new
@@ -29,13 +31,6 @@ class ProductsController < ApplicationController
       @category_parent = Category.where(ancestry: nil)
       render :new
     end
-  end
-
-
-  def show
-    @product = Product.find(params[:id])
-    @comment = Comment.new 
-    @comments = @product.comments.includes(:user)
   end
     
   def get_category_children

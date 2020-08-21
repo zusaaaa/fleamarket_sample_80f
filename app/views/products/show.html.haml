@@ -18,7 +18,6 @@
             .productImage__sold
               .productImage__sold__inner
                 SOLD OUT
-
         
         %ul.productImage
           - @product.images.each do |image|
@@ -42,6 +41,14 @@
             %tbody
               %tr
                 %th
+                  出品者
+                  %td= @product.user.nickname
+              %tr
+                %th
+                  ブランド
+                  %td= @product.brand
+              %tr
+                %th
                   カテゴリー
                   %td.category
                     %p
@@ -56,7 +63,6 @@
                       = link_to "#" do
                         -# 孫カテゴリのURL
                         = @product.category.name
-
               %tr
                 %th
                   ブランド
@@ -66,23 +72,18 @@
                 %th
                   商品の状態
                   %td= @product.product_status.name
-
               %tr
                 %th
                   発送方法
                   %td= @product.shipping_method.name
-
-
               %tr
                 %th
                   配送料の負担
                   %td= @product.shipping_charge.name
-
               %tr
                 %th
                   発送地域
                   %td= @product.prefecture.name
-
               %tr
                 %th
                   発送日の目安

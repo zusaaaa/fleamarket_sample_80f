@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def destroy
     if Comment.find(params[:id]).destroy
-      redirect_to root_path
+      redirect_to root_path, notice: "コメントを削除しました"
     else
       redirect_to root_path
     end
