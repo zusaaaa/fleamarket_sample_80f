@@ -10,14 +10,14 @@
       margin-top: 20px;
       .itemBox {
         background-color: #fff;
-        padding: 24px 40px 40px;
+        padding: 24px 40px 30px;
         .productName {
           text-align: center;
           font-weight: bold;
           font-size: 24px;
         }
         .productImageMain {
-          margin: 16px 0 0;
+          margin: 16px 0 20px;
           text-align: center;
         }
         ul {
@@ -117,6 +117,94 @@
             border-radius: 5px;
             margin: 10px 0;
           }
+        }
+      }
+      .comments {
+        background-color: #fff;
+        padding: 24px;
+        margin: 10px 0;
+        .commentsList {
+          color: 3CCACE;
+        }
+        .commentNickname {
+          float: left;
+        }
+        .commentText {
+          position: relative;
+          display: inline-block;
+          margin: 1.5em 0 1.5em 15px;
+          padding: 7px 10px;
+          min-width: 120px;
+          width: 100%;
+          color: #555;
+          font-size: 16px;
+          background: #eef0f4;
+          border: solid 3px #eef0f4;
+          box-sizing: border-box;
+          border-radius: 15px;
+        }
+        
+        .commentText:before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -24px;
+          margin-top: -12px;
+          border: 12px solid transparent;
+          border-right: 12px solid #eef0f4;
+          z-index: 2;
+        }
+        
+        .commentText:after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: -30px;
+          margin-top: -14px;
+          border: 14px solid transparent;
+          border-right: 14px solid #eef0f4;
+          z-index: 1;
+          width: 100%;
+        }
+        
+        .commentText p {
+          margin: 0;
+          padding: 0;
+        }
+        .commentTime {
+          float: left;
+        }
+      }
+
+      .messageContent {
+        padding: 8px;
+        font-size: 14px;
+        background-color: #f8f8f8;
+        margin: 10px 0;
+        text-align: left;
+      }
+      .commentBox {
+        background-color: #fff;
+        padding: 24px;
+        margin: 10px 0;
+        text-align: center;
+        .commentContent {
+          width: 100%;
+          margin-top: 10px;
+          margin-bottom: 20px;
+          min-height: 104px;
+          padding: 10px;
+        }
+        .commentSubmit {
+          line-height: 48px;
+          background: #3CCACE;
+          border: 1px solid #3CCACE;
+          color: #fff;
+          font-size: 18px;
+          border-radius: 5px;
+          margin: 10px 0;
+          text-align: center;
+          width: 100%;
         }
       }
     }

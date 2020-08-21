@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :new, :create, :show, :edit]
   resources :products do
     resources :images
+    resources :comments, only: [:create, :new, :destroy]
     collection do
       get 'search'
     end

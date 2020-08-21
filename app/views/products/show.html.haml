@@ -1,84 +1,118 @@
 .header
-   = render partial: "items/header"
+  = render partial: "items/header"
 
 .main
-   .showMain
-      .content
-         .itemBox
-            %h1.productName
-               = @product.product_name
+  .showMain
+    .content
+      .itemBox
+        %h1.productName
+          = @product.product_name
 
-            .productImageMain
-               = image_tag (@product.images[0].src.url)
+        .productImageMain
+          = image_tag (@product.images[0].src.url)
 
-            %ul.productImage
-               - @product.images.each do |image|
-                  %li.productImageEach
-                     = image_tag image.src.url, size: "140x100"
+        %ul.productImage
+          - @product.images.each do |image|
+            %li.productImageEach
+              = image_tag image.src.url, size: "140x100"
 
-            .productPrice
-               ¥
-               = @product.price.to_s(:delimited)
-            .productPrice__detail
-               %span.tax
-               (税込)
-               %span.postage
-               送料込み
+        .productPrice
+          ¥
+          = @product.price.to_s(:delimited)
+        .productPrice__detail
+          %span.tax
+          (税込)
+          %span.postage
+          送料込み
 
-            .productExplanation
-               = @product.product_explanation
+        .productExplanation
+          = @product.product_explanation
 
-            .table
-               %table
-                  %tbody
-                     %tr
-                        %th
-                           出品者
-                           %td= @product.user.nickname
+        .table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                  %td= @product.user.nickname
 
-                     %tr
-                        %th
-                           ブランド
-                           %td= @product.brand
+                %tr
+                  %th
+                    ブランド
+                    %td= @product.brand
 
-                     %tr
-                        %th
-                           商品の状態
-                           %td= @product.product_status.name
+                %tr
+                  %th
+                    商品の状態
+                    %td= @product.product_status.name
 
-                     %tr
-                        %th
-                           発送方法
-                           %td= @product.shipping_method.name
+                %tr
+                  %th
+                    発送方法
+                    %td= @product.shipping_method.name
 
 
-                     %tr
-                        %th
-                           配送料の負担
-                           %td= @product.shipping_charge.name
+                %tr
+                  %th
+                    配送料の負担
+                    %td= @product.shipping_charge.name
 
-                     %tr
-                        %th
-                           発送地域
-                           %td= @product.prefecture.name
+                %tr
+                  %th
+                    発送地域
+                    %td= @product.prefecture.name
 
-                     %tr
-                        %th
-                           発送日の目安
-                           %td= @product.days_until_shipping.name
+                %tr
+                  %th
+                    発送日の目安
+                    %td= @product.days_until_shipping.name
 
-         - if user_signed_in? && current_user.id != @product.user_id
-            .Buy
-               .BuyProduct
-                  = link_to "購入画面", card_path(@product), method: :get, class: "submit-btn-blue"
 
-         - if user_signed_in? && current_user.id == @product.user_id
-            .EditDelete
-               .EditDelete__box
-                  = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
-               or
-               .EditDelete__box
-                  = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
+
+        - if user_signed_in? && current_user.id != @product.user_id
+          .Buy
+            .BuyProduct
+              = link_to "購入画面", card_path(@product), method: :get, class: "submit-btn-blue"
+
+        - if user_signed_in? && current_user.id == @product.user_id
+          .EditDelete
+            .EditDelete__box
+              = link_to "商品の編集", edit_product_path(@product), class: "submit-btn-blue"
+            or
+            .EditDelete__box
+              = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "submit-btn-gray"
+              
+   
+
+        .comments
+          - if @comments
+            .commentsList
+              < コメント一覧 >
+              %br
+            - @comments.each do |comment|
+              %br
+              .commentNickname 
+                = @product.user.nickname
+              %br
+              .commentText
+                = comment.text
+                %br
+                %br
+                .commentTime
+                  = comment.created_at.strftime("%Y年%m月%d日 %H時%M分")
+                  - if user_signed_in? && current_user.id == @product.user_id
+                    .commentDelete
+                      = link_to "削除", product_comment_path(comment.product.id, comment.id), method: :delete, class: "delete-btn"
+
+        .commentBox
+          - if user_signed_in?
+            = form_with model: [@product, @comment], local: true, id: "commentForm" do |form|
+              = form.text_area :text, autofocus: true, rows: "2", class: "commentContent"
+              %br
+              .messageContent
+                %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+
+              = form.submit "コメントする", class: "commentSubmit"
 
 .footer
-   = render partial: "items/footer"
+  = render partial: "items/footer"
