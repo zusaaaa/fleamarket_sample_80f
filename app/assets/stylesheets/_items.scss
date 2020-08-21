@@ -19,6 +19,7 @@
 }
 
 .header {
+  background-color: #fff;
   padding: 0 60px;
   .headerContents {
     width: 100%;
@@ -79,8 +80,9 @@
       .rightContents {
         display: flex;
         margin-left: auto;
-        &__login {
-          margin-right: 15px;
+        li {
+          margin-right: 50px;
+
         }
         a {
           text-decoration: none;
