@@ -31,8 +31,23 @@ ja:
         first_name_kanji: 名前（漢字）
         family_name_kana: 名字（カナ）
         first_name_kana: 名前（カナ）
+      address:
+        postal_code: 郵便番号
+        prefecture: 都道府県
+        city: 地区町村
+      product:
+        product_name: 商品名
+        product_explanation: 商品説明 
+        product_status_id: 商品状態
+        shipping_method_id: 発送方法
+        shipping_charge_id: 配送料の負担
+        prefecture_id: 発送地域
+        days_until_shipping_id: 発送までの日数
+        price: 価格
+        images: 画像
     models:
       user: ユーザー
+      address: 住所情報
   devise:
     confirmations:
       confirmed: メールアドレスが確認できました。
@@ -151,6 +166,7 @@ ja:
       too_short: は%{count}文字以上に設定して下さい。
       too_long: は%{count}文字以下に設定して下さい。
       invalid: は有効でありません。
+      not_a_number: は数字ではありません
   date:
     formats:
       default: "%Y/%m/%d"
