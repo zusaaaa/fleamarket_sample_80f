@@ -3,22 +3,29 @@
 
 .main
   .contentsMain
-    %ul.sideBarlist
+    %ul.sideBarmenu
       %li#tab__user.menu_item.active
         ユーザー情報
       %li#tab__card.menu_item
         カード登録
       %li#tab__test.menu_item
-        テスト
+        出品一覧
 
     %ul.contents
       %li#tab__user.content.show
+        .contentUser
         ユーザー情報
         = @user.nickname
         = @user.email
 
       %li#tab__card.content
-        = render partial: "card/new.html.haml"
+        = render partial: "items/show.html.haml"
+      %li#tab__selling.content
+        出品一覧
+        .contentSelling
+        - @product.each do |product|
+          .contentName
+          = product.product_name
 
-      %li#tab__.content
-        テスト
+.footer
+  =render "devise/footer"
