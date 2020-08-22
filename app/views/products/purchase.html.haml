@@ -1,5 +1,9 @@
 .wrapper
   = render partial: "devise/header", locals: {product: "product"}
+  
+.breadcrumbs
+  - breadcrumb :product_purchase
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
 
 .product__All
   .product__Body
@@ -52,4 +56,7 @@
         .user_name
           = @user.family_name_kanji
           = @user.first_name_kanji
+
+.footer
+  = render "devise/footer"
           

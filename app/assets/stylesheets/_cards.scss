@@ -1,17 +1,18 @@
 .wrapper{
   width: 100%;
-  height: 120px;
+  height: 82px;
   background-color: rgb(245, 245, 245);
 }
 .product__All{
-  display:block;
+  // display:block;
+  padding-top: 30px;
   width: 100%;
   height: 100%;
   background-color: rgb(245, 245, 245);
   overflow: scroll;
   .product__Body{
     width: 600px;
-    height: 96vh;
+    // height: 96%;
     background-color: white;
     margin: 0 auto;
     text-align: center;
@@ -19,45 +20,41 @@
       font-size: 25px;
       padding: 10px;
       border-bottom: 1px solid gray;
-      margin: 0 70px 0 70px;
+      margin: 0 70px;
     }
     .product{
       display: flex;
       align-items: center;
       border-bottom: 1px solid gray;
-      margin: 0 70px 0 70px;
+      margin: 0 70px;
       .productName{
         margin: 30px 10px 60px 100px;
         padding: 20px 10px 0 30px;
         font-size: 15px;
       }
       .image{
-        width: 70px;
+        width: 100px;
         height: 80px;
         margin: 10% 0 0 20%;
       }
     }
     .product__Price{
       font-size: 20px;
-      margin: 30px 70px 30px 70px;
-      padding: 0 0 20px 0;
+      margin: 30px 70px;
+      padding-bottom:20px;
       border-bottom: 1px solid gray;
     }
     .single-container{
       font-size: 25px;
       margin: 10px 40px 10px 70px;
-      padding: 10px 0 30px 0;
-      
+      padding-top: 10px;
       .creditcard_section{
         font-size: 15px;
-        height: 200px;
         .container{
           .creditcard-info{
             margin: 20px 30px 30px 30px;
-            padding: 10px 0 10px 0;
+            padding: 10px 0;
             border-bottom: 1px solid gray;
-            &__number{
-            }
             &__delete{
               padding: 5px 120px;
               cursor: pointer;
@@ -84,14 +81,12 @@
     }
     .product__Shipping_Address{
       font-size: 15px;
-      margin: 10px 40px 30px 70px;
-      padding: 140px;
-      position: relative;
-      border-bottom: 1px solid gray;
+      padding: 10px 40px 30px 40px;
+      margin-bottom: 10px;
       .address_postal_code{
         margin: 0 30px 10px 30px;
-        padding: 0 10px 0 0;
-        
+        padding: 0 10px 30px 0;
+        border-bottom: 1px solid gray;
       }
     }
   }

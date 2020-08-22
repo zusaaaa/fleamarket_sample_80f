@@ -1,6 +1,10 @@
 .header
   = render partial: "items/header"
 
+.breadcrumbs
+  - breadcrumb :card_show
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
 .formNew
   .form__title
     カード情報確認
@@ -26,4 +30,4 @@
           クレジットカードを追加する
 
 .footer
-  = render partial: "items/footer"
+  = render "devise/footer"

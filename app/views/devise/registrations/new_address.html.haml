@@ -1,5 +1,6 @@
 .header
   =render "devise/header"
+
 .breadcrumbs
   - breadcrumb :user_address
   = breadcrumbs pretext: "",separator: " &rsaquo; "
@@ -42,5 +43,6 @@
     .form__submit
     = f.submit "登録する", class: 'btn'
   = render "devise/shared/links"
+  
 .footer
   = render "devise/footer"
