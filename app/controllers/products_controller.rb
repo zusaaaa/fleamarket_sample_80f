@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @child_category = @product.category.parent
-    @comment = Comment.new 
+    @comment = Comment.new
     @comments = @product.comments.includes(:user)
   end
 
@@ -58,8 +58,6 @@ class ProductsController < ApplicationController
       render :delete unless @product.user_id == current_user.id && @product.destroy
       redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
-
-  def show; end
 
   def search 
     @products = Product.search(params[:keyword])
