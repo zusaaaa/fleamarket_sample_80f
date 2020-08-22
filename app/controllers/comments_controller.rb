@@ -1,4 +1,10 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
+  
+  def new
+    @comment = Comment.new
+  end
+
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
@@ -8,13 +14,10 @@ class CommentsController < ApplicationController
     end
   end
 
-  def new
-    @comment = Comment.new
-  end
-
   def destroy
+    product = Product.find(params[:id]) #追記
     if Comment.find(params[:id]).destroy
-      redirect_to root_path, notice: "コメントを削除しました"
+      redirect_to product_path(product), notice: "コメントを削除しました"
     else
       redirect_to root_path
     end
