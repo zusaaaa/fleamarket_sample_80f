@@ -41,8 +41,8 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-      render :delete unless @product.user_id == current_user.id && @product.destroy
-      redirect_to root_path, notice: "#{@product.product_name}を削除しました"
+    render :delete unless @product.user_id == current_user.id && @product.destroy
+    redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
   def show
@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
     @comments = @product.comments.includes(:user)
   end
 
-  def search 
+  def search
     @products = Product.search(params[:keyword])
   end
 
@@ -79,13 +79,12 @@ class ProductsController < ApplicationController
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)
-      @address = Address.find_by(user_id:current_user.id)
     end
   end
 
   def buy
     # すでに購入されていないか？
-    if @product.status == "売り切れ"
+    if @product.status.blank?
       redirect_back(fallback_location: root_path)
     elsif @card.blank?
       # カード情報がなければ、買えないから戻す

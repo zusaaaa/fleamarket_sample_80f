@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
+
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @address = @user.build_address
@@ -29,6 +30,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # flash.now[:alert] = @address.errors.full_messages
       render :new_address and return
     end
+
     @user.build_address(@address.attributes)
     @user.save
     session["devise.regist_data"]["user"].clear
