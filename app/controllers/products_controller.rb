@@ -9,10 +9,11 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
-    @child_category = @product.category.parent
     @comment = Comment.new 
+    # @product = Product.find(params[:id])
+    @child_category = @product.category.parent
     @comments = @product.comments.includes(:user)
+
   end
 
   def new
