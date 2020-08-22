@@ -1,16 +1,43 @@
-.contentsWrapper {
-  width: calc(100vw - 250px);
-  height: 100vh;
-  margin: 120px, 250px;
-  display: flex;
-  position: relative;
-  background-color: cadetblue;
+.main{
+  background-color: #f8f8f8;
+  .contentsMain {
+    width: calc(100% - 400px);
+    height: calc(100% - 120px);
+    left: 200px;
+    margin:0 auto;
+    display: flex;
+    background-color: cadetblue;
 
-
-  .sideNavlist {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: azure;
+    ul {
+      margin:0 ;
+      box-sizing: border-box;
+      position: relative;
+      background-color: azure;
+        li {
+          width: auto;
+          height: 60px;
+          margin: 0 auto;
+          display: block;
+          color: #fff;
+          font-size: 18px;
+          background-color: #3ccace
+        }
+    }
+    .sideBarlist {
+      width: 250px;
+      height: auto;
+    }
+    .contents {
+      .content{
+        width: 700px;
+        height: 100%;
+        margin-left: 100px;
+        background-color: darkorange;
+        display: none;
+      }
+      .show{
+        display: block;
+      }
+    }
   }
 }

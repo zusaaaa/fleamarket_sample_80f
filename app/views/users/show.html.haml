@@ -1,7 +1,24 @@
 .header
-  = render "items/header"
+  = render partial: "items/header"
 
-.contentsWrapper
-  .sideNavlist
-  .mainContent
+.main
+  .contentsMain
+    %ul.sideBarlist
+      %li#tab__user.menu_item.active
+        ユーザー情報
+      %li#tab__card.menu_item
+        カード登録
+      %li#tab__test.menu_item
+        テスト
 
+    %ul.contents
+      %li#tab__user.content.show
+        ユーザー情報
+        = @user.nickname
+        = @user.email
+
+      %li#tab__card.content
+        = render partial: "card/new.html.haml"
+
+      %li#tab__.content
+        テスト
