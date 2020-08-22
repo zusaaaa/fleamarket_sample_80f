@@ -6,12 +6,10 @@ class Product < ApplicationRecord
   belongs_to_active_hash :days_until_shipping
   belongs_to_active_hash :product_status
   belongs_to_active_hash :prefecture
-  # has_many :product_categories, dependent: :destroy
-  belongs_to :category, optional: true
 
+  belongs_to :category, optional: true
   belongs_to :user, optional: true
   belongs_to :card, optional: true
-
   has_many :comments
 
   # 子モデルimagesのアソシエーション
