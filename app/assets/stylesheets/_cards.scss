@@ -1,3 +1,6 @@
+.Notification{
+  background-color: whitesmoke;
+}
 .wrapper{
   width: 100%;
   height: 120px;
@@ -6,11 +9,10 @@
 .product__All{
   display:block;
   width: 100%;
-  height: 100%;
   background-color: rgb(245, 245, 245);
   .product__Body{
     width: 600px;
-    height: 90vh;
+    height: 100vh;
     background-color: white;
     margin: 0 auto;
     text-align: center;
@@ -73,7 +75,7 @@
     }
     .product__Shipping_Address{
       font-size: 15px;
-      margin: 10px 40px 30px 70px;
+      margin: 10px 70px 30px 70px;
       padding: 0 0 30px 0;
       border-bottom: 1px solid gray;
       position: relative;
