@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :search]
+  before_action :set_product, only: [:index, :edit, :update, :show, :destroy, :purchase, :buy]
   before_action :seller_move_to_root, only: [:edit, :update, :destroy]
   before_action :buyer_move_to_root, only: [:purchase, :buy]
-  before_action :set_product, only: [:index, :edit, :update, :show, :destroy, :purchase, :buy]
   before_action :set_card, only: [:purchase, :buy]
 
   def index
@@ -55,35 +55,31 @@ class ProductsController < ApplicationController
   end
 
   def purchase
-    if user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
-      @address = Address.find(current_user[:id])
-      @user = User.find(current_user[:id])
-      @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
-      # すでにクレジットカードが登録しているか？
-      if @card.present?
-        # 登録している場合,PAY.JPからカード情報を取得する
-        # PAY.JPの秘密鍵をセットする。
-        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-        # PAY.JPから顧客情報を取得する。
-        customer = Payjp::Customer.retrieve(@card.payjp_id)
-        # PAY.JPの顧客情報から、デフォルトで使うクレジットカードを取得する。
-        @card_info = customer.cards.retrieve(customer.default_card)
-        # クレジットカード情報から表示させたい情報を定義する。
-        # クレジットカードの画像を表示するために、カード会社を取得
-        @card_brand = @card_info.brand
-        case @card_brand
-        when "Visa"
-          @card_src = "icon-visa.png"
-        when "American Express"
-          @card_src = "icon-american-express.png"
-        end
-        # クレジットカードの有効期限を取得
-        @exp_month = @card_info.exp_month.to_s
-        @exp_year = @card_info.exp_year.to_s.slice(2, 3)
-        @address = Address.find_by(user_id:current_user.id)
+    @address = Address.find(current_user[:id])
+    @user = User.find(current_user[:id])
+    @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
+    # すでにクレジットカードが登録しているか？
+    if @card.present?
+      # 登録している場合,PAY.JPからカード情報を取得する
+      # PAY.JPの秘密鍵をセットする。
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # PAY.JPから顧客情報を取得する。
+      customer = Payjp::Customer.retrieve(@card.payjp_id)
+      # PAY.JPの顧客情報から、デフォルトで使うクレジットカードを取得する。
+      @card_info = customer.cards.retrieve(customer.default_card)
+      # クレジットカード情報から表示させたい情報を定義する。
+      # クレジットカードの画像を表示するために、カード会社を取得
+      @card_brand = @card_info.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "icon-visa.png"
+      when "American Express"
+        @card_src = "icon-american-express.png"
       end
-    else
-      redirect_to root_path
+      # クレジットカードの有効期限を取得
+      @exp_month = @card_info.exp_month.to_s
+      @exp_year = @card_info.exp_year.to_s.slice(2, 3)
+      @address = Address.find_by(user_id:current_user.id)
     end
   end
 
