@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:edit, :update, :show, :destroy, :purchase, :buy]
+  before_action :set_product, only: [:index, :edit, :update, :show, :destroy, :purchase, :buy]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_card, only: [:purchase, :buy]
 
@@ -11,13 +11,14 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @child_category = @product.category.parent
+    @comment = Comment.new 
+    @comments = @product.comments.includes(:user)
   end
 
   def new
     @product = Product.new
     @product.images.build
     @images = @product.images.build
-
     @category_parent = Category.where(ancestry: nil)
   end
 
@@ -30,7 +31,7 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-
+    
   def get_category_children
     @category_children = Category.find_by(id: params[:parent_id].to_s, ancestry: nil).children
   end
@@ -38,6 +39,7 @@ class ProductsController < ApplicationController
   def get_category_grandchildren
     @category_grandchildren = Category.find(params[:child_id].to_s).children
   end
+
 
   def edit
     @images = @product.images
@@ -47,6 +49,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to product_path(@product), notice: "#{@product.product_name}を更新しました"
     else
+      @category_parent = Category.where(ancestry: nil)
       render :edit
     end
   end
@@ -56,11 +59,15 @@ class ProductsController < ApplicationController
       redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
+  def show; end
+
   def search 
     @products = Product.search(params[:keyword])
   end
 
   def purchase
+    @address = Address.find(current_user[:id])
+    @user = User.find(current_user[:id])
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
     # すでにクレジットカードが登録しているか？
     if @card.present?
@@ -74,6 +81,12 @@ class ProductsController < ApplicationController
       # クレジットカード情報から表示させたい情報を定義する。
       # クレジットカードの画像を表示するために、カード会社を取得
       @card_brand = @card_info.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "icon-visa.png"
+      when "American Express"
+        @card_src = "icon-american-express.png"
+      end
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)
@@ -108,6 +121,14 @@ class ProductsController < ApplicationController
     end
   end
 
+  def get_category_children
+    @category_children = Category.find_by(id: params[:parent_id].to_s, ancestry: nil).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id].to_s).children
+  end
+
   private
 
   def product_params
@@ -121,4 +142,5 @@ class ProductsController < ApplicationController
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
+
 end
