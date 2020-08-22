@@ -17,7 +17,7 @@
       %ul.rightContents
         -if user_signed_in?
           %li.rightContents__item
-            = link_to 'マイページ', "#"
+            = link_to 'マイページ', user_path(id: current_user)
           %li.rightContents__item
             = link_to "ログアウト", destroy_user_session_path, method: :delete
         -else

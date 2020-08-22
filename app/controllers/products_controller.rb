@@ -1,18 +1,13 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show, :search]
   before_action :set_product, only: [:index, :edit, :update, :show, :destroy, :purchase, :buy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :seller_move_to_root, only: [:edit, :update, :destroy]
+  before_action :buyer_move_to_root, only: [:purchase, :buy]
   before_action :set_card, only: [:purchase, :buy]
 
   def index
     @products = Product.all
     @images = Image.all
-  end
-
-  def show
-    @product = Product.find(params[:id])
-    @child_category = @product.category.parent
-    @comment = Comment.new 
-    @comments = @product.comments.includes(:user)
   end
 
   def new
@@ -31,15 +26,6 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-    
-  def get_category_children
-    @category_children = Category.find_by(id: params[:parent_id].to_s, ancestry: nil).children
-  end
-
-  def get_category_grandchildren
-    @category_grandchildren = Category.find(params[:child_id].to_s).children
-  end
-
 
   def edit
     @images = @product.images
@@ -55,13 +41,16 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-      render :delete unless @product.user_id == current_user.id && @product.destroy
-      redirect_to root_path, notice: "#{@product.product_name}を削除しました"
+    render :delete unless @product.user_id == current_user.id && @product.destroy
+    redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
-  def show; end
+  def show
+    @comment = Comment.new
+    @comments = @product.comments.includes(:user)
+  end
 
-  def search 
+  def search
     @products = Product.search(params[:keyword])
   end
 
@@ -90,13 +79,12 @@ class ProductsController < ApplicationController
       # クレジットカードの有効期限を取得
       @exp_month = @card_info.exp_month.to_s
       @exp_year = @card_info.exp_year.to_s.slice(2, 3)
-      @address = Address.find_by(user_id:current_user.id)
     end
   end
 
   def buy
     # すでに購入されていないか？
-    if @product.status == "売り切れ"
+    if @product.status.blank?
       redirect_back(fallback_location: root_path)
     elsif @card.blank?
       # カード情報がなければ、買えないから戻す
@@ -144,4 +132,15 @@ class ProductsController < ApplicationController
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
 
+  def seller_move_to_root
+    unless user_signed_in? && current_user.id == @product.user_id && @product.status == "出品中"
+      redirect_to root_path
+    end
+  end
+
+  def buyer_move_to_root
+    unless user_signed_in? && current_user.id != @product.user_id && @product.status == "出品中"
+      redirect_to root_path
+    end
+  end
 end

@@ -5,29 +5,8 @@
   - breadcrumb :card_show
   = breadcrumbs pretext: "",separator: " &rsaquo; "
 
-.formNew
-  .form__title
-    カード情報確認
-
-  .creditcard_section
-    - if @card.present?
-      .creditcard-info
-        .creditcard-info__brand
-          = image_tag "#{@card_src}", width: '52', height: '40', alt: @card_brand, id: "card_image"
-        .creditcard-info__number
-          カード番号
-          = "**** **** **** " + @card_info.last4
-        .creditcard-info__pay-num
-          有効期限
-          = @exp_month + " / " + @exp_year
-        = button_to "削除する", card_path(@card), method: :delete, class:"btn"
-        %br
-        = link_to "トップページへ", root_path
-    - else
-      .new-card
-        = link_to new_card_path(@product), class:"new-card-btn" do
-          %i.far.fa-credit-card
-          クレジットカードを追加する
+.main
+  = render partial: "items/show.html.haml"
 
 .footer
   = render "devise/footer"

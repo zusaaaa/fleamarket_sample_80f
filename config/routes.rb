@@ -4,10 +4,13 @@ Rails.application.routes.draw do
       post 'buy', to: 'card#buy'
     end
   end
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
   resources :items, only: [:index, :show]
+
+  resources :users, only: :show
 
   resources :products do
     resources :images
