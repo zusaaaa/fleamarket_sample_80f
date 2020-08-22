@@ -4,17 +4,23 @@ Rails.application.routes.draw do
       post 'buy', to: 'card#buy'
     end
   end
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
   resources :items, only: [:index, :show]
 
+  resources :users, only: :show
+
   resources :products do
     resources :images
+    resources :comments, only: [:create, :new, :destroy]
+
     member do
       get :purchase
       post :buy
     end
+
     collection do
       get 'search'
       get 'get_category_children', defaults: { format: 'json' }

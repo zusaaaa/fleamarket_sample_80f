@@ -1,20 +1,8 @@
-%h2.header_title
-  カード情報確認
+.header
+  = render partial: "items/header"
 
-.single-container
-  %section.creditcard_section
-    %h3 クレジットカード一覧
-    - if @card.present?
-      .container
-        .creditcard-info
-          %p.creditcard-info__number
-          = "**** **** **** " + @card_info.last4 #クレジットカードの下４桁を表示
-          %p.creditcard-info__period 
-          = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
-          = link_to "商品一覧へ", products_path
-    - else
+.main
+  = render partial: "items/show.html.haml"
 
-      .new-card
-        = link_to new_card_path(@product), class:"new-card-btn" do
-          %i.far.fa-credit-card
-          クレジットカードを追加する
+.footer
+  = render partial: "items/footer"

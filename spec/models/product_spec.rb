@@ -139,13 +139,13 @@ describe Product do
     it "return products that match the search term" do
       product1 = create(:product, user: @user)
       product2 = create(:product, user: @user)
-      expect(Product.search("商品")).to include(product1,product2)
+      expect(Product.search("商品")).to include(product1, product2)
       expect(Product.search("24")).to include(product2)
     end
 
     it "returns an empty collection when no results are found" do
       product = build(:product, user: @user)
-      expect(Product.search("aaa")).to be_empty 
+      expect(Product.search("aaa")).to be_empty
     end
   end
 end

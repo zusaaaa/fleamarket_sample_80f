@@ -3,11 +3,13 @@
 .breadcrumbs
   - breadcrumb :user_new
   = breadcrumbs pretext: "",separator: " &rsaquo; "
-= render "devise/shared/error_messages", resource: @user
 
 .form
   .form__title
     ユーザー情報入力
+  .error-messages
+    = render "devise/shared/error_messages", resource: @user
+  
   = form_for(@user, url: user_registration_path) do |f|
     .form__nickname.form-item
       %ul

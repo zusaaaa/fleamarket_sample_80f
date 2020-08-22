@@ -22,12 +22,18 @@
         - if @card.present?
           .container
             .creditcard-info
-              %p.creditcard-info__number
-              = "**** **** **** " + @card_info.last4 #クレジットカードの下４桁を表示
-              %p.creditcard-info__period
-              = button_to "削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
+              .creditcard-info__brand
+                = image_tag "#{@card_src}", width: '52', height: '40', alt: @card_brand, id: "card_image"
+              .creditcard-info__number
+                カード番号
+                = "**** **** **** " + @card_info.last4
+              .creditcard-info__pay-num
+                有効期限
+                = @exp_month + " / " + @exp_year
+              = button_to "カード情報を削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
               or
-              %p.creditcard-info__period
+              = link_to "商品詳細へ戻る", product_path(@product), class:"creditcard-info__delete__show"
+              or
               = button_to "購入する", buy_product_path(@product.id), method: :post, class:"creditcard-info__buy"
         - else
           .new-card
@@ -46,3 +52,4 @@
         .user_name
           = @user.family_name_kanji
           = @user.first_name_kanji
+          

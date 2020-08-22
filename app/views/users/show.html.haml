@@ -1,0 +1,31 @@
+.header
+  = render partial: "items/header"
+
+.main
+  .contentsMain
+    %ul.sideBarmenu
+      %li#tab__user.menu_item.active
+        ユーザー情報
+      %li#tab__card.menu_item
+        カード登録
+      %li#tab__test.menu_item
+        出品一覧
+
+    %ul.contents
+      %li#tab__user.content.show
+        .contentUser
+        ユーザー情報
+        = @user.nickname
+        = @user.email
+
+      %li#tab__card.content
+        = render partial: "items/show.html.haml"
+      %li#tab__selling.content
+        出品一覧
+        .contentSelling
+        - @product.each do |product|
+          .contentName
+          = product.product_name
+
+.footer
+  =render "devise/footer"
