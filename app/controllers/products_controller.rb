@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @child_category = @product.category.parent
-    @comment = Comment.new 
+    @comment = Comment.new
     @comments = @product.comments.includes(:user)
   end
 
@@ -31,7 +31,7 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-    
+
   def get_category_children
     @category_children = Category.find_by(id: params[:parent_id].to_s, ancestry: nil).children
   end
@@ -39,7 +39,6 @@ class ProductsController < ApplicationController
   def get_category_grandchildren
     @category_grandchildren = Category.find(params[:child_id].to_s).children
   end
-
 
   def edit
     @images = @product.images
@@ -55,13 +54,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-      render :delete unless @product.user_id == current_user.id && @product.destroy
-      redirect_to root_path, notice: "#{@product.product_name}を削除しました"
+    render :delete unless @product.user_id == current_user.id && @product.destroy
+    redirect_to root_path, notice: "#{@product.product_name}を削除しました"
   end
 
   def show; end
 
-  def search 
+  def search
     @products = Product.search(params[:keyword])
   end
 
@@ -142,5 +141,4 @@ class ProductsController < ApplicationController
   def set_card
     @card = Card.where(user_id: current_user.id).first if Card.where(user_id: current_user.id).present?
   end
-
 end
