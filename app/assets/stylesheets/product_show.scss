@@ -96,6 +96,27 @@
             }
           }
         }
+        .optionContent {
+          margin-top: 30px;
+          &__favoBtn {
+            width: 150px;
+            height: 40px;
+            border: solid 1px orange;
+            border-radius: 30px;
+            line-height: 40px;
+            a {
+              display: flex;
+              color: #3CCACE;
+              .favoContents {
+                display: flex;
+                margin: auto;
+                &--icon {
+                  margin: auto 0;
+                }
+              }
+            }
+          }
+        }
       }
       .Buy {
         background-color: #fff;
