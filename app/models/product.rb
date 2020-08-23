@@ -6,11 +6,10 @@ class Product < ApplicationRecord
   belongs_to_active_hash :days_until_shipping
   belongs_to_active_hash :product_status
   belongs_to_active_hash :prefecture
-  # has_many :product_categories, dependent: :destroy
   belongs_to :category, optional: true
-
   belongs_to :user, optional: true
   belongs_to :card, optional: true
+  has_many :favorites, dependent: :destroy
 
   # 子モデルimagesのアソシエーション
   has_many :images, dependent: :destroy
@@ -35,4 +34,8 @@ class Product < ApplicationRecord
       Product.all
     end
   end
+
+  def like_user(user_id)
+    likes.find_by(user_id: user_id)
+   end
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :images
+    resources :favorites, only: [:create, :destroy]
     collection do
       get 'search'
       get 'get_category_children', defaults: { format: 'json' }
