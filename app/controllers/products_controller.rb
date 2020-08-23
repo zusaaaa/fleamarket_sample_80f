@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @favorite = current_user.favorites.find_by(product_id: params[:id])
     @child_category = @product.category.parent
   end
 

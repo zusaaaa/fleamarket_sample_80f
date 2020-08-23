@@ -1,6 +1,6 @@
 .optionContent__favoBtn
   - if current_user.already_favorited?(@product)
-    = link_to product_favorite_path(@product), method: :delete, id: "favoBtn", remote:true do
+    = link_to product_favorite_path(@product, @favorite), method: :delete, id: "favoBtn", remote: true do
       .favoContents
         .favoContents--icon
           = icon('fas', 'star')
