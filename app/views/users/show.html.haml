@@ -21,18 +21,32 @@
     %ul.contents
       %li#tab__user.content.show
         .contentUser
-        ユーザー情報
-        = @user.nickname
-        = @user.email
-
+          .contentTitle
+            ユーザー情報
+          .contentInfo
+            .contentInfo__lists
+              ユーザー名
+              .contentInfo__list
+                = @user.nickname
+            .contentInfo__lists
+              メールアドレス
+              .contentInfo__list
+                = @user.email
+            .contentInfo__lists
+              住所
+              .contentInfo__list
+                = @user.address.city
       %li#tab__card.content
         = render partial: "items/show.html.haml"
       %li#tab__selling.content
-        出品一覧
-        .contentSelling
+        .contentTitle
+          出品一覧
+        .contentInfo
         - @product.each do |product|
-          .contentName
-          = product.product_name
+          .contentInfo__lists
+            商品名
+            .contentInfo__list
+              = product.product_name
 
 .footer
   =render "devise/footer"
