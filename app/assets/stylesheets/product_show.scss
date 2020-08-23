@@ -81,12 +81,19 @@
           &__favoBtn {
             width: 150px;
             height: 40px;
-            text-align: center;
             border: solid 1px orange;
             border-radius: 30px;
             line-height: 40px;
             a {
+              display: flex;
               color: #3CCACE;
+              .favoContents {
+                display: flex;
+                margin: auto;
+                &--icon {
+                  margin: auto 0;
+                }
+              }
             }
           }
         }

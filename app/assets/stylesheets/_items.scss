@@ -170,6 +170,7 @@
     padding: 50px 0 100px 0;
     text-align: center;
     justify-content: space-between;
+    background-color: white;
     .heading {
       position: relative;
       margin-bottom: 30px;
@@ -220,18 +221,20 @@
     }
   }
   .pickupBox {
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     background-color: rgb(247, 247, 247);
     .pickupContents {
       padding-top: 80px;
       .head {
         text-align: center;
+        padding-top: 80px;
         h2 {
         font-weight: bold;
         font-size: 25px;
         }
       }
       .productBox {
+        padding-bottom: 20px;
         .productHead {
           padding-bottom: 20px;
           h3 {
@@ -258,7 +261,7 @@
                 width: 100%;
               }
             }
-            &__details__name {
+            &__name {
               padding: 15px;
               color: black;
               .detail {
