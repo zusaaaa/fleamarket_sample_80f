@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :products do
     resources :images
+    resources :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :new, :destroy]
 
     member do

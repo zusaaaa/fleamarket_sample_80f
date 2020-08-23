@@ -11,4 +11,9 @@ class User < ApplicationRecord
   has_many :cards, foreign_key: true
   has_many :products
   has_many :comments
+  has_many :favorites, dependent: :destroy
+
+  def already_favorited?(product)
+    self.favorites.exists?(product_id: product.id)
+  end
 end
