@@ -18,18 +18,19 @@
               .productImage__sold
                 .productImage__sold__inner
                   SOLD OUT
-            %br
+            .productList__name
             = product.product_name
-            %h4
-            = product.price.to_s(:delimited)
-            円 (税込)
             .detail
+              .detail__price
+                = product.price.to_s(:delimited)
+                円
+                %p (税込)
               .detail__fav
                 .detail__fav--icon
                   = icon('fas', 'star')
-                  3
-              .detail__fav--num
-            -# お気に入り
+                .detail__fav--num
+                  = product.favorites.count
+
 
 .footer
   = render "devise/footer"
