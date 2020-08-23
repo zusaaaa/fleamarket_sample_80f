@@ -207,7 +207,7 @@
   }
   .middlePic {
     height: 400px;
-    background-image: url("bg-topMiddleDl-pict.jpg");
+    background-image: image-url("bg-topMiddleDl-pict.jpg");
     background-size: cover;
     text-shadow:0px 0px 5px #6e6966;
     color: white;
@@ -298,7 +298,7 @@
 .footer {
   .appBannerBottom {
     height: 400px;
-    background-image: url("bg-appBanner-pict.jpg");
+    background-image: image-url("bg-appBanner-pict.jpg");
     background-size: cover;
     
     display: flex;
