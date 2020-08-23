@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-
   def favorite
     @product = Product.find(params[:id])
   end
