@@ -15,7 +15,7 @@
           = @exp_month + " / " + @exp_year
         = button_to "削除する", card_path(@card), method: :delete, class:"btn"
         %br
-        = link_to "マイページへ", user_path
+        = link_to "マイページへ", user_path(id: current_user)
     - else
       .new-card
         = link_to new_card_path(@product), class:"new-card-btn" do

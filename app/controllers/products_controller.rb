@@ -100,14 +100,14 @@ class ProductsController < ApplicationController
         currency: 'jpy'
       )
     end
-    # 売り切れなので、productの情報をアップデートして売り切れにする画面
-    if @product.update(status: "売り切れ")
-      flash[:notice] = '購入しました。'
-      redirect_to action: 'show', id: @product.id
-    else
-      flash[:alert] = '購入に失敗しました。'
-      redirect_to action: 'show', id: @product.id
-    end
+      # 売り切れなので、productの情報をアップデートして売り切れにする画面
+      if @product.update(status: "売り切れ")
+        flash[:notice] = '購入しました。'
+        redirect_to action: 'show', id: @product.id
+      else
+        flash[:alert] = '購入に失敗しました。'
+        redirect_to action: 'show', id: @product.id
+      end
   end
 
   def get_category_children

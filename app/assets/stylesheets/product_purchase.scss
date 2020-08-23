@@ -1,3 +1,6 @@
+.Notification{
+  background-color: whitesmoke;
+}
 .wrapper{
   width: 100%;
   height: 82px;
@@ -7,12 +10,10 @@
   // display:block;
   padding-top: 30px;
   width: 100%;
-  height: 100%;
   background-color: rgb(245, 245, 245);
   overflow: scroll;
   .product__Body{
     width: 600px;
-    // height: 96%;
     background-color: white;
     margin: 0 auto;
     text-align: center;
