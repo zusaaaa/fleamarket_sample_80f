@@ -1,6 +1,5 @@
 class FavoritesController < ApplicationController
   before_action :set_product, only: [:create, :destroy]
-  
   def favorite
     @product = Product.find(params[:id])
   end
