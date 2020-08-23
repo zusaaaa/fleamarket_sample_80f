@@ -87,26 +87,6 @@
                   %td= @product.days_until_shipping.name
         .optionContent
           = render 'favorites/favorite'
-          -# .optionContent__favoBtn
-          -#   - if current_user.already_favorited?(@product)
-          -#     = link_to product_favorite_path(@product), method: :delete, id: "favoBtn" do
-          -#       .favoContents
-          -#         .favoContents--icon
-          -#           = icon('fas', 'star')
-          -#         .favoContents--title
-          -#           お気に入り
-          -#         .favoContents--count
-          -#           = @product.favorites.count
-          -#   - else
-          -#     = link_to product_favorites_path(@product), method: :post, id: "favoBtn" do
-          -#       .favoContents
-          -#         .favoContents--icon
-          -#           = icon('fas', 'star')
-          -#         .favoContents--title
-          -#           お気に入り
-          -#         .favoContents--count
-          -#           = @product.favorites.count
-
           .optionContent__reportBtn
 
       - if user_signed_in? && current_user.id != @product.user_id
