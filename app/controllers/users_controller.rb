@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @product = Product.where("user_id = ? and status = ?", current_user.id, "出品中")
+    @favorite = current_user.favorites.includes(:product)
     @card = Card.where(user_id: current_user.id).first
     if @card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]

@@ -6,7 +6,10 @@
   = breadcrumbs pretext: "",separator: " &rsaquo; "
 
 .main
-  = render partial: "items/show.html.haml"
+  .formNew
+    .form__title
+      カード情報確認
+  = render partial: "items/card_show.html.haml"
 
 .footer
   = render "devise/footer"

@@ -12,41 +12,58 @@
         ユーザー情報
         %i{class: "fas fa-angle-right"}
       %li#tab__card.menu_item
-        カード登録
+        カード情報
         %i{class: "fas fa-angle-right"}
       %li#tab__test.menu_item
         出品一覧
         %i{class: "fas fa-angle-right"}
+      %li#tab__test.menu_item
+        お気に入り一覧
+        %i{class: "fas fa-angle-right"}
 
     %ul.contents
       %li#tab__user.content.show
-        .contentUser
-          .contentTitle
-            ユーザー情報
-          .contentInfo
-            .contentInfo__lists
-              ユーザー名
-              .contentInfo__list
-                = @user.nickname
-            .contentInfo__lists
-              メールアドレス
-              .contentInfo__list
-                = @user.email
-            .contentInfo__lists
-              住所
-              .contentInfo__list
-                = @user.address.city
+        .contentTitle
+          ユーザー情報
+        .contentInfo
+          .contentInfo__lists
+            ユーザー名
+            .contentInfo__list
+              = @user.nickname
+          .contentInfo__lists
+            メールアドレス
+            .contentInfo__list
+              = @user.email
+          .contentInfo__lists
+            住所
+            .contentInfo__list
+              = @user.address.city
       %li#tab__card.content
-        = render partial: "items/show.html.haml"
+        .contentTitle
+          カード情報
+        .contentInfo
+          = render partial: "items/card_show.html.haml"
       %li#tab__selling.content
         .contentTitle
           出品一覧
         .contentInfo
-        - @product.each do |product|
-          .contentInfo__lists
-            商品名
-            .contentInfo__list
-              = product.product_name
+          - @product.each do |product|
+            .contentInfo__lists
+              商品名
+              .contentInfo__list
+                = product.product_name
+      %li#tab__favorite.content
+        .contentTitle
+          お気に入り一覧
+        .contentInfo
+          - @favorite.each do |favorite|
+            .contentInfo__lists
+              商品名
+              .contentInfo__list
+                = favorite.product.product_name
+                
+        
+
 
 .footer
   =render "devise/footer"

@@ -2,7 +2,7 @@
   - if current_user.already_favorited?(@product)
     = link_to product_favorite_path(@product, @favorite), method: :delete, id: "favoBtn", remote: true do
       .favoContents
-        .favoContents--icon
+        .favoContents--icon.alredyfavo
           = icon('fas', 'star')
         .favoContents--title
           お気に入り
@@ -11,7 +11,7 @@
   - else
     = link_to product_favorites_path(@product), method: :post, id: "favoBtn", remote: true do
       .favoContents
-        .favoContents--icon
+        .favoContents--icon.yetFavo
           = icon('fas', 'star')
         .favoContents--title
           お気に入り
