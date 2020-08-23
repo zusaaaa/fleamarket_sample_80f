@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :mypage do
-  link "マイページ", "#"
+  link "マイページ", user_path
 end
 crumb :card_new do
   link "クレジットカード登録", new_card_path

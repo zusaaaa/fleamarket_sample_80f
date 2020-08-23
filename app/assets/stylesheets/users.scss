@@ -5,17 +5,29 @@
     height: calc(100% - 120px);
     margin:0 auto;
     display: flex;
-
     ul {
       margin:0 auto;
-      box-sizing: border-box;
+      // box-sizing: border-box;
       flex-direction: column;
       align-items: center;
         li {
           height: 60px;
-          display: block;
+          // display: block;
           color: #fff;
           font-size: 18px;
+          position: relative;
+          .fa-angle-right {
+            font-size: 25px;
+            position: absolute;
+            right: 30px;
+          }
+        }
+        li:hover {
+          .fa-angle-right {
+            font-size: 25px;
+            position: absolute;
+            right: 20px;
+          }
         }
     }
     .sideBarmenu {
@@ -26,7 +38,8 @@
         margin-bottom: 10px;
         padding: 18px 0 0 20px ;
         border-radius: 5px;
-        background-color: #3ccace
+        background-color: #3ccace;
+        cursor: pointer;
       }
       .active {
         font-weight: 900;
@@ -39,8 +52,8 @@
       margin-left: 40px;
       display: flex;
       .content{
-        width: 800px;
-        height: 100%;
+        // width: 800px;
+        // height: 100%;
         display: none;
         color: black;
         background-color: #fff;
