@@ -1,6 +1,10 @@
 .header
   = render partial: "items/header"
 
+.breadcrumbs
+  - breadcrumb :card_new
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
 = form_with url:card_index_path(id: params[:id]), method: :post, local: true, name: "inputForm", class:"form", id: "charge-form" do |f|
   .formNew
     .form__title
@@ -35,4 +39,4 @@
         = f.submit 'カード登録', class: 'btn'
 
 .footer
-  = render partial: "items/footer"
+  = render "devise/footer"

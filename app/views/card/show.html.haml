@@ -1,8 +1,12 @@
 .header
   = render partial: "items/header"
 
+.breadcrumbs
+  - breadcrumb :card_show
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
 .main
   = render partial: "items/show.html.haml"
 
 .footer
-  = render partial: "items/footer"
+  = render "devise/footer"
