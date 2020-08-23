@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
+    @comment= Comment.find(params[:id])
     if Comment.find(params[:id]).destroy
-      redirect_to product_path(@comment), notice: "コメントを削除しました"
+      redirect_to product_path(@comment.product), notice: "コメントを削除しました"
     else
       redirect_to root_path
     end
