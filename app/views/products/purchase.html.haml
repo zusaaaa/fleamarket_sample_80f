@@ -1,0 +1,62 @@
+.wrapper
+  = render partial: "devise/header", locals: {product: "product"}
+  
+.breadcrumbs
+  - breadcrumb :product_purchase
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
+.product__All
+  .product__Body
+    %h2.header_title
+      購入確認
+    .product
+      .productName
+        商品名
+        = @product.product_name
+      .product__Image
+        - @product.images.each do |image|
+          = image_tag image.src.url, class: "image"
+    .product__Price
+      送料込み（税別）¥
+      = @product.price
+    .single-container
+      %section.creditcard_section
+        %h3 支払い方法
+        %h3 クレジットカード
+        - if @card.present?
+          .container
+            .creditcard-info
+              .creditcard-info__brand
+                = image_tag "#{@card_src}", width: '52', height: '40', alt: @card_brand, id: "card_image"
+              .creditcard-info__number
+                カード番号
+                = "**** **** **** " + @card_info.last4
+              .creditcard-info__pay-num
+                有効期限
+                = @exp_month + " / " + @exp_year
+              = button_to "カード情報を削除する", card_path(@card), method: :delete, class:"creditcard-info__delete"
+              or
+              = link_to "商品詳細へ戻る", product_path(@product), class:"creditcard-info__delete__show"
+              or
+              = button_to "購入する", buy_product_path(@product.id), method: :post, class:"creditcard-info__buy"
+        - else
+          .new-card
+            = link_to new_card_path, class:"new-card-btn" do
+              %i.far.fa-credit-card
+              クレジットカードを追加する
+    .product__Shipping_Address
+      発送先
+      .address_postal_code
+        〒
+        = @address.postal_code
+        = @address.prefecture
+        = @address.city
+        = @address.house_number
+        = @address.number_sign_etc
+        .user_name
+          = @user.family_name_kanji
+          = @user.first_name_kanji
+
+.footer
+  = render "devise/footer"
+          

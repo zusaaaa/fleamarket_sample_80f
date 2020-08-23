@@ -13,9 +13,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
+      # flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
+
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @address = @user.build_address
@@ -26,14 +27,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(session["devise.regist_data"]["user"])
     @address = Address.new(address_params)
     unless @address.valid?
-      flash.now[:alert] = @address.errors.full_messages
+      # flash.now[:alert] = @address.errors.full_messages
       render :new_address and return
     end
+
     @user.build_address(@address.attributes)
     @user.save
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
-    redirect_to root_path, notice: "#{@user.nickname}の登録が完了しました"
+    redirect_to root_path, notice: "#{@user.nickname}さんの登録が完了しました"
   end
 
   # GET /resource/edit

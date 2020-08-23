@@ -19,6 +19,7 @@
 }
 
 .header {
+  background-color: #fff;
   padding: 0 60px;
   .headerContents {
     width: 100%;
@@ -79,8 +80,9 @@
       .rightContents {
         display: flex;
         margin-left: auto;
-        &__login {
-          margin-right: 15px;
+        li {
+          margin-right: 50px;
+
         }
         a {
           text-decoration: none;
@@ -94,7 +96,7 @@
 .main {
   .mainPic {
     height: 560px;
-    background-image: url("bg-mainVisual-pict_pc.jpg");
+    background-image: image-url('bg-mainVisual-pict_pc.jpg');
     background-size: cover;
     background-position: top center;
     color: white;
@@ -206,7 +208,7 @@
   }
   .middlePic {
     height: 400px;
-    background-image: url("bg-topMiddleDl-pict.jpg");
+    background-image: image-url("bg-topMiddleDl-pict.jpg");
     background-size: cover;
     text-shadow:0px 0px 5px #6e6966;
     color: white;
@@ -246,19 +248,32 @@
         }
         .productLists{
           display: flex;
-          width: 1100px;
+          width: 1150px;
           margin: auto;
-          background-color: white;
           .productList {
-            width: 20%;
-            a {
-              text-decoration: none;
-            }
-            &__img {
+            background-color: white;
+            width: 220px;
+            margin:5px;
+            .img {
               height: 150px;
-              img {
-                height: 100%;
-                width: 100%;
+              }
+            .productImage__sold{
+              width: 0;
+              border-top: 40px solid #ea352d ;
+              border-right: 40px solid transparent;
+              border-bottom: 60px solid transparent;
+              border-left: 60px solid #ea352d ;
+              position: relative;
+              top: -150px;
+              margin-bottom: -124px;
+              &__inner{
+                width: 200px;
+                transform: rotate(-45deg);
+                font-size: 15px;
+                margin:-42px 0px 0px -80px;
+                color: #fff;
+                letter-spacing: 2px;
+                font-weight: 600;
               }
             }
             &__name {
@@ -271,12 +286,12 @@
                     font-size: 5px;
                   }
                 }
-                &__fav {
-                  display: flex;
-                  margin-left: auto;
-                  &--icon {
-                    margin-right: 5px;
-                  }
+              }
+              &__fav {
+                display: flex;
+                margin-left: auto;
+                &--icon {
+                  margin-right: 5px;
                 }
               }
             }
@@ -290,7 +305,7 @@
 .footer {
   .appBannerBottom {
     height: 400px;
-    background-image: url("bg-appBanner-pict.jpg");
+    background-image: image-url("bg-appBanner-pict.jpg");
     background-size: cover;
     
     display: flex;

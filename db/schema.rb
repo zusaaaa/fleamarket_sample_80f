@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2020_08_20_024403) do
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
     t.integer "user_id"
     t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false

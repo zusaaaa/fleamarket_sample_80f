@@ -1,15 +1,16 @@
 .header
   =render "devise/header"
+
 .breadcrumbs
   - breadcrumb :product_edit
   = breadcrumbs pretext: "",separator: " &rsaquo; "
+  
 .form
   .form__title 出品編集
-.error-message
+.error-messages
   = render 'shared/errors', { target: @product }
 
-
-= form_with model: @product, class: "productNew", local: true do |f|
+= form_with model: @product, class: "formNew", local: true do |f|
   .productForm__name
     %ul
       %li 商品名
@@ -80,14 +81,17 @@
       %li 価格
       %li.required 必須 
     = f.text_field :price, placeholder: '数字で入力', class: "form-input"
-
-  -# .productForm__category
-  -#   %ul
-  -#     %li カテゴリー
-  -#     %li.required 必須
-    -# .listing-select-wrapper
-    -#   =f.select :category, @category_parent_array, {}, {class: "listing-select-wrapper__box--select", id: "parent_category"}
-
+  .productForm__category
+    %ul
+      %li カテゴリー
+      %li.required 必須 
+    .listing-select-wrapper--edit
+      .listing-select-wrapper--edit__parent
+        = f.collection_select :category_id, Category.roots, :id, :name ,{selected:  @product.category.parent.parent_id}, {class: 'listing-select-wrapper--edit__parent--select', id: 'parent_category_edit', name: "" }
+      .listing-select-wrapper--edit__child
+        = f.collection_select :category_id, @product.category.parent.parent.children, :id, :name ,{selected: @product.category.parent_id}, {class: 'listing-select-wrapper--edit__child--select', id: 'child_category_edit', name: "" }
+      .listing-select-wrapper--edit__grandchild
+        = f.collection_select :category_id,@product.category.parent.children, :id, :name ,{selected: @product.category.id}, {class: 'listing-select-wrapper--edit__grandchild--select', id: 'grandchild_category_edit', name: "product[category_id]" }
   .Form__submit
   = f.hidden_field :status, :value => '出品中'
   = f.submit "更新", class: "btn"

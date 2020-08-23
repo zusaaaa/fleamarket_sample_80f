@@ -3,7 +3,15 @@ crumb :root do
 end
 
 crumb :mypage do
-  link "マイページ", "#"
+  link "マイページ", user_path(id: current_user)
+end
+crumb :card_new do
+  link "クレジットカード登録", new_card_path
+  parent :mypage
+end
+crumb :card_show do
+  link "クレジットカード確認", card_path
+  parent :card_new
 end
 
 crumb :product_post do
@@ -34,4 +42,8 @@ end
 crumb :user_address do
   link "新規登録（住所登録）", address_path
   parent :user_new
+end
+crumb :product_purchase do
+  link "購入確認", purchase_product_path
+  parent :product_show
 end

@@ -1,43 +1,6 @@
-
-- @products.each do |product|
-  商品名
-  %p= product.product_name
-
-
-- @products.each do |product|
-  = link_to product_path(product) do
-    - product.images.each do |image|
-      商品画像
-      = image_tag "#{image.src}", class: "img"
-
-- @products.each do |product|
-  商品説明
-  %p= product.product_explanation
-
-- @products.each do |product|
-  ブランド(任意)
-  %p= product.brand
-
-- @products.each do |product|
-  商品の状態
-  %p= product.product_status_id
-
-- @products.each do |product|
-  発送方法
-  %p= product.shipping_method_id
-
-- @products.each do |product|
-  配送料の負担
-  %p= product.shipping_charge_id
-
-- @products.each do |product|
-  発送地域
-  %p= product.prefecture_id
-
-- @products.each do |product|
-  配送までの日数
-  %p= product.days_until_shipping_id
-
-- @products.each do |product|
-  価格
-  %p= product.price
+.indexSelling
+出品一覧
+  .contentSelling
+  - @product.each do |product|
+    .contentName
+      = product.product_name

@@ -1,0 +1,38 @@
+.header
+  = render partial: "items/header"
+
+.breadcrumbs
+  - breadcrumb :mypage
+  = breadcrumbs pretext: "",separator: " &rsaquo; "
+
+.main
+  .contentsMain
+    %ul.sideBarmenu
+      %li#tab__user.menu_item.active
+        ユーザー情報
+        %i{class: "fas fa-angle-right"}
+      %li#tab__card.menu_item
+        カード登録
+        %i{class: "fas fa-angle-right"}
+      %li#tab__test.menu_item
+        出品一覧
+        %i{class: "fas fa-angle-right"}
+
+    %ul.contents
+      %li#tab__user.content.show
+        .contentUser
+        ユーザー情報
+        = @user.nickname
+        = @user.email
+
+      %li#tab__card.content
+        = render partial: "items/show.html.haml"
+      %li#tab__selling.content
+        出品一覧
+        .contentSelling
+        - @product.each do |product|
+          .contentName
+          = product.product_name
+
+.footer
+  =render "devise/footer"

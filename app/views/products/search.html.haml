@@ -4,13 +4,32 @@
   - breadcrumb :product_buy
   = breadcrumbs pretext: "",separator: " &rsaquo; "
 
-.title
-  検索結果
-.search__result
-  - @products.each do |product|
-    - if product.present?
-      = render "items/productList"
-    - else
-      = "検索結果はありません"
+.form
+  .form__title 検索結果
 
-= render "items/footer"
+.search__result
+  .productLists
+    - if @products.present?
+      - @products.each do |product|
+        .productList
+          = link_to product_path(product[:id]), method: :get do
+            = image_tag product.images[0].src.to_s, class: "img", size: "220x150"
+            - if product.status == "売り切れ"
+              .productImage__sold
+                .productImage__sold__inner
+                  SOLD OUT
+            %br
+            = product.product_name
+            %h4
+            = product.price.to_s(:delimited)
+            円 (税込)
+            .detail
+              .detail__fav
+                .detail__fav--icon
+                  = icon('fas', 'star')
+                  3
+              .detail__fav--num
+            -# お気に入り
+
+.footer
+  = render "devise/footer"
