@@ -113,7 +113,7 @@
           - @comments.each do |comment|
             %br
             .commentNickname 
-              = current_user.nickname
+              = comment.user.nickname
             %br
             .commentText
               = comment.text
