@@ -10,12 +10,6 @@ class ProductsController < ApplicationController
     @images = Image.all
   end
 
-  def show
-    @product = Product.find(params[:id])
-    @favorite = current_user.favorites.find_by(product_id: params[:id])
-    @child_category = @product.category.parent
-  end
-
   def new
     @product = Product.new
     @product.images.build
@@ -55,6 +49,9 @@ class ProductsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @product.comments.includes(:user)
+    @product = Product.find(params[:id])
+    @favorite = current_user.favorites.find_by(product_id: params[:id])
+    @child_category = @product.category.parent
   end
 
   def search

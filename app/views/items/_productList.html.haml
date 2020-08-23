@@ -4,6 +4,10 @@
       .productList__img
         = link_to product_path(product[:id]), method: :get do
           = image_tag product.images[0].src.to_s, class: "img", size: "220x150"
+          - if product.status == "売り切れ"
+            .productImage__sold
+              .productImage__sold__inner
+                SOLD OUT
           .productList__name
             = product.product_name
             .detail

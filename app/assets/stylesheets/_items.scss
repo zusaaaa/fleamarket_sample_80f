@@ -265,7 +265,7 @@
               border-left: 60px solid #ea352d ;
               position: relative;
               top: -150px;
-              margin-bottom: -124px;
+              margin-bottom: -100px;
               &__inner{
                 width: 200px;
                 transform: rotate(-45deg);
@@ -286,12 +286,12 @@
                     font-size: 5px;
                   }
                 }
-              }
-              &__fav {
-                display: flex;
-                margin-left: auto;
-                &--icon {
-                  margin-right: 5px;
+                &__fav {
+                  display: flex;
+                  margin-left: auto;
+                  &--icon {
+                    margin-right: 5px;
+                  }
                 }
               }
             }
