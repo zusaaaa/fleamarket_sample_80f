@@ -104,23 +104,27 @@
             border: solid 1px orange;
             border-radius: 30px;
             line-height: 40px;
-            a {
+            .favoContents {
               display: flex;
               color: #3CCACE;
-              .favoContents {
-                display: flex;
-                margin: auto;
-                &--icon {
-                  margin: auto 0;
-                }
-                .alredyfavo {
-                  color: #3CCACE;
-                }
-                .yetFavo {
-                  color: #eee;
-                }
+              display: flex;
+              margin: auto;
+              padding-left: 20px;
+              &--icon {
+                margin: auto 0;
+              }
+              .alredyfavo {
+                color: #3CCACE;
+              }
+              .yetFavo {
+                color: #bbb;
               }
             }
+            .notPush {
+              color: #bbb;
+
+            }
+            
           }
         }
       }

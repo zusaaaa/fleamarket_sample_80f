@@ -49,9 +49,10 @@ class ProductsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = @product.comments.includes(:user)
-    @product = Product.find(params[:id])
-    @favorite = current_user.favorites.find_by(product_id: params[:id])
     @child_category = @product.category.parent
+    if user_signed_in?
+      @favorite = current_user.favorites.find_by(product_id: params[:id])
+    end
   end
 
   def search

@@ -291,6 +291,12 @@
                   margin-left: auto;
                   &--icon {
                     margin-right: 5px;
+                    .alredyfavo {
+                      color: #3CCACE;
+                    }
+                    .yetFavo {
+                      color: #eee;
+                    }
                   }
 
                 }

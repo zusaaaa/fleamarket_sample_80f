@@ -1,19 +1,28 @@
 .optionContent__favoBtn
-  - if current_user.already_favorited?(@product)
-    = link_to product_favorite_path(@product, @favorite), method: :delete, id: "favoBtn", remote: true do
-      .favoContents
-        .favoContents--icon.alredyfavo
-          = icon('fas', 'star')
-        .favoContents--title
-          お気に入り
-        .favoContents--count
-          = @product.favorites.count
+  - if user_signed_in?
+    - if current_user.already_favorited? (@product)
+      = link_to product_favorite_path(@product, @favorite), method: :delete, id: "favoBtn", remote: true do
+        .favoContents
+          .favoContents--icon.alredyfavo
+            = icon('fas', 'star')
+          .favoContents--title
+            お気に入り
+          .favoContents--count
+            = @product.favorites.count
+    - else
+      = link_to product_favorites_path(@product), method: :post, id: "favoBtn", remote: true do
+        .favoContents
+          .favoContents--icon.yetFavo
+            = icon('fas', 'star')
+          .favoContents--title
+            お気に入り
+          .favoContents--count
+            = @product.favorites.count
   - else
-    = link_to product_favorites_path(@product), method: :post, id: "favoBtn", remote: true do
-      .favoContents
-        .favoContents--icon.yetFavo
-          = icon('fas', 'star')
-        .favoContents--title
-          お気に入り
-        .favoContents--count
-          = @product.favorites.count
+    .favoContents.notPush
+      .favoContents--icon
+        = icon('fas', 'star')
+      .favoContents--title
+        お気に入り
+      .favoContents--count
+        = @product.favorites.count
