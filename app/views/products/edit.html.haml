@@ -29,7 +29,8 @@
             .lower-box
               .update-box
                 .edit-btn 
-                  %span 編集
+                  = f.label :"images_attributes_#{@product.images.length}_image", class: "label-box-edit", id: "label-box--#{@product.images.length}" do
+                    %span 編集
               .delete-box
                 .delete-btn
                   %span 削除

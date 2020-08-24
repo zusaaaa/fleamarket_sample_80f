@@ -6,8 +6,8 @@ $(document).on('turbolinks:load', function(){
                       <img src="" alt="preview">
                     </div>
                     <div class="lower-box">
-                      <div class="update-box" id=edit_btn_${count}">
-                        <label class="edit_btn">編集</label>
+                      <div class="update-box" id=update_btn_${count}">
+                        <label class="label-box-edit" id="product_images_attributes_${count}_image" for="images_attributes_${count}_src">編集</label>
                       </div>
                       <div class="delete-box" id="delete_btn_${count}">
                         <span>削除</span>
@@ -106,8 +106,7 @@ $(document).on('turbolinks:load', function(){
       var count = $('.preview-box').length;
       setLabel(count);
       var id = $(this).attr('id').replace(/[^0-9]/g, '');
-      console.log(id)
-      // $(`#preview-box__${id}`).remove();
+      $('.label-box-edit').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_src`});
     })
   });
 })
