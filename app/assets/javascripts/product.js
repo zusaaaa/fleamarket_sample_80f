@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function(){
                       <img src="" alt="preview">
                     </div>
                     <div class="lower-box">
-                      <div class="update-box">
+                      <div class="update-box" id=edit_btn_${count}">
                         <label class="edit_btn">編集</label>
                       </div>
                       <div class="delete-box" id="delete_btn_${count}">
@@ -26,6 +26,9 @@ $(document).on('turbolinks:load', function(){
       })
       $('.delete-box').each(function(index, box){
         $(box).attr('id', `delete_btn_${index}`);
+      })
+      $('.update-box').each(function(index, box){
+        $(box).attr('id', `update_btn_${index}`);
       })
       var count = $('.preview-box').length;
       if (count == 5) {
@@ -99,5 +102,12 @@ $(document).on('turbolinks:load', function(){
         }
       }
     });
+    $(document).on('click', '.update-box', function() {
+      var count = $('.preview-box').length;
+      setLabel(count);
+      var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      console.log(id)
+      // $(`#preview-box__${id}`).remove();
+    })
   });
 })
