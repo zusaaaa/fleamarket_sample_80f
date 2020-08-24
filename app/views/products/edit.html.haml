@@ -28,7 +28,9 @@
               = image_tag image.src.url, width: "112", height: "112", alt: "preview"
             .lower-box
               .update-box
-                %label.edit-btn 編集
+                .edit-btn 
+                  = f.label :"images_attributes_#{@product.images.length}_image", class: "label-box-edit", id: "label-box--#{@product.images.length}" do
+                    %span 編集
               .delete-box
                 .delete-btn
                   %span 削除

@@ -6,8 +6,8 @@ $(document).on('turbolinks:load', function(){
                       <img src="" alt="preview">
                     </div>
                     <div class="lower-box">
-                      <div class="update-box">
-                        <label class="edit_btn">編集</label>
+                      <div class="update-box" id=update_btn_${count}">
+                        <label class="label-box-edit" id="product_images_attributes_${count}_image" for="images_attributes_${count}_src">編集</label>
                       </div>
                       <div class="delete-box" id="delete_btn_${count}">
                         <span>削除</span>
@@ -26,6 +26,9 @@ $(document).on('turbolinks:load', function(){
       })
       $('.delete-box').each(function(index, box){
         $(box).attr('id', `delete_btn_${index}`);
+      })
+      $('.update-box').each(function(index, box){
+        $(box).attr('id', `update_btn_${index}`);
       })
       var count = $('.preview-box').length;
       if (count == 5) {
@@ -99,5 +102,11 @@ $(document).on('turbolinks:load', function(){
         }
       }
     });
+    $(document).on('click', '.update-box', function() {
+      var count = $('.preview-box').length;
+      setLabel(count);
+      var id = $(this).attr('id').replace(/[^0-9]/g, '');
+      $('.label-box-edit').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_src`});
+    })
   });
 })
