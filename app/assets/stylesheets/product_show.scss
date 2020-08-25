@@ -17,17 +17,20 @@
           font-size: 24px;
         }
         .productImageMain {
-          margin: 16px 0 20px;
+          // margin: 16px 0 20px;
           text-align: center;
+          position: relative;
+          border: 1px solid #ddd;
+
           .productImage__sold{
             width: 0;
             border-top: 150px solid #ea352d ;
             border-right: 150px solid transparent;
             border-bottom: 60px solid transparent;
             border-left: 60px solid #ea352d ;
-            position: relative;
-            top:-338px;
-            left: 20px;
+            position: absolute;
+            top:0px;
+            left: 0px;
             margin-bottom: -210px;
             &__inner{
               width: 200px;
