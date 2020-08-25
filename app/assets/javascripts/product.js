@@ -81,14 +81,14 @@ $(document).on('turbolinks:load', function(){
 
       //新規投稿時
       if ($(`#product_images_attributes_${id}__destroy`).length == 0) {
-        $(`#product_images_attributes_${id}_image`).val("");
+        $(`#product_images_attributes_${id}_src`).val("");
         var count = $('.preview-box').length;
         if (count == 4) {
           $('.label-content').show();
         }
         setLabel(count);
         if(id < 5){
-          $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_image`});
+          $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_src`});
         }
       } else {
         //投稿編集時
@@ -98,7 +98,7 @@ $(document).on('turbolinks:load', function(){
         }
         setLabel();
         if(id < 5){
-          $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_image`});
+          $('.label-box').attr({id: `label-box--${id}`,for: `product_images_attributes_${id}_src`});
         }
       }
     });
