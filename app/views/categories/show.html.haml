@@ -31,7 +31,7 @@
                       = icon('fas', 'star')
                     %li.detail__fav--num
                       = product.favorites.count
-          = paginate @products
+= paginate @products
 
 .footer
   =render "devise/footer"
