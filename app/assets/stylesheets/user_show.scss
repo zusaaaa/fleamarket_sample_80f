@@ -51,6 +51,7 @@
       .content{
         display: none;
         color: black;
+        padding-bottom: 50px;
         background-color: #fff;
         .contentTitle{
           text-align: center;
@@ -68,6 +69,10 @@
             .contentInfo__list {
               font-weight: normal;
             }
+          }
+          &__none{
+            text-align: center;
+            margin-top: 50px;
           }
         }
       }
