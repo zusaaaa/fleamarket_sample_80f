@@ -4,8 +4,7 @@
   background-color: rgb(245, 245, 245);
 }
 .product__All{
-  // display:block;
-  padding-top: 30px;
+  padding: 30px 0;
   width: 100%;
   background-color: rgb(245, 245, 245);
   overflow: scroll;
@@ -44,7 +43,7 @@
     }
     .single-container{
       font-size: 25px;
-      margin: 10px 40px 10px 70px;
+      margin: 10px 70px;
       padding-top: 10px;
       .creditcard_section{
         font-size: 15px;
