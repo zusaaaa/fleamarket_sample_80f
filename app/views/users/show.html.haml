@@ -72,3 +72,10 @@
 
 .footer
   =render "devise/footer"
+-if user_signed_in?
+  .exhibition
+    = link_to new_product_path, data: {"turbolinks": false} do
+      -# 商品出品ページへ遷移
+      .exhibition__content
+        %P 出品する
+        = image_tag("icon_camera.png")
