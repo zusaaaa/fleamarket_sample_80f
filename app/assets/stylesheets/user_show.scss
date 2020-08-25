@@ -2,17 +2,14 @@
   padding:40px 0;
   background-color: #f8f8f8;
   .contentsMain {
-    height: calc(100% - 120px);
-    margin:0 auto;
+    margin:0 200px;
     display: flex;
     ul {
       margin:0 auto;
-      // box-sizing: border-box;
       flex-direction: column;
       align-items: center;
         li {
           height: 60px;
-          // display: block;
           color: #fff;
           font-size: 18px;
           position: relative;

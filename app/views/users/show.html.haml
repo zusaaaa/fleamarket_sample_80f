@@ -52,6 +52,8 @@
               商品名
               .contentInfo__list
                 = product.product_name
+              .contentInfo__image
+                = image_tag product.images[0].src.url, size: "150x100"
       %li#tab__favorite.content
         .contentTitle
           お気に入り一覧
@@ -61,9 +63,6 @@
               商品名
               .contentInfo__list
                 = favorite.product.product_name
-                
-        
-
 
 .footer
   =render "devise/footer"
