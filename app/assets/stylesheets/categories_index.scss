@@ -1,0 +1,38 @@
+.main {
+  background-color: #f8f8f8;
+  .mainShow {
+    margin: 0 200px;
+    background-color: #fff;
+    h1 {
+      padding: 20px;
+      font-size: x-large;
+      text-align: center;
+      color: #fff;
+      background: #3ccACE;
+    }
+    ul {
+      li {
+        font-size: medium;
+      }
+    }
+    ul.categories {
+      li.parents {
+        font-size: 20px;
+        font-weight: 800;
+        margin:0 0 20px 30px;
+        color: #3ccACE;
+      }
+      &__children{
+        margin:0 0 20px 60px;
+      }
+      &__grandchildren{
+        margin:0 0 20px 30px;
+      }
+      ul.categories {
+        li.children {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}

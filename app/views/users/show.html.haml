@@ -72,6 +72,7 @@
 
 .footer
   =render "devise/footer"
+
 -if user_signed_in?
   .exhibition
     = link_to new_product_path, data: {"turbolinks": false} do

@@ -1,0 +1,37 @@
+.header
+  = render partial: "items/header"
+
+.main
+  .category_wrapper
+    .category__links
+      - @category_links.each do |category|
+        = link_to category.name, category_path(category)
+
+  .products_container
+    .products__index
+      .title
+        = "#{@category.name}の商品一覧"
+        .title__border
+      - if @products
+        .contentWrapper
+          - @products.each do |product|
+            = link_to product_path(product[:id]), method: :get do
+              .contentInfo
+                = image_tag product.images[0].src.url, size: "220x150"
+                .contentInfo__box
+                  .contentInfo__name
+                    = product.product_name
+                .detail
+                  .detail__price
+                    ¥
+                    = product.price.to_s(:delimited)
+                    %p (税込)
+                  %ul.detail__fav
+                    %li.detail__fav--icon
+                      = icon('fas', 'star')
+                    %li.detail__fav--num
+                      = product.favorites.count
+          = paginate @products
+
+.footer
+  =render "devise/footer"
