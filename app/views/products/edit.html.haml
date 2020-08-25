@@ -35,14 +35,14 @@
                 .delete-btn
                   %span 削除
       .label-content
-        = f.label :"images_attributes_#{@product.images.length}_image", class: "label-box", id: "label-box--#{@product.images.length}" do
+        = f.label :"images_attributes_#{@product.images.length}_src", class: "label-box", id: "label-box--#{@product.images.length}" do
           .label-box__text クリックしてファイルをアップロード
       .hidden-content
         = f.fields_for :images do |i|
           = i.file_field :src, class: "hidden-field"
           = i.check_box:_destroy, class: "hidden-checkbox"
         - @product.images.length.upto(4) do |i|
-          %input{name: "product[images_attributes][#{i}][src]", id: "product_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
+          %input{name: "product[images_attributes][#{i}][src]", id: "product_images_attributes_#{i}_src", class:"hidden-field", type:"file"}
   .productForm__exprain
     %ul
       %li 商品の説明
