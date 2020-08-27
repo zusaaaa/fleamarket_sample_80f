@@ -21,7 +21,6 @@
           text-align: center;
           position: relative;
           border: 1px solid #ddd;
-
           .productImage__sold{
             width: 0;
             border-top: 150px solid #ea352d ;
@@ -41,6 +40,13 @@
               letter-spacing: 2px;
               font-weight: bold;
             }
+          }
+        }
+        .productImage{
+          .image {
+            width: 140x;
+            height: 100px;
+            object-fit: cover;
           }
         }
         ul {

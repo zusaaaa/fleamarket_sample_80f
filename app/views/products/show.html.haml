@@ -13,20 +13,19 @@
           = @product.product_name
 
         .productImageMain
-          = image_tag (@product.images[0].src.url)
-          - if @product.status == "売り切れ"
+          = image_tag @product.images[0].src.url ,class: "image"
+            - if @product.status == "売り切れ"
             .productImage__sold
               .productImage__sold__inner
                 SOLD OUT
         
         %ul.productImage
-          - @product.images.each do |image|
+          - @product.images[1..4].each do |image|
             %li.productImageEach
-              = image_tag image.src.url, size: "140x100"
+              = image_tag image.src.url, class: "image", size: "140x100"
 
         .productPrice
-          ¥
-          = @product.price.to_s(:delimited)
+          = "¥#{@product.price.to_s(:delimited)}-"
         .productPrice__detail
           %span.tax
           (税込)
