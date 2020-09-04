@@ -70,6 +70,8 @@ Chromeの最新版を利用してアクセスしてください。 <br>
 #### トップページから出品ボタン押下
 https://gyazo.com/de97f9ded9e8bee5c7f9800a16e0b972
 
+<a href="https://gyazo.com/de97f9ded9e8bee5c7f9800a16e0b972"><img src="https://i.gyazo.com/de97f9ded9e8bee5c7f9800a16e0b972.gif" alt="Image from Gyazo" width="1000"/></a>
+
 #### 商品情報入力
 https://gyazo.com/cd1e01250c94e6509f46f655f1334059
 
